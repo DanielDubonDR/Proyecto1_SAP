@@ -1,6 +1,7 @@
 
 package GUI;
 
+import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
@@ -8,6 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -22,11 +24,9 @@ public class Menu extends JFrame {
     Panel pane1=new Panel();//panel principal
     
     //Creacion de nuevos colores
-    Color celeste=new Color(0, 102, 204);
-    Color menta=new Color(26, 177, 136);
     Color azul=new Color(36, 49, 60);
-    Color azulp=new Color(67, 81, 89);
-    Color rosa=new Color(202, 41, 91);
+    Color gris=new Color(236, 240, 241);
+    Color celeste=new Color(0, 102, 204);
     
     public Menu()
     {
@@ -37,7 +37,8 @@ public class Menu extends JFrame {
         setResizable(false);
         agregarpaneles();
         textos();
-//        botones();
+        botones();
+        etiquetas();
 //        cerrar();
     }
     
@@ -71,5 +72,62 @@ public class Menu extends JFrame {
         Icon scale=new ImageIcon(im.getImage().getScaledInstance(s0.getWidth(), s0.getHeight(), Image.SCALE_DEFAULT));
         s0.setIcon(scale);
         pane1.add(s0);
+    }
+    
+    private void botones()
+    {
+        int x=0, y=-25;
+        Boton clientes=new Boton(null,96+x,220+y,126,126);
+        clientes.setBackground(gris);
+        clientes.setIcon(setIcono("Resources\\clientes.png",clientes));
+        pane.add(clientes);
+        
+        Boton productos=new Boton(null,255+x,220+y,126,126);
+        productos.setBackground(gris);
+        productos.setIcon(setIcono("Resources\\producto.png",productos));
+        pane.add(productos);
+        
+        Boton venta=new Boton(null,414+x,220+y,126,126);
+        venta.setBackground(gris);
+        venta.setIcon(setIcono("Resources\\ventas.png",venta));
+        pane.add(venta);
+        
+        Boton reporte=new Boton(null,568+x,220+y,126,126);
+        reporte.setBackground(gris);
+        reporte.setIcon(setIcono("Resources\\reporte.png",reporte));
+        pane.add(reporte);
+    }
+    
+    private void etiquetas()
+    {
+        int y=-15;
+        Label cliente=new Label(96,344+y,126,50);
+        cliente.setText(fn.texto("Administración de clientes", true,3));
+        cliente.setForeground(celeste);
+        pane.add(cliente);
+        
+        Label producto=new Label(255,334+y,126,50);
+        producto.setText(fn.texto("Administración de productos", true,3));
+        producto.setForeground(celeste);
+        pane.add(producto);
+        
+        Label ventas=new Label(414,334+y,126,50);
+        ventas.setText(fn.texto("Administración de ventas", true,3));
+        ventas.setForeground(celeste);
+        pane.add(ventas);
+        
+        Label reportes=new Label(568,334+y,126,50);
+        reportes.setText(fn.texto("Reportes", true,3));
+        reportes.setForeground(celeste);
+        pane.add(reportes);
+    }
+    
+    private Icon setIcono(String path, JButton boton)
+    {
+        ImageIcon icon=new ImageIcon(path);
+        int ancho=boton.getWidth();
+        int alto=boton.getHeight();
+        ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+        return icono;
     }
 }
