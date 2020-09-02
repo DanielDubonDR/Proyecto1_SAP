@@ -9,8 +9,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import static javax.swing.SwingConstants.CENTER;
 
 /**
  *
@@ -67,14 +71,39 @@ public class Login extends JFrame {
     
     private void textos()
     {
-        Texto lnUser=new Texto(42, 263, 305, 35);
-        lnUser.setText("Usuario");
-        pane.add(lnUser);
+        Texto User=new Texto(42, 263, 305, 35);
+        User.setText("Usuario");
+        pane.add(User);
         
-//        Boton btnR=new Boton(fn.texto("REGISTRAR", true,4),201,36,128,34);
-//        btnR.setBackground(azul);
-//        btnR.setForeground(Color.WHITE);
-//        pane1.add(btnR);
+//        Texto Pass=new Texto(42, 263, 305, 35);
+//        Pass.setText("Contraseña");
+//        pane.add(Pass);
+        
+        JPasswordField Pass=new JPasswordField();
+        Pass.setBounds(42, 330, 305, 35);
+        Pass.setOpaque(false);
+        Pass.setForeground(Color.white);
+        Pass.setHorizontalAlignment(CENTER);
+        Pass.setText("Contraseña");
+        Pass.setEchoChar((char)0);
+        pane.add(Pass);
+        
+        User.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                User.setText("");
+            }
+        });
+        
+        Pass.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent a)
+            {
+                Pass.setText("");
+                Pass.setEchoChar('•');
+            }
+        });
     }
     
     public void paint(Graphics g){
