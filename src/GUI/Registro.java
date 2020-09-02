@@ -5,6 +5,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
+import Principal.Controlador.Usuario;
 import Principal.Funciones;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -19,6 +20,7 @@ import javax.swing.JPasswordField;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.users;
+import static Principal.Proyecto1_SAP.contador;
 import javax.swing.JOptionPane;
 
 /**
@@ -109,7 +111,23 @@ public class Registro extends JFrame{
                 {
                     if(verificarPass(pass,passC))
                     {
-                        JOptionPane.showMessageDialog(null,"verificar usuario");
+                        Usuario useraux=new Usuario(User.getText(),nombre.getText(),pass);
+                        if(contador<10)
+                        {
+//                            if(buscar(User.getText()))
+//                            {
+//                                JOptionPane.showMessageDialog(null,"Ya existe un usuario con el mismo nombre");
+//                            }
+//                            else
+//                            {
+                                users[contador]=useraux;
+                                contador++;
+//                            }
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null,"Ha llegado al limite de usuarios");
+                        }
                     }
                     else
                     {
@@ -196,4 +214,21 @@ public class Registro extends JFrame{
             }
             else return false;
         }
+    
+    public boolean buscar(String user)
+    {
+        boolean aux=false;
+        for(int i=0; i<=contador;i++)
+        {
+            if(user.equals(users[i].getUsuario()))
+            {
+                aux= true;
+            }
+            else
+            {
+                aux= false;
+            }
+        }
+        return aux;
+    }
 }

@@ -13,6 +13,7 @@ import Principal.Controlador.Usuario;
 public class Proyecto1_SAP {
     
     public static Usuario [] users=new Usuario[10];
+    public static int contador=0;
     
     public static void main(String[] args)
     {
