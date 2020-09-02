@@ -7,11 +7,14 @@ import GUI.Utilidades.Texto;
 import Principal.Funciones;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static javax.swing.SwingConstants.CENTER;
@@ -40,6 +43,7 @@ public class Login extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
+        imagen();
         botones();
         textos();
     }
@@ -62,30 +66,36 @@ public class Login extends JFrame {
         btnR.setForeground(Color.WHITE);
         pane.add(btnR);
         
-        Boton btnA=new Boton(fn.texto("INICIAR SESION", true,4),62,406,264,44);
+        Boton btnA=new Boton(fn.texto("INICIAR SESION", true,4),62,386,264,44);
         btnA.setBackground(azul);
         btnA.setForeground(Color.WHITE);
         btnA.setBorderPainted(true);
         pane.add(btnA);
     }
     
+    private void imagen()
+    {
+        JLabel s0 = new JLabel(new ImageIcon("Resources\\img1.png"));
+        s0.setBounds(129, 98, 131, 131);
+        pane.add(s0);
+    }
+    
     private void textos()
     {
-        Texto User=new Texto(42, 263, 305, 35);
+        Texto User=new Texto(42, 243, 305, 35);
         User.setText("Usuario");
+        User.setBorder(null);
         pane.add(User);
         
-//        Texto Pass=new Texto(42, 263, 305, 35);
-//        Pass.setText("Contraseña");
-//        pane.add(Pass);
-        
         JPasswordField Pass=new JPasswordField();
-        Pass.setBounds(42, 330, 305, 35);
+        Pass.setBounds(42, 310, 305, 35);
         Pass.setOpaque(false);
         Pass.setForeground(Color.white);
         Pass.setHorizontalAlignment(CENTER);
         Pass.setText("Contraseña");
         Pass.setEchoChar((char)0);
+        Pass.setBorder(null);
+        Pass.setFont(new Font("Verdana", Font.PLAIN, 13));
         pane.add(Pass);
         
         User.addMouseListener(new MouseAdapter()
@@ -106,18 +116,28 @@ public class Login extends JFrame {
         });
     }
     
+    
     public void paint(Graphics g){
         super.paint(g);
-        //pane1.paint(g);
         Graphics2D linea=(Graphics2D)g;
         linea.setStroke(new BasicStroke(2.f));
         linea.setPaint(menta);
         linea.drawRect(59, 98, 128, 0);
         
-        Graphics2D linea1=(Graphics2D)g;
-        linea1.setStroke(new BasicStroke(2.f));
-        linea1.setPaint(rosa);
-        linea1.drawRect(204, 98, 128, 0);
+//        Graphics2D linea1=(Graphics2D)g;
+//        linea1.setStroke(new BasicStroke(2.f));
+//        linea1.setPaint(rosa);
+//        linea1.drawRect(204, 98, 128, 0);
+        
+        Graphics2D linea2=(Graphics2D)g;
+        linea2.setStroke(new BasicStroke(2.f));
+        linea2.setPaint(rosa);
+        linea2.drawRect(42, 307, 305, 0);
+        
+        Graphics2D linea3=(Graphics2D)g;
+        linea3.setStroke(new BasicStroke(2.f));
+        linea3.setPaint(rosa);
+        linea3.drawRect(42, 375, 305, 0);
         
     }
 }
