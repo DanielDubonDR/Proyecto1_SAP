@@ -134,10 +134,10 @@ public class Registro extends JFrame{
                         JOptionPane.showMessageDialog(null,"Las contraseñas no coinciden");
                     }
                 }
-                for(int i=0; i<users.length;i++)
-                {
-                    System.out.println(users[i]);
-                }
+//                for(int i=0; i<users.length;i++)
+//                {
+//                    System.out.println(users[i]);
+//                }
             }
         });
     }
