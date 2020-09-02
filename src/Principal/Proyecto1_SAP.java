@@ -4,6 +4,7 @@ package Principal;
 import GUI.Login;
 import GUI.Menu;
 import GUI.Registro;
+import Principal.Controlador.Usuario;
 
 /**
  *
@@ -11,11 +12,13 @@ import GUI.Registro;
  */
 public class Proyecto1_SAP {
     
+    public static Usuario [] users=new Usuario[10];
+    
     public static void main(String[] args)
     {
-//        Registro abrir=new Registro();
+        Registro abrir=new Registro();
 //        Login abrir=new Login();
-        Menu abrir=new Menu();
+//        Menu abrir=new Menu();
         abrir.setVisible(true);
     }
 }

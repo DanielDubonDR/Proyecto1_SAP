@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static Principal.Proyecto1_SAP.users;
 
 /**
  *
@@ -34,6 +35,12 @@ public class Registro extends JFrame{
     Color azul=new Color(36, 49, 60);
     Color azulp=new Color(67, 81, 89);
     Color rosa=new Color(202, 41, 91);
+    
+    //hacer global los campos de texto
+    Texto User=new Texto(38, 120, 313, 31);
+    Texto nombre=new Texto(38, 184, 313, 31);
+    JPasswordField Pass=new JPasswordField();
+    JPasswordField PassC=new JPasswordField();
     
     public Registro()
     {
@@ -84,6 +91,16 @@ public class Registro extends JFrame{
                 Registro.this.dispose();
             }
         });
+        
+        btnA.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String pass=String.valueOf(Pass.getPassword());
+                System.out.println(User.getText()+" "+nombre.getText()+" "+pass);
+            }
+        });
     }
     
     public void agregarLabel()
@@ -107,26 +124,22 @@ public class Registro extends JFrame{
     
     private void textos()
     {
-        Texto User=new Texto(38, 120, 313, 31);
         pane.add(User);
         
-        Texto nombre=new Texto(38, 184, 313, 31);
         pane.add(nombre);
         
-        JPasswordField Pass=new JPasswordField();
         Pass.setBounds(38, 252, 313, 31);
         Pass.setOpaque(false);
         Pass.setForeground(Color.white);
         Pass.setHorizontalAlignment(CENTER);
         pane.add(Pass);
         
-        JPasswordField PassC=new JPasswordField();
+        
         PassC.setBounds(38, 316, 313, 31);
         PassC.setOpaque(false);
         PassC.setForeground(Color.white);
         PassC.setHorizontalAlignment(CENTER);
         pane.add(PassC);
-          
     }
     
     

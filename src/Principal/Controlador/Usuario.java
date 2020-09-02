@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Principal.Controlador;
 
 /**
@@ -10,5 +6,42 @@ package Principal.Controlador;
  * @author Daniel Dubón
  */
 public class Usuario {
+    private String usuario, nombre, contrasenia;
     
+    public Usuario(String usuario, String nombre, String contrasenia)
+    {
+        setUsuario(usuario);
+        setNombre(nombre);
+        setContrasenia(contrasenia);
+    }
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario=usuario;
+    }
+    
+    public void setNombre(String usuario)
+    {
+        this.usuario=usuario;
+    }
+    
+    public void setContrasenia(String usuario)
+    {
+        this.usuario=usuario;
+    }
+    
+    public String getUsuario()
+    {
+        return usuario;
+    }
+    
+    public String getNombre()
+    {
+        return nombre;
+    }
+    
+    public String getContrasenia()
+    {
+        return contrasenia;
+    }
 }
