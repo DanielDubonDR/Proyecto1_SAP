@@ -3,6 +3,7 @@ package GUI;
 
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Panel;
+import GUI.Utilidades.Texto;
 import Principal.Funciones;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -19,9 +20,6 @@ public class Login extends JFrame {
     
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
-    Panel pane1=new Panel();//panel que encierra solo bnt ingresar registrar
-    Panel pane2=new Panel();//panel que encierra cuerpo de ingresar
-    Panel pane3=new Panel();//panel que encierra cuerpo registrar
     
     //Creacion de nuevos colores
     Color celeste=new Color(0, 102, 204);
@@ -32,7 +30,7 @@ public class Login extends JFrame {
     
     public Login()
     {
-        setSize(/*388*/450, 488);
+        setSize(388, 488);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Login");
         setLocationRelativeTo(null);
@@ -59,13 +57,18 @@ public class Login extends JFrame {
         btnR.setBackground(azul);
         btnR.setForeground(Color.WHITE);
         pane.add(btnR);
+        
+        Boton btnA=new Boton(fn.texto("INICIAR SESION", true,4),62,406,264,44);
+        btnA.setBackground(azul);
+        btnA.setForeground(Color.WHITE);
+        btnA.setBorderPainted(true);
+        pane.add(btnA);
     }
     
     private void textos()
     {
-        JTextField lnUser=new JTextField();
-        lnUser.setOpaque(false);
-        lnUser.setBounds(0, 0, 305, 35);
+        Texto lnUser=new Texto(42, 263, 305, 35);
+        lnUser.setText("Usuario");
         pane.add(lnUser);
         
 //        Boton btnR=new Boton(fn.texto("REGISTRAR", true,4),201,36,128,34);
