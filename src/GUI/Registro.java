@@ -114,15 +114,15 @@ public class Registro extends JFrame{
                         Usuario useraux=new Usuario(User.getText(),nombre.getText(),pass);
                         if(contador<10)
                         {
-//                            if(buscar(User.getText()))
-//                            {
-//                                JOptionPane.showMessageDialog(null,"Ya existe un usuario con el mismo nombre");
-//                            }
-//                            else
-//                            {
-                                users[contador]=useraux;
-                                contador++;
-//                            }
+                                if(buscar(User.getText()))
+                                {
+                                    JOptionPane.showMessageDialog(null,"Ya existe un usuario con el mismo nombre");
+                                }
+                                else
+                                {
+                                    users[contador]=useraux;
+                                    contador++;
+                                }
                         }
                         else
                         {
@@ -133,6 +133,10 @@ public class Registro extends JFrame{
                     {
                         JOptionPane.showMessageDialog(null,"Las contraseñas no coinciden");
                     }
+                }
+                for(int i=0; i<users.length;i++)
+                {
+                    System.out.println(users[i]);
                 }
             }
         });
@@ -218,15 +222,12 @@ public class Registro extends JFrame{
     public boolean buscar(String user)
     {
         boolean aux=false;
-        for(int i=0; i<=contador;i++)
+        for(int i=0; i<contador;i++)
         {
             if(user.equals(users[i].getUsuario()))
             {
                 aux= true;
-            }
-            else
-            {
-                aux= false;
+                break;
             }
         }
         return aux;

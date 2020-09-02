@@ -44,4 +44,11 @@ public class Usuario {
     {
         return contrasenia;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "usuario=" + usuario + ", nombre=" + nombre + ", contrasenia=" + contrasenia + '}';
+    }
+    
+    
 }
