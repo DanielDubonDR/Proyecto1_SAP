@@ -22,12 +22,12 @@ public class Usuario {
     
     public void setNombre(String nombre)
     {
-        this.usuario=nombre;
+        this.nombre=nombre;
     }
     
     public void setContrasenia(String contrasenia)
     {
-        this.usuario=contrasenia;
+        this.contrasenia=contrasenia;
     }
     
     public String getUsuario()
