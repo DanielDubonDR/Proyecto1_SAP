@@ -12,8 +12,8 @@ public class Proyecto1_SAP {
     
     public static void main(String[] args)
     {
-        Registro abrir=new Registro();
-//        Login abrir=new Login();
+//        Registro abrir=new Registro();
+        Login abrir=new Login();
         abrir.setVisible(true);
     }
 }

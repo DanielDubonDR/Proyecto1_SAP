@@ -10,13 +10,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import static javax.swing.SwingConstants.CENTER;
 
 /**
@@ -38,7 +39,7 @@ public class Login extends JFrame {
     public Login()
     {
         setSize(388, 488);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -72,6 +73,17 @@ public class Login extends JFrame {
         btnA.setBorderPainted(true);
         btnA.setBorder(null);
         pane.add(btnA);
+        
+        btnR.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Registro abrir=new Registro();
+                abrir.setVisible(true);
+                Login.this.dispose();
+            }
+        });
     }
     
     private void imagen()

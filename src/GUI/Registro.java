@@ -8,13 +8,13 @@ import GUI.Utilidades.Texto;
 import Principal.Funciones;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -46,6 +46,7 @@ public class Registro extends JFrame{
         botones();
         textos();
         agregarLabel();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -72,6 +73,17 @@ public class Registro extends JFrame{
         btnA.setBorderPainted(true);
         btnA.setBorder(null);
         pane.add(btnA);
+        
+        btnlogin.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Login abrir=new Login();
+                abrir.setVisible(true);
+                Registro.this.dispose();
+            }
+        });
     }
     
     public void agregarLabel()
@@ -101,12 +113,6 @@ public class Registro extends JFrame{
         Texto nombre=new Texto(38, 184, 313, 31);
         pane.add(nombre);
         
-//        Texto pass=new Texto(38, 252, 313, 31);
-//        pane.add(pass);
-        
-//        Texto passC=new Texto(38, 316, 313, 31);
-//        pane.add(passC);
-        
         JPasswordField Pass=new JPasswordField();
         Pass.setBounds(38, 252, 313, 31);
         Pass.setOpaque(false);
@@ -130,6 +136,17 @@ public class Registro extends JFrame{
         linea1.setStroke(new BasicStroke(2.f));
         linea1.setPaint(menta);
         linea1.drawRect(204, 98, 128, 0);     
+    }
+    
+    public void cerrar()
+    {
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent we){
+                Login abrir=new Login();
+                abrir.setVisible(true);
+            }
+        });
     }
     
 }
