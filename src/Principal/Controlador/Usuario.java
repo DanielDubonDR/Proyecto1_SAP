@@ -20,14 +20,14 @@ public class Usuario {
         this.usuario=usuario;
     }
     
-    public void setNombre(String usuario)
+    public void setNombre(String nombre)
     {
-        this.usuario=usuario;
+        this.usuario=nombre;
     }
     
-    public void setContrasenia(String usuario)
+    public void setContrasenia(String contrasenia)
     {
-        this.usuario=usuario;
+        this.usuario=contrasenia;
     }
     
     public String getUsuario()
