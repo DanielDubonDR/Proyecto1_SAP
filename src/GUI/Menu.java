@@ -32,7 +32,7 @@ public class Menu extends JFrame {
     {
         setSize(800, 436);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Registro");
+        setTitle("Menu");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
