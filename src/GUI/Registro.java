@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.users;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,7 +99,23 @@ public class Registro extends JFrame{
             public void actionPerformed(ActionEvent e)
             {
                 String pass=String.valueOf(Pass.getPassword());
-                System.out.println(User.getText()+" "+nombre.getText()+" "+pass);
+                String passC=String.valueOf(PassC.getPassword());
+//                System.out.println(User.getText()+" "+nombre.getText()+" "+pass);
+                if(verificarEspacios(pass,passC))
+                {
+                    JOptionPane.showMessageDialog(null,"Llene todos los campos");
+                }
+                else
+                {
+                    if(verificarPass(pass,passC))
+                    {
+                        JOptionPane.showMessageDialog(null,"verificar usuario");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"Las contraseñas no coinciden");
+                    }
+                }
             }
         });
     }
@@ -162,4 +179,21 @@ public class Registro extends JFrame{
         });
     }
     
+    public boolean verificarEspacios(String pass, String passC)
+        {
+            if(User.getText().equals("")||nombre.getText().equals("")||pass.equals("")||passC.equals(""))
+            {
+                return true;
+            }
+            else return false;
+        }
+    
+    public boolean verificarPass(String pass, String passC)
+        {
+            if(passC.equals(pass))
+            {
+                return true;
+            }
+            else return false;
+        }
 }
