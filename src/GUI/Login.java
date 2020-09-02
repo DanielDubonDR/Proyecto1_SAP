@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 /**
  *
@@ -38,19 +39,13 @@ public class Login extends JFrame {
         setResizable(false);
         agregarpaneles();
         botones();
-        pane1.setVisible(true);
+        textos();
     }
     
     private void agregarpaneles()
     {
         getContentPane().add(pane);
         pane.setBackground(azul);
-        pane1.setBackground(azulp);
-        pane1.setBounds(0, 0, 381, 75);
-        pane2.setBackground(azulp);
-        pane2.setBounds(0, 75, 381, 413);
-        pane.add(pane1);
-        pane.add(pane2);
     }
     
     private void botones()
@@ -58,12 +53,25 @@ public class Login extends JFrame {
         Boton btnlogin=new Boton(fn.texto("INGRESAR", true,4),56,36,128,34);
         btnlogin.setBackground(azul);
         btnlogin.setForeground(Color.WHITE);
-        pane1.add(btnlogin);
+        pane.add(btnlogin);
         
         Boton btnR=new Boton(fn.texto("REGISTRAR", true,4),201,36,128,34);
         btnR.setBackground(azul);
         btnR.setForeground(Color.WHITE);
-        pane1.add(btnR);
+        pane.add(btnR);
+    }
+    
+    private void textos()
+    {
+        JTextField lnUser=new JTextField();
+        lnUser.setOpaque(false);
+        lnUser.setBounds(0, 0, 305, 35);
+        pane.add(lnUser);
+        
+//        Boton btnR=new Boton(fn.texto("REGISTRAR", true,4),201,36,128,34);
+//        btnR.setBackground(azul);
+//        btnR.setForeground(Color.WHITE);
+//        pane1.add(btnR);
     }
     
     public void paint(Graphics g){
