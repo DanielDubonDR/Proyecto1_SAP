@@ -17,6 +17,5 @@ public class Texto extends JTextField{
         this.setHorizontalAlignment(CENTER);
         this.setForeground(Color.white);
         this.setFont(new Font("Verdana", Font.PLAIN, 13));
-        //this.setBorder(null);
     }
 }

@@ -2,6 +2,7 @@
 package Principal;
 
 import GUI.Login;
+import GUI.Registro;
 
 /**
  *
@@ -11,8 +12,8 @@ public class Proyecto1_SAP {
     
     public static void main(String[] args)
     {
-        System.out.println("BIENVENIDO");
-        Login abrir=new Login();
+        Registro abrir=new Registro();
+//        Login abrir=new Login();
         abrir.setVisible(true);
     }
 }
