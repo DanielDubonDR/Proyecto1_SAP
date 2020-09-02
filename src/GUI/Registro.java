@@ -2,6 +2,7 @@
 package GUI;
 
 import GUI.Utilidades.Boton;
+import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
 import Principal.Funciones;
@@ -44,6 +45,7 @@ public class Registro extends JFrame{
         agregarpaneles();
         botones();
         textos();
+        agregarLabel();
     }
     
     private void agregarpaneles()
@@ -72,11 +74,52 @@ public class Registro extends JFrame{
         pane.add(btnA);
     }
     
+    public void agregarLabel()
+    {
+        Label user=new Label(145,153,100,20);
+        user.setText(fn.texto("Usuario", true,3));
+        pane.add(user);
+        
+        Label nombre=new Label(145,218,100,20);
+        nombre.setText(fn.texto("Nombre", true,3));
+        pane.add(nombre);
+        
+        Label pass=new Label(145,285,100,20);
+        pass.setText(fn.texto("Contraseña", true,3));
+        pane.add(pass);
+        
+        Label passC=new Label(125,349,150,20);
+        passC.setText(fn.texto("Confirmar contraseña", true,3));
+        pane.add(passC);
+    }
+    
     private void textos()
     {
-        Texto User=new Texto(42, 243, 305, 35);
-        User.setText("Usuario");
+        Texto User=new Texto(38, 120, 313, 31);
         pane.add(User);
+        
+        Texto nombre=new Texto(38, 184, 313, 31);
+        pane.add(nombre);
+        
+//        Texto pass=new Texto(38, 252, 313, 31);
+//        pane.add(pass);
+        
+//        Texto passC=new Texto(38, 316, 313, 31);
+//        pane.add(passC);
+        
+        JPasswordField Pass=new JPasswordField();
+        Pass.setBounds(38, 252, 313, 31);
+        Pass.setOpaque(false);
+        Pass.setForeground(Color.white);
+        Pass.setHorizontalAlignment(CENTER);
+        pane.add(Pass);
+        
+        JPasswordField PassC=new JPasswordField();
+        PassC.setBounds(38, 316, 313, 31);
+        PassC.setOpaque(false);
+        PassC.setForeground(Color.white);
+        PassC.setHorizontalAlignment(CENTER);
+        pane.add(PassC);
           
     }
     
