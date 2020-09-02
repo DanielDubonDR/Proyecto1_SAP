@@ -45,10 +45,12 @@ public class Login extends JFrame {
     {
         getContentPane().add(pane);
         pane.setBackground(azul);
-        pane1.setBackground(azul);
-        pane1.setBounds(0, 0, 381, 75);
         pane1.setBackground(azulp);
+        pane1.setBounds(0, 0, 381, 75);
+        pane2.setBackground(azulp);
+        pane2.setBounds(0, 75, 381, 413);
         pane.add(pane1);
+        pane.add(pane2);
     }
     
     private void botones()
