@@ -58,5 +58,10 @@ public class Cliente {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombre=" + nombre + ", avatar=" + avatar + ", edad=" + edad + ", nit=" + nit + ", sexo=" + sexo + '}';
+    }
     
 }

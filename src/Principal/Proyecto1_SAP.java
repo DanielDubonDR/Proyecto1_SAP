@@ -6,7 +6,9 @@ import GUI.AdminClientes.AdminClientes;
 import GUI.Login;
 import GUI.Menu;
 import GUI.Registro;
+import Principal.Controlador.Cliente;
 import Principal.Controlador.Usuario;
+import java.io.IOException;
 
 /**
  *
@@ -15,10 +17,11 @@ import Principal.Controlador.Usuario;
 public class Proyecto1_SAP {
     
     public static Usuario [] users=new Usuario[10];
+    public static Cliente [] clientes=new Cliente[100];
     public static String nameuser="Daniel Dubón";
-    public static int contador=0;
+    public static int contador=0, contadorCl=0;
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         //users[0]=new Usuario("admin","admin","admin");
 //        Registro abrir=new Registro();
@@ -28,6 +31,6 @@ public class Proyecto1_SAP {
 //        abrir.setVisible(true);
         ManejadorArchivos abrir=new ManejadorArchivos();
         abrir.abrir();
-        
+        abrir.cargarClientes();
     }
 }
