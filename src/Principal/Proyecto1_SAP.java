@@ -3,6 +3,7 @@ package Principal;
 
 import EstructuraDatos.ManejadorArchivos;
 import GUI.AdminClientes.AdminClientes;
+import GUI.AdminClientes.DashboardClientes;
 import GUI.Login;
 import GUI.Menu;
 import GUI.Registro;
@@ -29,8 +30,10 @@ public class Proyecto1_SAP {
 //        Menu abrir=new Menu();
         //AdminClientes abrir=new AdminClientes();
 //        abrir.setVisible(true);
-        ManejadorArchivos abrir=new ManejadorArchivos();
-        abrir.abrir();
-        abrir.cargarClientes();
+//        ManejadorArchivos abrir=new ManejadorArchivos();
+//        abrir.abrir();
+//        abrir.cargarClientes();
+        DashboardClientes abrir=new DashboardClientes();
+        abrir.setVisible(true);
     }
 }

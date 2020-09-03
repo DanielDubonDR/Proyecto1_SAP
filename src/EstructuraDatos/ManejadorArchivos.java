@@ -55,7 +55,7 @@ public class ManejadorArchivos {
                  clientes[contador]=aux;
                  contador++;
              }
-             System.out.println(clientes[6]);
+             System.out.println(contador);
          } catch (FileNotFoundException ex) {
              System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
          }
