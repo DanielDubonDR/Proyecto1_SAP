@@ -1,6 +1,7 @@
 
 package Principal;
 
+import EstructuraDatos.ManejadorArchivos;
 import GUI.AdminClientes.AdminClientes;
 import GUI.Login;
 import GUI.Menu;
@@ -19,11 +20,14 @@ public class Proyecto1_SAP {
     
     public static void main(String[] args)
     {
+        //users[0]=new Usuario("admin","admin","admin");
 //        Registro abrir=new Registro();
-        Login abrir=new Login();
+//        Login abrir=new Login();
 //        Menu abrir=new Menu();
         //AdminClientes abrir=new AdminClientes();
-        abrir.setVisible(true);
+//        abrir.setVisible(true);
+        ManejadorArchivos abrir=new ManejadorArchivos();
+        abrir.abrir();
         
     }
 }
