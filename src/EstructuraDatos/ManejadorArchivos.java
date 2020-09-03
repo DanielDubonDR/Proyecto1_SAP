@@ -1,6 +1,7 @@
 
 package EstructuraDatos;
 
+import GUI.AdminClientes.DashboardClientes;
 import Principal.Controlador.Cliente;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.contadorCl;
 
 /**
  *
@@ -52,10 +54,10 @@ public class ManejadorArchivos {
                  String cadena[];
                  cadena=linea.split(",");
                  Cliente aux=new Cliente(cadena[0],Integer.parseInt(cadena[1]),cadena[2].charAt(0),Integer.parseInt(cadena[3]),cadena[4]);
-                 clientes[contador]=aux;
-                 contador++;
+                 clientes[contadorCl]=aux;
+                 contadorCl++;
              }
-             System.out.println(contador);
+             System.out.println(contadorCl);
          } catch (FileNotFoundException ex) {
              System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
          }
@@ -66,6 +68,8 @@ public class ManejadorArchivos {
          finally
          {
             entrada.close();//simpre cierro mi buffer para evitar problemas
+            DashboardClientes abri=new DashboardClientes();
+        abri.setVisible(true);
          }
     }
     

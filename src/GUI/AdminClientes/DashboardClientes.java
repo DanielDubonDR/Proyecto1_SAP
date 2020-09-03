@@ -13,9 +13,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.contadorCl;
 
 /**
  *
@@ -62,33 +66,72 @@ public class DashboardClientes extends JFrame {
         
         //tabla
         JScrollPane scrol=new JScrollPane();
-        scrol.setBounds(0, 150, 790, 150);
+        scrol.setBounds(0, 126, 790, 165);
         panelTabla.setLayout(new BorderLayout());
         pane.add(scrol);
         scrol.setViewportView(panelTabla);
-        panelTabla.setPreferredSize(new Dimension(750,145));
+        panelTabla.setPreferredSize(new Dimension(750,162+((contadorCl-10)*16)));
     }
     
     private void etiquetas()
     {
-        int y=120;
-        Label nombre=new Label(0,y,197,30);
+        int y=100, x=0;
+        if(contadorCl>10)
+        {
+            x=-4;
+        }
+        Label nombre=new Label(0,y,197+x,26);
         nombre.setText(fn.texto("Nombre", true,3));
         nombre.setOpaque(true);
         nombre.setBackground(celeste);
         pane.add(nombre);
         
-        Label edad=new Label(198,y,197,30);
+        Label edad=new Label(198+x,y,196+x,26);
         edad.setText(fn.texto("Edad", true,3));
         edad.setOpaque(true);
         edad.setBackground(celeste);
         pane.add(edad);
+        
+        Label sexo=new Label(395+(x*2),y,196+(x),26);
+        sexo.setText(fn.texto("Sexo", true,3));
+        sexo.setOpaque(true);
+        sexo.setBackground(celeste);
+        pane.add(sexo);
+        
+        Label nit=new Label(592+(x*3),y,196,26);
+        nit.setText(fn.texto("NIT", true,3));
+        nit.setOpaque(true);
+        nit.setBackground(celeste);
+        pane.add(nit);
+        
+        Label lb3=new Label(77,12,800,60);
+        lb3.setText(fn.texto("Dashboard", true,6));
+        lb3.setHorizontalAlignment(LEFT);
+        pane1.add(lb3);
+        
+        JLabel s0=new JLabel();
+        s0.setBounds(15, 12, 55, 55);
+        ImageIcon im= new ImageIcon("Resources\\clientesr.png");
+        Icon scale=new ImageIcon(im.getImage().getScaledInstance(s0.getWidth(), s0.getHeight(), Image.SCALE_DEFAULT));
+        s0.setIcon(scale);
+        pane1.add(s0);
     }
-    
+    Object[][] filas=new Object[contadorCl][contadorCl];
     private void agregarTabla()
     {
         String[] nombreC={"Nombre","Edad","Sexo","NIT"};
-        Object[][] filas={{"hola","asdf","sdf","dddd"},{"hola","asdf","sdf","dddd"},{"hola","asdf","sdf","dddd"},{"holad","adsdf","sddf","ddddd"},{"holfa","adsdf","sddf","ddddd"},{"holad","adsdf","sddf","ddddd"},{"holfa","adsdf","sddf","ddddd"}};
+        
+        for(int i=0; i<contadorCl;i++)
+        {
+            if(clientes[i] !=null)
+            {
+                filas[i][0]=clientes[i].getNombre();
+                filas[i][1]=clientes[i].getEdad();
+                filas[i][2]=clientes[i].getSexo();
+                filas[i][3]=clientes[i].getNit();
+            }
+        }
+        
         tabla=new JTable(filas,nombreC);
         tabla.repaint();
         panelTabla.add(tabla);
