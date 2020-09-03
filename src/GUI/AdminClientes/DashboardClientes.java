@@ -7,7 +7,9 @@ import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.nameuser;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -56,13 +59,22 @@ public class DashboardClientes extends JFrame {
     
     private void agregarpaneles()
     {
+        //panel principal
         getContentPane().add(pane);
+        
+        //panel dash
         pane.setBackground(Color.WHITE);
         pane1.setBounds(0, 0, 800, 85);
         pane1.setBackground(azul);
         pane.add(pane1);
-        panelTabla.setBounds(0, 90, 800, 90);
-        pane.add(panelTabla);
+        
+        //tabla
+        JScrollPane scrol=new JScrollPane();
+        scrol.setBounds(0, 150, 790, 150);
+        panelTabla.setLayout(new BorderLayout());
+        pane.add(scrol);
+        scrol.setViewportView(panelTabla);
+        panelTabla.setPreferredSize(new Dimension(750,145));
     }
     
     private void textos()
@@ -111,7 +123,7 @@ public class DashboardClientes extends JFrame {
     private void agregarTabla()
     {
         String[] nombreC={"Nombre","Edad","Sexo","NIT"};
-        Object[][] filas={{"hola","asdf","sdf","dddd"},{"holad","adsdf","sddf","ddddd"},{"holfa","adsdf","sddf","ddddd"}};
+        Object[][] filas={{"hola","asdf","sdf","dddd"},{"hola","asdf","sdf","dddd"},{"hola","asdf","sdf","dddd"},{"holad","adsdf","sddf","ddddd"},{"holfa","adsdf","sddf","ddddd"},{"holad","adsdf","sddf","ddddd"},{"holfa","adsdf","sddf","ddddd"}};
         tabla=new JTable(filas,nombreC);
         tabla.repaint();
         panelTabla.add(tabla);
