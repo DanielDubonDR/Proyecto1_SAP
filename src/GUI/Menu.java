@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static Principal.Proyecto1_SAP.nameuser;
+import static javax.swing.SwingConstants.LEFT;
 
 /**
  *
@@ -55,15 +57,16 @@ public class Menu extends JFrame {
     {
         int x=-10, y=-5;
         Label lb1=new Label(76+x,18+y,80,54);
-        lb1.setText(fn.texto("SAS", true,6));
+        lb1.setText(fn.texto("SAP", true,6));
         pane1.add(lb1);
         
         Label lb2=new Label(88+x,72+y,90,30);
         lb2.setText(fn.texto("Bienvenido", true,4));
         pane1.add(lb2);
         
-        Label lb3=new Label(70+x,92+y,310,49);
-        lb3.setText(fn.texto("Daniel Dubón", true,8));
+        Label lb3=new Label(87+x,92+y,800,60);
+        lb3.setText(fn.texto(nameuser, true,8));
+        lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         
         JLabel s0=new JLabel();

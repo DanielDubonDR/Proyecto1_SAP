@@ -5,6 +5,9 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
 import Principal.Funciones;
+import static Principal.Proyecto1_SAP.contador;
+import static Principal.Proyecto1_SAP.users;
+import static Principal.Proyecto1_SAP.nameuser;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -17,6 +20,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import static javax.swing.SwingConstants.CENTER;
 
@@ -35,6 +39,9 @@ public class Login extends JFrame {
     Color azul=new Color(36, 49, 60);
     Color azulp=new Color(67, 81, 89);
     Color rosa=new Color(202, 41, 91);
+    
+    JPasswordField Pass=new JPasswordField();
+    Texto User=new Texto(42, 243, 305, 35);
     
     public Login()
     {
@@ -84,7 +91,79 @@ public class Login extends JFrame {
                 Login.this.dispose();
             }
         });
+        
+        btnA.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                  String pass=String.valueOf(Pass.getPassword());
+                  if(verificarEspacios(pass))
+                  {
+                      JOptionPane.showMessageDialog(null,"Llene todos los campos");
+                  }
+                  else
+                  {
+                      if(buscar(User.getText()))
+                      {
+                          System.out.println(users[obtenerID(User.getText())]);
+                          int id=obtenerID(User.getText());
+                          if(users[id].getContrasenia().equals(pass))
+                          {
+                             nameuser=users[id].getNombre();
+                             Menu abrir=new Menu();
+                             abrir.setVisible(true);
+                             Login.this.dispose();
+                          }
+                          else
+                          {
+                              JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrecta");
+                          }
+                      }
+                      else
+                      {
+                          JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrecta");
+                      }
+                  }
+            }
+        });
     }
+    public boolean buscar(String user)
+    {
+        boolean aux=false;
+        for(int i=0; i<contador;i++)
+        {
+            if(user.equals(users[i].getUsuario()))
+            {
+                aux= true;
+                break;
+            }
+        }
+        return aux;
+    }
+    
+    public int obtenerID(String user)
+    {
+        int aux=0;
+        for(int i=0; i<contador;i++)
+        {
+            if(user.equals(users[i].getUsuario()))
+            {
+                aux=i;
+                break;
+            }
+        }
+        return aux;
+    }
+    
+    public boolean verificarEspacios(String pass)
+        {
+            if(User.getText().equals("")||pass.equals("")||pass.equals("Contraseña")||User.getText().equals("Usuario"))
+            {
+                return true;
+            }
+            else return false;
+        }
     
     private void imagen()
     {
@@ -95,12 +174,12 @@ public class Login extends JFrame {
     
     private void textos()
     {
-        Texto User=new Texto(42, 243, 305, 35);
+        
         User.setText("Usuario");
         User.setBorder(null);
         pane.add(User);
         
-        JPasswordField Pass=new JPasswordField();
+        
         Pass.setBounds(42, 310, 305, 35);
         Pass.setOpaque(false);
         Pass.setForeground(Color.white);

@@ -121,6 +121,7 @@ public class Registro extends JFrame{
                                 else
                                 {
                                     users[contador]=useraux;
+                                    JOptionPane.showMessageDialog(null,"Se ha registrado correctamente");
                                     contador++;
                                 }
                         }
