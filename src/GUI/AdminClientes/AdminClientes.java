@@ -33,7 +33,7 @@ public class AdminClientes extends JFrame{
     
     public AdminClientes()
     {
-        setSize(800,500);
+        setSize(800,550);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Administración de clientes");
         setLocationRelativeTo(null);
@@ -77,10 +77,10 @@ public class AdminClientes extends JFrame{
         clientes.setIcon(setIcono("Resources\\clientes.png",clientes));
         pane.add(clientes);
         
-        Boton productos=new Boton(null,255+x,220+y,126,126);
-        productos.setBackground(gris);
-        productos.setIcon(setIcono("Resources\\cargar.png",productos));
-        pane.add(productos);
+        Boton cargar=new Boton(null,255+x,220+y,126,126);
+        cargar.setBackground(gris);
+        cargar.setIcon(setIcono("Resources\\cargar.png",cargar));
+        pane.add(cargar);
         
         Boton lista=new Boton(null,414+x,220+y,126,126);
         lista.setBackground(gris);
@@ -91,6 +91,16 @@ public class AdminClientes extends JFrame{
         agregar.setBackground(gris);
         agregar.setIcon(setIcono("Resources\\agregar.png",agregar));
         pane.add(agregar);
+        
+        Boton modificar=new Boton(null,255+x,320,126,126);
+        modificar.setBackground(gris);
+        modificar.setIcon(setIcono("Resources\\modificar.png",modificar));
+        pane.add(modificar);
+        
+        Boton eliminar=new Boton(null,414+x,320,126,126);
+        eliminar.setBackground(gris);
+        eliminar.setIcon(setIcono("Resources\\eliminar.png",eliminar));
+        pane.add(eliminar);
     }
     
     private void etiquetas()
@@ -115,6 +125,16 @@ public class AdminClientes extends JFrame{
         reportes.setText(fn.texto("Crear cliente", true,3));
         reportes.setForeground(celeste);
         pane.add(reportes);
+        
+        Label modificar=new Label(255,440,126,50);
+        modificar.setText(fn.texto("Modificar cliente", true,3));
+        modificar.setForeground(celeste);
+        pane.add(modificar);
+        
+        Label eliminar=new Label(414,440,126,50);
+        eliminar.setText(fn.texto("Eliminar cliente", true,3));
+        eliminar.setForeground(celeste);
+        pane.add(eliminar);
     }
     
     private Icon setIcono(String path, JButton boton)
