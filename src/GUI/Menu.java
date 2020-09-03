@@ -1,6 +1,7 @@
 
 package GUI;
 
+import GUI.AdminClientes.AdminClientes;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
@@ -14,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.nameuser;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import static javax.swing.SwingConstants.LEFT;
 
 /**
@@ -99,6 +102,17 @@ public class Menu extends JFrame {
         reporte.setBackground(gris);
         reporte.setIcon(setIcono("Resources\\reporte.png",reporte));
         pane.add(reporte);
+        
+        clientes.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                AdminClientes abrir=new AdminClientes();
+                abrir.setVisible(true);
+                Menu.this.dispose();
+            }
+        });
     }
     
     private void etiquetas()

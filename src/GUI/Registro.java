@@ -56,7 +56,7 @@ public class Registro extends JFrame{
         botones();
         textos();
         agregarLabel();
-        cerrar();
+        close();
     }
     
     private void agregarpaneles()
@@ -191,11 +191,11 @@ public class Registro extends JFrame{
         linea1.drawRect(204, 98, 128, 0);     
     }
     
-    public void cerrar()
+    public void close()
     {
         this.addWindowListener(new WindowAdapter(){
             @Override
-            public void windowClosing(WindowEvent we){
+            public void windowClosing(WindowEvent a){
                 Login abrir=new Login();
                 abrir.setVisible(true);
             }
