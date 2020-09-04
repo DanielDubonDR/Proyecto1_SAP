@@ -152,9 +152,10 @@ public class DashboardClientes extends JFrame {
         dataset.setValue("Mujeres", a.obtenerMujeres());
         JFreeChart chart = ChartFactory.createPieChart3D("Gráfica de clientes por sexo",dataset);
         PiePlot3D plot=(PiePlot3D)chart.getPlot();
-        //plot.setStartAngle(270);
+        //plot.setStartAngle(180);
         plot.setForegroundAlpha(0.60f);
         plot.setInteriorGap(0.02);
+        plot.setBackgroundPaint(gris);
         ChartPanel panel= new ChartPanel(chart);
         panel.setBounds(10, 320, 300, 205);
         pane.add(panel);
