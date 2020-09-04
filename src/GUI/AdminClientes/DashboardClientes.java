@@ -42,7 +42,7 @@ public class DashboardClientes extends JFrame {
     
     public DashboardClientes()
     {
-        setSize(800, 436);
+        setSize(800, 650);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setLocationRelativeTo(null);

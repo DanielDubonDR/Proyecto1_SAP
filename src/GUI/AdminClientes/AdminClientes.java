@@ -1,27 +1,34 @@
 
 package GUI.AdminClientes;
 
+import EstructuraDatos.ManejadorArchivos;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.nameuser;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.contadorCl;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Daniel Dubón
  */
 public class AdminClientes extends JFrame{
-    
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
     Panel pane1=new Panel();//panel principal
@@ -101,6 +108,40 @@ public class AdminClientes extends JFrame{
         eliminar.setBackground(gris);
         eliminar.setIcon(setIcono("Resources\\eliminar.png",eliminar));
         pane.add(eliminar);
+        
+        clientes.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(verificarVacio())
+                {
+                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
+                }
+                else
+                {
+                    DashboardClientes abri=new DashboardClientes();
+                    abri.setVisible(true);
+                }
+            }
+        });
+        
+        cargar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                    ManejadorArchivos abrir=new ManejadorArchivos();
+                    abrir.abrir();
+                    try {
+                        abrir.cargarClientes();
+                        JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al cargar datos");
+                    }
+            }
+            
+        });
     }
     
     private void etiquetas()
@@ -146,4 +187,12 @@ public class AdminClientes extends JFrame{
         return icono;
     }
     
+    public boolean verificarVacio()
+    {
+        if(clientes[0]==null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

@@ -20,7 +20,6 @@ import static Principal.Proyecto1_SAP.contadorCl;
 public class ManejadorArchivos {
     private File path;
     private FileReader entrada;
-    private int contador=0;
     public void abrir()
     {
         JFileChooser choose=new JFileChooser();
@@ -68,9 +67,21 @@ public class ManejadorArchivos {
          finally
          {
             entrada.close();//simpre cierro mi buffer para evitar problemas
-            DashboardClientes abri=new DashboardClientes();
-        abri.setVisible(true);
+             System.out.println(obtenerMujeres());
          }
     }
     
+    public int obtenerMujeres()
+    {
+        int cont=0;
+        for(int i=0; i<contadorCl;i++)
+        {
+            String sexo=String.valueOf(clientes[i].getSexo());
+            if(sexo.equals("F"))
+            {
+                cont++;
+            }
+        }
+        return cont;
+    }
 }

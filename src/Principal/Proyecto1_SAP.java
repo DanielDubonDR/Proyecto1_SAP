@@ -28,11 +28,11 @@ public class Proyecto1_SAP {
 //        Registro abrir=new Registro();
 //        Login abrir=new Login();
 //        Menu abrir=new Menu();
-        //AdminClientes abrir=new AdminClientes();
-//        abrir.setVisible(true);
-        ManejadorArchivos abrir=new ManejadorArchivos();
-        abrir.abrir();
-        abrir.cargarClientes();
+        AdminClientes abrir=new AdminClientes();
+        abrir.setVisible(true);
+//        ManejadorArchivos abrir=new ManejadorArchivos();
+//        abrir.abrir();
+//        abrir.cargarClientes();
 //        DashboardClientes abri=new DashboardClientes();
 //        abri.setVisible(true);
     }
