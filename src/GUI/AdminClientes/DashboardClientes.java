@@ -2,6 +2,7 @@
 package GUI.AdminClientes;
 
 
+import EstructuraDatos.ManejadorArchivos;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
@@ -20,6 +21,11 @@ import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.clientes;
 import static Principal.Proyecto1_SAP.contadorCl;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -42,7 +48,7 @@ public class DashboardClientes extends JFrame {
     
     public DashboardClientes()
     {
-        setSize(800, 650);
+        setSize(800, 600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Dashboard");
         setLocationRelativeTo(null);
@@ -50,6 +56,7 @@ public class DashboardClientes extends JFrame {
         agregarpaneles();
         etiquetas();
         agregarTabla();
+        graficarPie();
 //        cerrar();
     }
     
@@ -135,5 +142,21 @@ public class DashboardClientes extends JFrame {
         tabla=new JTable(filas,nombreC);
         tabla.repaint();
         panelTabla.add(tabla);
+    }
+    
+    public void graficarPie()
+    {
+        ManejadorArchivos a=new ManejadorArchivos();
+        DefaultPieDataset dataset=new DefaultPieDataset();
+        dataset.setValue("Hombres", (contadorCl-a.obtenerMujeres()));
+        dataset.setValue("Mujeres", a.obtenerMujeres());
+        JFreeChart chart = ChartFactory.createPieChart3D("Gráfica de clientes por sexo",dataset);
+        PiePlot3D plot=(PiePlot3D)chart.getPlot();
+        //plot.setStartAngle(270);
+        plot.setForegroundAlpha(0.60f);
+        plot.setInteriorGap(0.02);
+        ChartPanel panel= new ChartPanel(chart);
+        panel.setBounds(10, 320, 300, 205);
+        pane.add(panel);
     }
 }
