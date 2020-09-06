@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -44,8 +45,10 @@ public class InfoCliente extends JFrame {
     //hacer global los campos de texto
     Texto User=new Texto(38, 120, 313, 31);
     Texto nombre=new Texto(38, 184, 313, 31);
-    Texto Pass=new Texto(38, 252, 313, 31);
+    //Texto Pass=new Texto(38, 252, 313, 31);
     Texto PassC=new Texto(38, 316, 313, 31);
+    
+    JComboBox combo=new JComboBox();
     
     public InfoCliente()
     {
@@ -73,12 +76,7 @@ public class InfoCliente extends JFrame {
         btnlogin.setBackground(azul);
         btnlogin.setForeground(Color.WHITE);
         pane.add(btnlogin);
-        
-        Boton btnR=new Boton(fn.texto("REGISTRAR", true,4),201,36,128,34);
-        btnR.setBackground(azul);
-        btnR.setForeground(Color.WHITE);
-        pane.add(btnR);
-        
+         
         Boton btnA=new Boton(fn.texto("REGISTRARSE", true,4),62,386,264,44);
         btnA.setBackground(azulp);
         btnA.setForeground(Color.WHITE);
@@ -162,7 +160,13 @@ public class InfoCliente extends JFrame {
     {
         pane.add(User);
         pane.add(nombre);
-        pane.add(Pass);
+        combo.setBounds(38, 252, 313, 31);
+        combo.addItem("M");
+        combo.addItem("F");
+        combo.setOpaque(false);
+        combo.setBackground(azul);
+        combo.setForeground(Color.WHITE);
+        pane.add(combo);
         pane.add(PassC);
     }
         
