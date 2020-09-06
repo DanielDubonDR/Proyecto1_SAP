@@ -25,7 +25,11 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.statistics.HistogramDataset;
 
 /**
  *
@@ -57,6 +61,7 @@ public class DashboardClientes extends JFrame {
         etiquetas();
         agregarTabla();
         graficarPie();
+        graficarBarras();
 //        cerrar();
     }
     
@@ -159,5 +164,33 @@ public class DashboardClientes extends JFrame {
         ChartPanel panel= new ChartPanel(chart);
         panel.setBounds(10, 320, 300, 205);
         pane.add(panel);
+    }
+    
+    public void graficarBarras()
+    {
+        HistogramDataset dataset = new HistogramDataset();
+        dataset.addSeries("Edades de los clientes", vectoredad(), 10);
+        
+        JFreeChart barChart = ChartFactory.createHistogram("Edad de los clientes", "Edad", "Clientes", dataset, PlotOrientation.VERTICAL, false, true, false);
+        XYPlot xyplot = (XYPlot)barChart.getPlot();
+        xyplot.setBackgroundPaint(Color.WHITE);
+        XYItemRenderer item = xyplot.getRenderer();
+        Color a=new Color(58, 166, 41);
+        item.setSeriesPaint(0,a);
+       
+        xyplot.setRenderer(item);
+        ChartPanel panel = new ChartPanel(barChart);
+        panel.setBounds(320, 320, 280, 290);
+        pane.add(panel);
+    }
+    
+    private double[] vectoredad()
+    {
+        double [] vecaux=new double[contadorCl];
+        for(int i=0; i<contadorCl;i++)
+        {
+             vecaux[i]=clientes[i].getEdad();
+        }
+        return vecaux;
     }
 }
