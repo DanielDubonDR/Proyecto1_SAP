@@ -52,9 +52,9 @@ public class DashboardClientes extends JFrame {
     
     public DashboardClientes()
     {
-        setSize(800, 600);
+        setSize(820, 600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Dashboard");
+        setTitle("Dashboard Clientes");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
@@ -72,13 +72,13 @@ public class DashboardClientes extends JFrame {
         
         //panel dash
         pane.setBackground(Color.WHITE);
-        pane1.setBounds(0, 0, 800, 85);
+        pane1.setBounds(0, 0, 810, 85);
         pane1.setBackground(azul);
         pane.add(pane1);
         
         //tabla
         JScrollPane scrol=new JScrollPane();
-        scrol.setBounds(0, 126, 790, 165);
+        scrol.setBounds(10, 126, 790, 165);
         panelTabla.setLayout(new BorderLayout());
         pane.add(scrol);
         scrol.setViewportView(panelTabla);
@@ -92,32 +92,32 @@ public class DashboardClientes extends JFrame {
         {
             x=-4;
         }
-        Label nombre=new Label(0,y,197+x,26);
+        Label nombre=new Label(10,y,197+x,26);
         nombre.setText(fn.texto("Nombre", true,3));
         nombre.setOpaque(true);
         nombre.setBackground(celeste);
         pane.add(nombre);
         
-        Label edad=new Label(198+x,y,196+x,26);
+        Label edad=new Label(208+x,y,196+x,26);
         edad.setText(fn.texto("Edad", true,3));
         edad.setOpaque(true);
         edad.setBackground(celeste);
         pane.add(edad);
         
-        Label sexo=new Label(395+(x*2),y,196+(x),26);
+        Label sexo=new Label(405+(x*2),y,196+(x),26);
         sexo.setText(fn.texto("Sexo", true,3));
         sexo.setOpaque(true);
         sexo.setBackground(celeste);
         pane.add(sexo);
         
-        Label nit=new Label(592+(x*3),y,196,26);
+        Label nit=new Label(602+(x*3),y,196,26);
         nit.setText(fn.texto("NIT", true,3));
         nit.setOpaque(true);
         nit.setBackground(celeste);
         pane.add(nit);
         
         Label lb3=new Label(77,12,800,60);
-        lb3.setText(fn.texto("Dashboard", true,6));
+        lb3.setText(fn.texto("Dashboard Clientes", true,6));
         lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         
@@ -162,7 +162,7 @@ public class DashboardClientes extends JFrame {
         plot.setInteriorGap(0.02);
         plot.setBackgroundPaint(gris);
         ChartPanel panel= new ChartPanel(chart);
-        panel.setBounds(10, 320, 300, 205);
+        panel.setBounds(30, 320, 320, 225);
         pane.add(panel);
     }
     
@@ -173,14 +173,14 @@ public class DashboardClientes extends JFrame {
         
         JFreeChart barChart = ChartFactory.createHistogram("Edad de los clientes", "Edad", "Clientes", dataset, PlotOrientation.VERTICAL, false, true, false);
         XYPlot xyplot = (XYPlot)barChart.getPlot();
-        xyplot.setBackgroundPaint(Color.WHITE);
+        xyplot.setBackgroundPaint(gris);
         XYItemRenderer item = xyplot.getRenderer();
         Color a=new Color(58, 166, 41);
         item.setSeriesPaint(0,a);
        
         xyplot.setRenderer(item);
         ChartPanel panel = new ChartPanel(barChart);
-        panel.setBounds(320, 320, 280, 290);
+        panel.setBounds(370, 310, 410, 250);
         pane.add(panel);
     }
     
