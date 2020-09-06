@@ -2,6 +2,7 @@
 package GUI.AdminClientes;
 
 import EstructuraDatos.ManejadorArchivos;
+import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
@@ -19,10 +20,9 @@ import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contadorCl;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -49,7 +49,7 @@ public class AdminClientes extends JFrame{
         textos();
         botones();
         etiquetas();
-//        cerrar();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -194,5 +194,16 @@ public class AdminClientes extends JFrame{
             return true;
         }
         return false;
+    }
+    
+    public void cerrar()
+    {
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent a){
+                Menu abrir=new Menu();
+                abrir.setVisible(true);
+            }
+        });
     }
 }

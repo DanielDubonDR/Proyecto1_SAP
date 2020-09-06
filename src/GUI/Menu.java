@@ -17,6 +17,8 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static Principal.Proyecto1_SAP.nameuser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import static javax.swing.SwingConstants.LEFT;
 
 /**
@@ -44,7 +46,7 @@ public class Menu extends JFrame {
         textos();
         botones();
         etiquetas();
-//        cerrar();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -146,5 +148,16 @@ public class Menu extends JFrame {
         int alto=boton.getHeight();
         ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
         return icono;
+    }
+    
+    public void cerrar()
+    {
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent a){
+                Login abrir=new Login();
+                abrir.setVisible(true);
+            }
+        });
     }
 }
