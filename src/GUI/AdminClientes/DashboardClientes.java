@@ -46,6 +46,7 @@ public class DashboardClientes extends JFrame {
     Color azul=new Color(36, 49, 60);
     Color gris=new Color(236, 240, 241);
     Color celeste=new Color(0, 102, 204);
+    Color menta=new Color(26, 177, 136);
     
     private JTable tabla;
     
@@ -176,7 +177,7 @@ public class DashboardClientes extends JFrame {
         xyplot.setBackgroundPaint(gris);
         XYItemRenderer item = xyplot.getRenderer();
         Color a=new Color(58, 166, 41);
-        item.setSeriesPaint(0,a);
+        item.setSeriesPaint(0,celeste);
        
         xyplot.setRenderer(item);
         ChartPanel panel = new ChartPanel(barChart);
