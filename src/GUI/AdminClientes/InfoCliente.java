@@ -5,6 +5,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
+import Principal.Controlador.Cliente;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.contador;
 import static Principal.Proyecto1_SAP.users;
@@ -78,10 +79,10 @@ public class InfoCliente extends JFrame {
     
     private void botones()
     {
-        Boton clientes=new Boton(null,130,20,126,130);
-        clientes.setBackground(azulp);
-        clientes.setIcon(setIcono("Resources\\agregar.png",clientes));
-        pane.add(clientes);
+        Boton cliente=new Boton(null,130,20,126,130);
+        cliente.setBackground(azulp);
+        cliente.setIcon(setIcono("Resources\\agregar.png",cliente));
+        pane.add(cliente);
          
         Boton btnA=new Boton(fn.texto("REGISTRAR", true,4),38,416+y,313,44);
         btnA.setBackground(azulp);
@@ -90,7 +91,7 @@ public class InfoCliente extends JFrame {
         btnA.setBorder(null);
         pane.add(btnA);
         
-        clientes.addActionListener(new ActionListener()
+        cliente.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -98,7 +99,7 @@ public class InfoCliente extends JFrame {
                 abrir();
                 if(abierto)
                 {
-                    clientes.setIcon(setIcono(path.toString(),clientes));
+                    cliente.setIcon(setIcono(path.toString(),cliente));
                 }
             }
         });
@@ -108,25 +109,41 @@ public class InfoCliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                System.out.println(Edad.getText());
                 if(verificarEspacios())
                 {
                     JOptionPane.showMessageDialog(null,"Llene todos los campos");
                 }
                 else
                 {
-                        //Usuario useraux=new Usuario(User.getText(),nombre.getText(),pass);
                     if(contador<100)
                     {
-                        if(buscar(Integer.parseInt(Nit.getText())))
+                        if(verificarNumeros())
                         {
-                            JOptionPane.showMessageDialog(null,"Ya existe un usuario con el mismo nombre");
+                            if(buscar(Integer.parseInt(Nit.getText())))
+                            {
+                                JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
+                            }
+                            else
+                            {
+                                if(abierto)
+                                {
+                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
+                                    clientes[contadorCl]=aux;
+                                    contadorCl++;
+                                    System.out.println(aux);
+                                }
+                                else
+                                {
+                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
+                                    clientes[contadorCl]=aux;
+                                    contadorCl++;
+                                    System.out.println(aux);
+                                }
+                            }
                         }
                         else
                         {
-//                            users[contador]=useraux;
-//                            JOptionPane.showMessageDialog(null,"Se ha registrado correctamente");
-//                            contador++;
+                            JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
                         }
                     }
                     else
@@ -208,7 +225,7 @@ public class InfoCliente extends JFrame {
         }
         else
         {
-            System.out.println("NO se abrio archivo");
+            System.out.println("No se abrio archivo");
             abierto=false;
         }
     }
@@ -236,4 +253,12 @@ public class InfoCliente extends JFrame {
         return aux;
     }
     
+    public boolean verificarNumeros()
+    {
+        if(!Edad.getText().matches("[0-9]*$")||!Nit.getText().matches("[0-9]*$"))
+        {
+            return false;
+        }
+        else return true;
+    }
 }

@@ -142,6 +142,16 @@ public class AdminClientes extends JFrame{
             }
             
         });
+        
+        agregar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                InfoCliente abrir=new InfoCliente();
+                abrir.setVisible(true);
+            }
+        });
     }
     
     private void etiquetas()

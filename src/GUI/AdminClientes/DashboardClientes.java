@@ -129,7 +129,9 @@ public class DashboardClientes extends JFrame {
         s0.setIcon(scale);
         pane1.add(s0);
     }
-    Object[][] filas=new Object[contadorCl][contadorCl];
+    
+    Object[][] filas=new Object[contadorCl][4];
+    
     private void agregarTabla()
     {
         String[] nombreC={"Nombre","Edad","Sexo","NIT"};
