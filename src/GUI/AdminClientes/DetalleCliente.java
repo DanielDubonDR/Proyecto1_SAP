@@ -4,11 +4,13 @@ package GUI.AdminClientes;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
+import GUI.Utilidades.Texto;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -30,8 +32,14 @@ public class DetalleCliente extends JFrame {
     
     private Boton modificar;
     private Boton eliminar;
-    Label md;
-    Label del;
+    private Label md;
+    private Label del;
+    private Texto buscar;
+    private Texto nombre;
+    private Texto edad;
+    private JComboBox sexo;
+    private Texto nit;
+    
     public DetalleCliente()
     {
         setSize(775, 502);
@@ -42,6 +50,7 @@ public class DetalleCliente extends JFrame {
         agregarpaneles();
         agregarBtn();
         agregarLb();
+        agregarTxt();
     }
     
     private void agregarpaneles()
@@ -68,11 +77,26 @@ public class DetalleCliente extends JFrame {
     {
         md=new Label(29,184,40,40);
         md.setBackground(menta);
+        md.setOpaque(true);
         pane1.add(md);
         
-        del=new Label(300,242,40,40);
+        del=new Label(29,242,40,40);
         del.setBackground(menta);
-        pane.add(del);
+        del.setOpaque(true);
+        pane1.add(del);
+        
+        Label b=new Label(217,72,30,30);
+        b.setBackground(menta);
+        b.setOpaque(true);
+        pane1.add(b);
+    }
+    
+    private void agregarTxt()
+    {
+        buscar=new Texto(29,72,218,30);
+        buscar.setText("Buscar");
+        //buscar.setBorder(null);
+        pane1.add(buscar);
     }
     
     private Icon setIcono(String path, JLabel label)
