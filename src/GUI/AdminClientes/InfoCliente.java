@@ -130,14 +130,12 @@ public class InfoCliente extends JFrame {
                                     Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
                                     clientes[contadorCl]=aux;
                                     contadorCl++;
-                                    System.out.println(aux);
                                 }
                                 else
                                 {
                                     Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
                                     clientes[contadorCl]=aux;
                                     contadorCl++;
-                                    System.out.println(aux);
                                 }
                             }
                         }
