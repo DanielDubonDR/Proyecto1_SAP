@@ -39,7 +39,7 @@ public class DashboardClientes extends JFrame {
     
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
-    Panel pane1=new Panel();//panel principal
+    Panel pane1=new Panel();//panel de barra
     Panel panelTabla=new Panel();//panel principal
     
     //Creacion de nuevos colores
