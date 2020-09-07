@@ -32,6 +32,8 @@ import static Principal.Proyecto1_SAP.contadorCl;
  *
  * @author Daniel Dubón
  */
+
+//Esta clase es para agregar clientes, me confundi de nombre
 public class InfoCliente extends JFrame {
     
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
