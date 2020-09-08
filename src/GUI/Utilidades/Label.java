@@ -18,4 +18,13 @@ public class Label extends JLabel {
         this.setHorizontalAlignment(CENTER);
         this.setFont(new Font("Verdana", Font.PLAIN, 13));
     }
+    
+    public Label(String txt,int x, int y, int w, int h)
+    {
+        this.setText(txt);
+        this.setBounds(x, y, w, h);
+        this.setForeground(Color.black);
+        this.setHorizontalAlignment(LEFT);
+        this.setFont(new Font("Verdana", Font.BOLD, 13));
+    }
 }

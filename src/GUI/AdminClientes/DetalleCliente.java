@@ -5,7 +5,11 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -32,17 +36,24 @@ public class DetalleCliente extends JFrame {
     
     private Boton modificar;
     private Boton eliminar;
+    private Boton b;
     private Label md;
     private Label del;
+    private Label bb;
+    private Label txt;
+    private Label n;
+    private Label e;
+    private Label s;
+    private Label nt;
     private Texto buscar;
-    private Texto nombre;
-    private Texto edad;
-    private JComboBox sexo;
-    private Texto nit;
+    private Label nombre;
+    private Label edad;
+    private Label sexo;
+    private Label nit;
     
     public DetalleCliente()
     {
-        setSize(775, 502);
+        setSize(725, 430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Información Clientes");
         setLocationRelativeTo(null);
@@ -64,38 +75,77 @@ public class DetalleCliente extends JFrame {
     
     private void agregarBtn()
     {
-        modificar=new Boton("Modificar",71,184,175,40,16);
+        modificar=new Boton("Modificar",66,184,180,40,16);
         modificar.setBackground(menta);
         pane1.add(modificar);
         
-        eliminar=new Boton("Eliminar",71,242,175,40,16);
+        eliminar=new Boton("Eliminar",66,242,180,40,16);
         eliminar.setBackground(menta);
         pane1.add(eliminar);
+        
+        
+        b=new Boton(null,217,72,30,30);
+        b.setBackground(azul);
+        b.setIcon(setIconoB("Resources\\buscar.png",b));
+        pane1.add(b);
+        
     }
     
     private void agregarLb()
     {
         md=new Label(29,184,40,40);
         md.setBackground(menta);
+        md.setIcon(setIcono("Resources\\md.png",md));
         md.setOpaque(true);
         pane1.add(md);
         
         del=new Label(29,242,40,40);
         del.setBackground(menta);
+        del.setIcon(setIcono("Resources\\del.png",del));
         del.setOpaque(true);
         pane1.add(del);
         
-        Label b=new Label(217,72,30,30);
-        b.setBackground(menta);
-        b.setOpaque(true);
-        pane1.add(b);
+//        bb=new Label(460,140,120,120);
+//        bb.setIcon(setIcono("Resources\\b1.png",bb));
+//        pane.add(bb);
+//        
+//        txt=new Label(460,270,120,15);
+//        txt.setForeground(rosa);
+//        txt.setText("Nueva Busqueda");
+//        pane.add(txt);
+        
+        int y=-100, x=70;
+        n=new Label("Nombre:",340+x,266+y,98,34);
+        pane.add(n);
+        
+        e=new Label("Edad:",340+x,306+y,98,34);
+        pane.add(e);
+        
+        s=new Label("Sexo",340+x,346+y,98,34);
+        pane.add(s);
+        
+        nt=new Label("NIT:",340+x,386+y,98,34);
+        pane.add(nt);
+        
+        nombre=new Label("xxxxxxxxxx",420+x,266+y,250,34);
+        pane.add(nombre);
+        
+        edad=new Label("xxxxxxxxxx",420+x,306+y,250,34);
+        pane.add(edad);
+        
+        sexo=new Label("xxxxxxxxxx",420+x,346+y,250,34);
+        pane.add(sexo);
+        
+        nt=new Label("xxxxxxxxxx",420+x,386+y,250,34);
+        pane.add(nt);
     }
     
     private void agregarTxt()
     {
         buscar=new Texto(29,72,218,30);
         buscar.setText("Buscar");
-        //buscar.setBorder(null);
+        buscar.setBorder(null);
+        buscar.setFont(new Font("Arial", Font.BOLD, 15));
         pane1.add(buscar);
     }
     
@@ -106,5 +156,22 @@ public class DetalleCliente extends JFrame {
         int alto=label.getHeight();
         ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
         return icono;
+    }
+    
+    private Icon setIconoB(String path, JButton boton)
+    {
+        ImageIcon icon=new ImageIcon(path);
+        int ancho=boton.getWidth();
+        int alto=boton.getHeight();
+        ImageIcon icono=new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+        return icono;
+    }
+    
+    public void paint(Graphics g){
+        super.paint(g);
+        Graphics2D linea=(Graphics2D)g;
+        linea.setStroke(new BasicStroke(2.f));
+        linea.setPaint(rosa);
+        linea.drawRect(29, 135, 219, 0);
     }
 }
