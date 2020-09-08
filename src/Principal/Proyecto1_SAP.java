@@ -30,7 +30,7 @@ public class Proyecto1_SAP {
 //        Registro abrir=new Registro();
 //        Login abrir=new Login();
 //        Menu abrir=new Menu();
-//        AdminClientes abrir=new AdminClientes();
+        AdminClientes abrir=new AdminClientes();
 //        abrir.setVisible(true);
 //        ManejadorArchivos abrir=new ManejadorArchivos();
 //        abrir.abrir();
@@ -40,7 +40,7 @@ public class Proyecto1_SAP {
         
 //        InfoCliente abrir=new InfoCliente();
         
-        DetalleCliente abrir=new DetalleCliente();
+//        DetalleCliente abrir=new DetalleCliente();
         abrir.setVisible(true);
     }
 }
