@@ -14,7 +14,6 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -50,6 +49,7 @@ public class DetalleCliente extends JFrame {
     private Label edad;
     private Label sexo;
     private Label nit;
+    private Label foto;
     
     public DetalleCliente()
     {
@@ -93,6 +93,12 @@ public class DetalleCliente extends JFrame {
     
     private void agregarLb()
     {
+        foto=new Label(435,40,120,130);
+        foto.setOpaque(true);
+        foto.setIcon(setIcono("Resources\\agregar.png",foto));
+        foto.setVisible(false);
+        pane.add(foto);
+        
         md=new Label(29,184,40,40);
         md.setBackground(menta);
         md.setIcon(setIcono("Resources\\md.png",md));
@@ -105,38 +111,46 @@ public class DetalleCliente extends JFrame {
         del.setOpaque(true);
         pane1.add(del);
         
-//        bb=new Label(460,140,120,120);
-//        bb.setIcon(setIcono("Resources\\b1.png",bb));
-//        pane.add(bb);
-//        
-//        txt=new Label(460,270,120,15);
-//        txt.setForeground(rosa);
-//        txt.setText("Nueva Busqueda");
-//        pane.add(txt);
+        bb=new Label(440,130,120,120);
+        bb.setIcon(setIcono("Resources\\b1.png",bb));
+        pane.add(bb);
         
-        int y=-100, x=70;
+        txt=new Label(440,260,120,15);
+        txt.setForeground(rosa);
+        txt.setText("Nueva Busqueda");
+        pane.add(txt);
+        
+        int y=-80, x=70;
         n=new Label("Nombre:",340+x,266+y,98,34);
+        n.setVisible(false);
         pane.add(n);
         
         e=new Label("Edad:",340+x,306+y,98,34);
+        e.setVisible(false);
         pane.add(e);
         
         s=new Label("Sexo",340+x,346+y,98,34);
+        s.setVisible(false);
         pane.add(s);
         
         nt=new Label("NIT:",340+x,386+y,98,34);
+        nt.setVisible(false);
         pane.add(nt);
         
-        nombre=new Label("xxxxxxxxxx",420+x,266+y,250,34);
+        nombre=new Label("xxxxxxxxxx",420+x,266+y,250,34,true);
+        nombre.setVisible(false);
         pane.add(nombre);
         
-        edad=new Label("xxxxxxxxxx",420+x,306+y,250,34);
+        edad=new Label("xxxxxxxxxx",420+x,306+y,250,34,true);
+        edad.setVisible(false);
         pane.add(edad);
         
-        sexo=new Label("xxxxxxxxxx",420+x,346+y,250,34);
+        sexo=new Label("xxxxxxxxxx",420+x,346+y,250,34,true);
+        sexo.setVisible(false);
         pane.add(sexo);
         
-        nt=new Label("xxxxxxxxxx",420+x,386+y,250,34);
+        nt=new Label("xxxxxxxxxx",420+x,386+y,250,34,true);
+        nt.setVisible(false);
         pane.add(nt);
     }
     
