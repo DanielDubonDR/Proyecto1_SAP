@@ -152,6 +152,23 @@ public class AdminClientes extends JFrame{
                 abrir.setVisible(true);
             }
         });
+        
+        lista.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(verificarVacio())
+                {
+                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
+                }
+                else
+                {
+                    DetalleCliente abri=new DetalleCliente();
+                    abri.setVisible(true);
+                }
+            }
+        });
     }
     
     private void etiquetas()

@@ -5,17 +5,25 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
+import Principal.Controlador.Cliente;
+import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.contadorCl;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +49,7 @@ public class DetalleCliente extends JFrame {
     private Label bb;
     private Label txt;
     private Label n;
-    private Label e;
+    private Label es;
     private Label s;
     private Label nt;
     private Texto buscar;
@@ -50,6 +58,8 @@ public class DetalleCliente extends JFrame {
     private Label sexo;
     private Label nit;
     private Label foto;
+    
+    int id=0;
     
     public DetalleCliente()
     {
@@ -89,6 +99,55 @@ public class DetalleCliente extends JFrame {
         b.setIcon(setIconoB("Resources\\buscar.png",b));
         pane1.add(b);
         
+        b.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(verificarNumeros())
+                {
+                    if(buscar(Integer.parseInt(buscar.getText())))
+                    {
+                        nombre.setText(clientes[id].getNombre());
+                        edad.setText(String.valueOf(clientes[id].getEdad()));
+                        sexo.setText(String.valueOf(clientes[id].getNit()));
+                        nit.setText(String.valueOf(clientes[id].getSexo()));
+                        foto.setIcon(setIcono(clientes[id].getAvatar(),foto));
+                        txt.setVisible(false);
+                        bb.setVisible(false);
+                        n.setVisible(true);
+                        es.setVisible(true);
+                        s.setVisible(true);
+                        nt.setVisible(true);
+                        nombre.setVisible(true);
+                        edad.setVisible(true);
+                        sexo.setVisible(true);
+                        nit.setVisible(true);
+                        foto.setVisible(true);
+                    }
+                    else
+                    {
+                        txt.setVisible(true);
+                        bb.setVisible(true);
+                        txt.setText("No se encontraron coincidencias");
+                        n.setVisible(false);
+                        es.setVisible(false);
+                        s.setVisible(false);
+                        nt.setVisible(false);
+                        nombre.setVisible(false);
+                        edad.setVisible(false);
+                        sexo.setVisible(false);
+                        nit.setVisible(false);
+                        foto.setVisible(false);
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
+                }
+            }
+        });
+        
     }
     
     private void agregarLb()
@@ -115,19 +174,19 @@ public class DetalleCliente extends JFrame {
         bb.setIcon(setIcono("Resources\\b1.png",bb));
         pane.add(bb);
         
-        txt=new Label(440,260,120,15);
+        txt=new Label(395,260,220,15);
         txt.setForeground(rosa);
         txt.setText("Nueva Busqueda");
         pane.add(txt);
         
-        int y=-80, x=70;
+        int y=-80, x=80;
         n=new Label("Nombre:",340+x,266+y,98,34);
         n.setVisible(false);
         pane.add(n);
         
-        e=new Label("Edad:",340+x,306+y,98,34);
-        e.setVisible(false);
-        pane.add(e);
+        es=new Label("Edad:",340+x,306+y,98,34);
+        es.setVisible(false);
+        pane.add(es);
         
         s=new Label("Sexo",340+x,346+y,98,34);
         s.setVisible(false);
@@ -149,9 +208,9 @@ public class DetalleCliente extends JFrame {
         sexo.setVisible(false);
         pane.add(sexo);
         
-        nt=new Label("xxxxxxxxxx",420+x,386+y,250,34,true);
-        nt.setVisible(false);
-        pane.add(nt);
+        nit=new Label("xxxxxxxxxx",420+x,386+y,250,34,true);
+        nit.setVisible(false);
+        pane.add(nit);
     }
     
     private void agregarTxt()
@@ -161,6 +220,14 @@ public class DetalleCliente extends JFrame {
         buscar.setBorder(null);
         buscar.setFont(new Font("Arial", Font.BOLD, 15));
         pane1.add(buscar);
+        
+        buscar.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                buscar.setText("");
+            }
+        });
     }
     
     private Icon setIcono(String path, JLabel label)
@@ -187,5 +254,29 @@ public class DetalleCliente extends JFrame {
         linea.setStroke(new BasicStroke(2.f));
         linea.setPaint(rosa);
         linea.drawRect(29, 135, 219, 0);
+    }
+    
+    public boolean buscar(int nit)
+    {
+        boolean aux=false;
+        for(int i=0; i<contadorCl;i++)
+        {
+            if(nit==clientes[i].getNit())
+            {
+                aux= true;
+                id=i;
+                break;
+            }
+        }
+        return aux;
+    }
+    
+    public boolean verificarNumeros()
+    {
+        if(buscar.getText().matches("[0-9]*$"))
+        {
+            return true;
+        }
+        else return false;
     }
 }
