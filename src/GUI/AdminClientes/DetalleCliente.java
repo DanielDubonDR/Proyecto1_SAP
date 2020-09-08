@@ -148,6 +148,23 @@ public class DetalleCliente extends JFrame {
             }
         });
         
+        modificar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(buscar(Integer.parseInt(buscar.getText())))
+                {
+                    Modificar abrir=new Modificar(id,clientes[id].getNombre(),clientes[id].getEdad(),clientes[id].getSexo(),clientes[id].getNit(),clientes[id].getAvatar());
+                    abrir.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"No ha realizado una busqueda");
+                }
+            }
+        });
+        
     }
     
     private void agregarLb()
