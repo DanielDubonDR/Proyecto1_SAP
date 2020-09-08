@@ -1,14 +1,10 @@
 
 package GUI.AdminClientes;
 
-import GUI.Utilidades.Boton;
-import GUI.Utilidades.Label;
-import GUI.Utilidades.Panel;
-import GUI.Utilidades.Texto;
+import GUI.Utilidades.*;
 import Principal.Controlador.Cliente;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.contador;
-import static Principal.Proyecto1_SAP.users;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
