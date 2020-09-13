@@ -171,6 +171,8 @@ public class Modificar extends JFrame {
                             {
                                 Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
                                 clientes[id]=aux;
+                                JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
+                                Modificar.this.dispose();
                             }
                         }
                     }
