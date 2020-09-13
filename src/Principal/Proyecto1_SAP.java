@@ -11,6 +11,7 @@ import GUI.Login;
 import GUI.Menu;
 import GUI.Registro;
 import Principal.Controlador.Cliente;
+import Principal.Controlador.Producto;
 import Principal.Controlador.Usuario;
 import java.io.IOException;
 
@@ -22,8 +23,9 @@ public class Proyecto1_SAP {
     
     public static Usuario [] users=new Usuario[10];
     public static Cliente [] clientes=new Cliente[100];
+    public static Producto[] productos=new Producto[100];
     public static String nameuser="Daniel Dubón";
-    public static int contador=0, contadorCl=0;
+    public static int contador=0, contadorCl=0, contadorP=0;
     
     public static void main(String[] args) throws IOException
     {

@@ -3,6 +3,7 @@ package EstructuraDatos;
 
 import GUI.AdminClientes.DashboardClientes;
 import Principal.Controlador.Cliente;
+import Principal.Controlador.Producto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contadorCl;
+import static Principal.Proyecto1_SAP.*;
 
 /**
  *
@@ -83,5 +83,35 @@ public class ManejadorArchivos {
             }
         }
         return cont;
+    }
+    
+    public void cargarProductos() throws IOException
+    {
+        try 
+         {
+             entrada=new FileReader(path);
+             String linea;
+             BufferedReader lector =new BufferedReader(entrada);//creo un buffer que me lee por lineas
+             while((linea=lector.readLine())!=null)
+             {
+                 String cadena[];
+                 cadena=linea.split(",");
+                 Producto aux=new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2]),cadena[3]);
+                 productos[contadorP]=aux;
+                 contadorP++;
+             }
+             System.out.println(contadorP);
+         } catch (FileNotFoundException ex) {
+             System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
+         }
+            catch (IOException e)
+            {
+                System.out.println("Error");
+            }
+         finally
+         {
+            entrada.close();//simpre cierro mi buffer para evitar problemas
+             //System.out.println(obtenerMujeres());
+         }
     }
 }
