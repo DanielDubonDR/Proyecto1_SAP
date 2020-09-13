@@ -153,14 +153,46 @@ public class DetalleCliente extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(buscar(Integer.parseInt(buscar.getText())))
+                if(verificarNumeros())
                 {
-                    Modificar abrir=new Modificar(id,clientes[id].getNombre(),clientes[id].getEdad(),clientes[id].getSexo(),clientes[id].getNit(),clientes[id].getAvatar());
-                    abrir.setVisible(true);
+                    
+                    if(buscar(Integer.parseInt(buscar.getText())))
+                    {
+                        Modificar abrir=new Modificar(id,clientes[id].getNombre(),clientes[id].getEdad(),clientes[id].getSexo(),clientes[id].getNit(),clientes[id].getAvatar());
+                        abrir.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"No se encontraron coincidencias");
+                    }
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null,"No ha realizado una busqueda");
+                    JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
+                }
+            }
+        });
+        
+        eliminar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(verificarNumeros())
+                {
+                    if(buscar(Integer.parseInt(buscar.getText())))
+                    {
+                        int resp=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar a: "+clientes[id].getNombre()+"?","Alerta!",JOptionPane.YES_NO_OPTION);
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"No se encontraron coincidencias");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
                 }
             }
         });
