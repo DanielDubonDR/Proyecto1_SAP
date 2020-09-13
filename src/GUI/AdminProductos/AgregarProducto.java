@@ -234,7 +234,7 @@ public class AgregarProducto extends JFrame{
         boolean aux=false;
         for(int i=0; i<contadorP;i++)
         {
-            if(nombre.equals(productos[i].getNombre()))
+            if(nombre.toLowerCase().equals(productos[i].getNombre().toLowerCase()))
             {
                 aux= true;
                 break;

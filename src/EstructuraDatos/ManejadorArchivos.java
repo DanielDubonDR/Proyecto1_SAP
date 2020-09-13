@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 public class ManejadorArchivos {
     private File path;
     private FileReader entrada;
+    private boolean abierto;
+    
     public void abrir()
     {
         JFileChooser choose=new JFileChooser();
@@ -35,10 +37,12 @@ public class ManejadorArchivos {
             System.out.println("se abrio archivo");
             path =choose.getSelectedFile();
             System.out.println(path);
+            abierto=true;
         }
         else
         {
             System.out.println("NO se abrio archivo");
+            abierto=false;
         }
     }
     
@@ -70,6 +74,7 @@ public class ManejadorArchivos {
             entrada.close();//simpre cierro mi buffer para evitar problemas
              System.out.println(obtenerMujeres());
          }
+        
     }
     
     public int obtenerMujeres()
@@ -88,33 +93,41 @@ public class ManejadorArchivos {
     
     public void cargarProductos() throws IOException
     {
-        try 
-         {
-             entrada=new FileReader(path);
-             String linea;
-             BufferedReader lector =new BufferedReader(entrada);//creo un buffer que me lee por lineas
-             while((linea=lector.readLine())!=null)
-             {
-                 String cadena[];
-                 cadena=linea.split(",");
-                 Producto aux=new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2]),cadena[3]);
-                 productos[contadorP]=aux;
-                 contadorP++;
-             }
-             System.out.println(contadorP);
-         } catch (FileNotFoundException ex) {
-             JOptionPane.showMessageDialog(null, "Error al cargar los datos");
-             System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
-         }
+        
+            try 
+            {
+                 entrada=new FileReader(path);
+                 String linea;
+                 BufferedReader lector =new BufferedReader(entrada);//creo un buffer que me lee por lineas
+                 while((linea=lector.readLine())!=null)
+                 {
+                     String cadena[];
+                     cadena=linea.split(",");
+                     Producto aux=new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2]),cadena[3]);
+                     productos[contadorP]=aux;
+                     contadorP++;
+                 }
+                 System.out.println(contadorP);
+            } 
+            catch (FileNotFoundException ex) 
+            {
+                 JOptionPane.showMessageDialog(null, "Error al cargar los datos");
+                 System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
+            }
             catch (IOException e)
             {
                 JOptionPane.showMessageDialog(null, "Error al cargar los datos");
                 System.out.println("Error");
             }
-         finally
-         {
-            entrada.close();//simpre cierro mi buffer para evitar problemas
-            //System.out.println(productos[3]);
-         }
+            finally
+            {
+               entrada.close();//simpre cierro mi buffer para evitar problemas
+               //System.out.println(productos[3]);
+            }
+    }
+    
+    public boolean getAbierto()
+    {
+        return abierto;
     }
 }

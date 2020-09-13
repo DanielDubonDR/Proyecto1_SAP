@@ -133,11 +133,20 @@ public class AdminClientes extends JFrame{
             {
                     ManejadorArchivos abrir=new ManejadorArchivos();
                     abrir.abrir();
-                    try {
-                        abrir.cargarClientes();
-                        JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null, "Error al cargar datos");
+                    if(abrir.getAbierto())
+                    {
+                        try 
+                        {
+                            abrir.cargarClientes();
+                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
+                        } catch (IOException ex) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se cargo ningún archivo");
                     }
             }
             
