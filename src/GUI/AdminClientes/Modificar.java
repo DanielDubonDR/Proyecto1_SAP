@@ -152,39 +152,31 @@ public class Modificar extends JFrame {
                     JOptionPane.showMessageDialog(null,"Llene todos los campos");
                 }
                 else
-                {
-                    if(contador<100)
+                { 
+                    if(verificarNumeros())
                     {
-                        if(verificarNumeros())
+                        if(buscar(Integer.parseInt(Nit.getText())))
                         {
-                            if(buscar(Integer.parseInt(Nit.getText())))
-                            {
-                                JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
-                            }
-                            else
-                            {
-                                if(abierto)
-                                {
-                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
-                                    clientes[contadorCl]=aux;
-                                    contadorCl++;
-                                }
-                                else
-                                {
-                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
-                                    clientes[contadorCl]=aux;
-                                    contadorCl++;
-                                }
-                            }
+                            JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
                         }
                         else
                         {
-                            JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
+                            if(abierto)
+                            {
+                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
+                                clientes[contadorCl]=aux;
+                                contadorCl++;
+                            }
+                            else
+                            {
+                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
+                                clientes[id]=aux;
+                            }
                         }
                     }
                     else
                     {
-                    JOptionPane.showMessageDialog(null,"Ha llegado al limite de usuarios");
+                        JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
                     }
                 }
             }
@@ -289,12 +281,19 @@ public class Modificar extends JFrame {
     public boolean buscar(int nit)
     {
         boolean aux=false;
-        for(int i=0; i<contadorCl;i++)
+        if(nit==nitt)
         {
-            if(nit==clientes[i].getNit())
+            aux=false;
+        }
+        else
+        {
+            for(int i=0; i<contadorCl;i++)
             {
-                aux= true;
-                break;
+                if(nit==clientes[i].getNit())
+                {
+                    aux= true;
+                    break;
+                }
             }
         }
         return aux;
