@@ -40,7 +40,7 @@ public class AdminClientes extends JFrame{
     
     public AdminClientes()
     {
-        setSize(800,550);
+        setSize(800,430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Administración de clientes");
         setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class AdminClientes extends JFrame{
     
     private void botones()
     {
-        int x=0, y=-100;
+        int x=0, y=-70;
         Boton clientes=new Boton(null,96+x,220+y,126,126);
         clientes.setBackground(gris);
         clientes.setIcon(setIcono("Resources\\clientes.png",clientes));
@@ -99,15 +99,15 @@ public class AdminClientes extends JFrame{
         agregar.setIcon(setIcono("Resources\\agregar.png",agregar));
         pane.add(agregar);
         
-        Boton modificar=new Boton(null,255+x,320,126,126);
-        modificar.setBackground(gris);
-        modificar.setIcon(setIcono("Resources\\modificar.png",modificar));
-        pane.add(modificar);
-        
-        Boton eliminar=new Boton(null,414+x,320,126,126);
-        eliminar.setBackground(gris);
-        eliminar.setIcon(setIcono("Resources\\eliminar.png",eliminar));
-        pane.add(eliminar);
+//        Boton modificar=new Boton(null,255+x,320,126,126);
+//        modificar.setBackground(gris);
+//        modificar.setIcon(setIcono("Resources\\modificar.png",modificar));
+//        pane.add(modificar);
+//        
+//        Boton eliminar=new Boton(null,414+x,320,126,126);
+//        eliminar.setBackground(gris);
+//        eliminar.setIcon(setIcono("Resources\\eliminar.png",eliminar));
+//        pane.add(eliminar);
         
         clientes.addActionListener(new ActionListener()
         {
@@ -150,6 +150,7 @@ public class AdminClientes extends JFrame{
             {
                 InfoCliente abrir=new InfoCliente();
                 abrir.setVisible(true);
+                AdminClientes.this.dispose();
             }
         });
         
@@ -166,6 +167,7 @@ public class AdminClientes extends JFrame{
                 {
                     DetalleCliente abri=new DetalleCliente();
                     abri.setVisible(true);
+                    AdminClientes.this.dispose();
                 }
             }
         });
@@ -173,7 +175,7 @@ public class AdminClientes extends JFrame{
     
     private void etiquetas()
     {
-        int y=-90;
+        int y=-60;
         Label cliente=new Label(96,336+y,126,50);
         cliente.setText(fn.texto("Clientes en el sistema", true,3));
         cliente.setForeground(celeste);
@@ -194,15 +196,15 @@ public class AdminClientes extends JFrame{
         reportes.setForeground(celeste);
         pane.add(reportes);
         
-        Label modificar=new Label(255,440,126,50);
-        modificar.setText(fn.texto("Modificar cliente", true,3));
-        modificar.setForeground(celeste);
-        pane.add(modificar);
-        
-        Label eliminar=new Label(414,440,126,50);
-        eliminar.setText(fn.texto("Eliminar cliente", true,3));
-        eliminar.setForeground(celeste);
-        pane.add(eliminar);
+//        Label modificar=new Label(255,440,126,50);
+//        modificar.setText(fn.texto("Modificar cliente", true,3));
+//        modificar.setForeground(celeste);
+//        pane.add(modificar);
+//        
+//        Label eliminar=new Label(414,440,126,50);
+//        eliminar.setText(fn.texto("Eliminar cliente", true,3));
+//        eliminar.setForeground(celeste);
+//        pane.add(eliminar);
     }
     
     private Icon setIcono(String path, JButton boton)

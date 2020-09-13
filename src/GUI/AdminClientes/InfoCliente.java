@@ -66,7 +66,7 @@ public class InfoCliente extends JFrame {
         botones();
         textos();
         agregarLabel();
-        close();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -135,6 +135,8 @@ public class InfoCliente extends JFrame {
                                     clientes[contadorCl]=aux;
                                     contadorCl++;
                                     JOptionPane.showMessageDialog(null,"Cliente creado satisfactoriamente");
+                                    AdminClientes abrir=new AdminClientes();
+                                    abrir.setVisible(true);
                                     InfoCliente.this.dispose();
                                 }
                             }
@@ -186,12 +188,13 @@ public class InfoCliente extends JFrame {
         pane.add(Nit);
     }
         
-    public void close()
+    public void cerrar()
     {
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                
+                AdminClientes abrir=new AdminClientes();
+                abrir.setVisible(true);
             }
         });
     }

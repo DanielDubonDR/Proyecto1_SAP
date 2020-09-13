@@ -1,6 +1,7 @@
 
 package GUI.AdminClientes;
 
+import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
@@ -18,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -72,6 +75,7 @@ public class DetalleCliente extends JFrame {
         agregarBtn();
         agregarLb();
         agregarTxt();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -183,7 +187,21 @@ public class DetalleCliente extends JFrame {
                     if(buscar(Integer.parseInt(buscar.getText())))
                     {
                         int resp=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar a: "+clientes[id].getNombre()+"?","Alerta!",JOptionPane.YES_NO_OPTION);
-                        
+                        if(resp==0)
+                        {
+                            for(int i=id;i<contadorCl-1;i++)
+                            {
+                                clientes[i]=null;
+                                clientes[i]=clientes[i+1];
+                            }contadorCl--;
+                            if(contadorCl==0)
+                            {
+                                //contadorCl++;
+                                clientes[0]=null;
+                                //System.out.println("hola");
+                            }
+                            JOptionPane.showMessageDialog(null,"Se ha eliminado correctamente");
+                        }
                     }
                     else
                     {
@@ -327,5 +345,16 @@ public class DetalleCliente extends JFrame {
             return true;
         }
         else return false;
+    }
+    
+    public void cerrar()
+    {
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent a){
+                AdminClientes abrir=new AdminClientes();
+                abrir.setVisible(true);
+            }
+        });
     }
 }
