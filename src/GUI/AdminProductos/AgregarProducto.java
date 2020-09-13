@@ -1,9 +1,16 @@
 
-package GUI.AdminClientes;
+package GUI.AdminProductos;
 
-import GUI.Utilidades.*;
+import GUI.AdminClientes.AdminClientes;
+import GUI.AdminClientes.InfoCliente;
+import GUI.Utilidades.Boton;
+import GUI.Utilidades.Label;
+import GUI.Utilidades.Panel;
+import GUI.Utilidades.Texto;
 import Principal.Controlador.Cliente;
 import Principal.Funciones;
+import static Principal.Proyecto1_SAP.contadorP;
+import static Principal.Proyecto1_SAP.productos;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -20,17 +27,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contadorCl;
 
 /**
  *
  * @author Daniel Dubón
  */
-
-//Esta clase es para agregar clientes, me confundi de nombre
-public class InfoCliente extends JFrame {
-    
+public class AgregarProducto extends JFrame{
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
     
@@ -54,7 +56,7 @@ public class InfoCliente extends JFrame {
     private File path;
     
     
-    public InfoCliente()
+    public AgregarProducto()
     {
         setSize(388, 540);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -112,33 +114,33 @@ public class InfoCliente extends JFrame {
                 }
                 else
                 {
-                    if(contadorCl<100)
+                    if(contadorP<100)
                     {
                         if(verificarNumeros())
                         {
-                            if(buscar(Integer.parseInt(Nit.getText())))
-                            {
-                                JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
-                            }
-                            else
-                            {
-                                if(abierto)
-                                {
-                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
-                                    clientes[contadorCl]=aux;
-                                    contadorCl++;
-                                }
-                                else
-                                {
-                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
-                                    clientes[contadorCl]=aux;
-                                    contadorCl++;
-                                    JOptionPane.showMessageDialog(null,"Cliente creado satisfactoriamente");
-                                    AdminClientes abrir=new AdminClientes();
-                                    abrir.setVisible(true);
-                                    InfoCliente.this.dispose();
-                                }
-                            }
+//                            if(buscar(Integer.parseInt(Nit.getText())))
+//                            {
+//                                JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
+//                            }
+//                            else
+//                            {
+//                                if(abierto)
+//                                {
+//                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
+//                                    //clientes[contadorCl]=aux;
+//                                    //contadorCl++;
+//                                }
+//                                else
+//                                {
+//                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
+////                                    clientes[contadorCl]=aux;
+////                                    contadorCl++;
+//                                    JOptionPane.showMessageDialog(null,"Cliente creado satisfactoriamente");
+//                                    AdminClientes abrir=new AdminClientes();
+//                                    abrir.setVisible(true);
+//                                    AgregarProducto.this.dispose();
+//                                }
+//                            }
                         }
                         else
                         {
@@ -239,19 +241,19 @@ public class InfoCliente extends JFrame {
             else return false;
         }
     
-    public boolean buscar(int nit)
-    {
-        boolean aux=false;
-        for(int i=0; i<contadorCl;i++)
-        {
-            if(nit==clientes[i].getNit())
-            {
-                aux= true;
-                break;
-            }
-        }
-        return aux;
-    }
+//    public boolean buscar(int nit)
+//    {
+//        boolean aux=false;
+//        for(int i=0; i<contadorCl;i++)
+//        {
+//            if(nit==clientes[i].getNit())
+//            {
+//                aux= true;
+//                break;
+//            }
+//        }
+//        return aux;
+//    }
     
     public boolean verificarNumeros()
     {
