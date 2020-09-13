@@ -30,9 +30,9 @@ public class Proyecto1_SAP {
     
     public static void main(String[] args) throws IOException
     {
-        Cliente aux=new Cliente("Daniel Dubon",21,'M',49987,"Resources\\buscar.png");
-        clientes[0]=aux;
-        contadorCl++;
+//        Cliente aux=new Cliente("Daniel Dubon",21,'M',49987,"Resources\\buscar.png");
+//        clientes[0]=aux;
+//        contadorCl++;
         //users[0]=new Usuario("admin","admin","admin");
 //        Registro abrir=new Registro();
 //        Login abrir=new Login();

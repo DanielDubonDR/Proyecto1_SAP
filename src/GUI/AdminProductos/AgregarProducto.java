@@ -2,12 +2,11 @@
 package GUI.AdminProductos;
 
 import GUI.AdminClientes.AdminClientes;
-import GUI.AdminClientes.InfoCliente;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
-import Principal.Controlador.Cliente;
+import Principal.Controlador.Producto;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.contadorP;
 import static Principal.Proyecto1_SAP.productos;
@@ -46,21 +45,20 @@ public class AgregarProducto extends JFrame{
     
     private boolean abierto;
     
-    int y=20;
+    int y=30;
     //hacer global los campos de texto
     private Texto Nombre=new Texto(38, 150+y, 313, 31);
     private Texto Edad=new Texto(38, 214+y, 313, 31);
-    private Texto Nit=new Texto(38, 346+y, 313, 31);
+    private Texto Nit=new Texto(38, 282+y, 313, 31);
     
-    JComboBox combo=new JComboBox();
     private File path;
     
     
     public AgregarProducto()
     {
-        setSize(388, 540);
+        setSize(388, 500);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Agregar Cliente");
+        setTitle("Agregar Producto");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
@@ -80,10 +78,10 @@ public class AgregarProducto extends JFrame{
     {
         Boton cliente=new Boton(null,130,20,126,130);
         cliente.setBackground(azulp);
-        cliente.setIcon(setIcono("Resources\\agregar.png",cliente));
+        cliente.setIcon(setIcono("Resources\\imagen.png",cliente));
         pane.add(cliente);
          
-        Boton btnA=new Boton(fn.texto("REGISTRAR", true,4),38,416+y,313,44);
+        Boton btnA=new Boton(fn.texto("AGREGAR", true,4),38,360+y,313,44);
         btnA.setBackground(azulp);
         btnA.setForeground(Color.WHITE);
         btnA.setBorderPainted(true);
@@ -118,29 +116,29 @@ public class AgregarProducto extends JFrame{
                     {
                         if(verificarNumeros())
                         {
-//                            if(buscar(Integer.parseInt(Nit.getText())))
-//                            {
-//                                JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
-//                            }
-//                            else
-//                            {
-//                                if(abierto)
-//                                {
-//                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
-//                                    //clientes[contadorCl]=aux;
-//                                    //contadorCl++;
-//                                }
-//                                else
-//                                {
-//                                    Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),"Resources\\agregar.png");
-////                                    clientes[contadorCl]=aux;
-////                                    contadorCl++;
-//                                    JOptionPane.showMessageDialog(null,"Cliente creado satisfactoriamente");
-//                                    AdminClientes abrir=new AdminClientes();
-//                                    abrir.setVisible(true);
-//                                    AgregarProducto.this.dispose();
-//                                }
-//                            }
+                            if(buscar(Nombre.getText()))
+                            {
+                                JOptionPane.showMessageDialog(null,"Ya existe un producto con el mismo nombre");
+                            }
+                            else
+                            {
+                                if(abierto)
+                                {
+                                    Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),path.toString());
+                                    productos[contadorP]=aux;
+                                    contadorP++;
+                                }
+                                else
+                                {
+                                    Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),"Resources\\imagen.png");
+                                    productos[contadorP]=aux;
+                                    contadorP++;
+                                    JOptionPane.showMessageDialog(null,"Producto agregado satisfactoriamente");
+                                    MenuProductos abrir=new MenuProductos();
+                                    abrir.setVisible(true);
+                                    AgregarProducto.this.dispose();
+                                }
+                            }
                         }
                         else
                         {
@@ -163,29 +161,19 @@ public class AgregarProducto extends JFrame{
         pane.add(user);
         
         Label nombre=new Label(145,248+y,100,20);
-        nombre.setText(fn.texto("Edad", true,3));
+        nombre.setText(fn.texto("Precio", true,3));
         pane.add(nombre);
         
         Label pass=new Label(145,315+y,100,20);
-        pass.setText(fn.texto("Sexo", true,3));
+        pass.setText(fn.texto("Cantidad", true,3));
         pane.add(pass);
         
-        Label passC=new Label(125,379+y,150,20);
-        passC.setText(fn.texto("NIT", true,3));
-        pane.add(passC);
     }
     
     private void textos()
     {
         pane.add(Nombre);
         pane.add(Edad);
-        combo.setBounds(38, 282+y, 313, 31);
-        combo.addItem("M");
-        combo.addItem("F");
-        combo.setOpaque(false);
-        combo.setBackground(azul);
-        combo.setForeground(Color.WHITE);
-        pane.add(combo);
         pane.add(Nit);
     }
         
@@ -241,23 +229,23 @@ public class AgregarProducto extends JFrame{
             else return false;
         }
     
-//    public boolean buscar(int nit)
-//    {
-//        boolean aux=false;
-//        for(int i=0; i<contadorCl;i++)
-//        {
-//            if(nit==clientes[i].getNit())
-//            {
-//                aux= true;
-//                break;
-//            }
-//        }
-//        return aux;
-//    }
+    public boolean buscar(String nombre)
+    {
+        boolean aux=false;
+        for(int i=0; i<contadorP;i++)
+        {
+            if(nombre.equals(productos[i].getNombre()))
+            {
+                aux= true;
+                break;
+            }
+        }
+        return aux;
+    }
     
     public boolean verificarNumeros()
     {
-        if(!Edad.getText().matches("[0-9]*$")||!Nit.getText().matches("[0-9]*$"))
+        if(!Nit.getText().matches("[0-9]*$"))
         {
             return false;
         }
