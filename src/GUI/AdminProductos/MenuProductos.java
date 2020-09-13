@@ -2,16 +2,12 @@
 package GUI.AdminProductos;
 
 import EstructuraDatos.ManejadorArchivos;
-import GUI.AdminClientes.AdminClientes;
-import GUI.AdminClientes.DashboardClientes;
-import GUI.AdminClientes.DetalleCliente;
-import GUI.AdminClientes.InfoCliente;
 import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.productos;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -111,15 +107,15 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                if(verificarVacio())
-//                {
-//                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
-//                }
-//                else
-//                {
-//                    DashboardClientes abri=new DashboardClientes();
-//                    abri.setVisible(true);
-//                }
+                if(verificarVacio())
+                {
+                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
+                }
+                else
+                {
+                    DashboardProductos abri=new DashboardProductos();
+                    abri.setVisible(true);
+                }
             }
         });
         
@@ -131,7 +127,7 @@ public class MenuProductos extends JFrame {
                     ManejadorArchivos abrir=new ManejadorArchivos();
                     abrir.abrir();
                     try {
-                        abrir.cargarClientes();
+                        abrir.cargarProductos();
                         JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "Error al cargar datos");
@@ -204,14 +200,14 @@ public class MenuProductos extends JFrame {
         return icono;
     }
     
-//    public boolean verificarVacio()
-//    {
-//        if(clientes[0]==null)
-//        {
-//            return true;
-//        }
-//        return false;
-//    }
+    public boolean verificarVacio()
+    {
+        if(productos[0]==null)
+        {
+            return true;
+        }
+        return false;
+    }
     
     public void cerrar()
     {

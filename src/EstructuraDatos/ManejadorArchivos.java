@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import static Principal.Proyecto1_SAP.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,16 +103,18 @@ public class ManejadorArchivos {
              }
              System.out.println(contadorP);
          } catch (FileNotFoundException ex) {
+             JOptionPane.showMessageDialog(null, "Error al cargar los datos");
              System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
          }
             catch (IOException e)
             {
+                JOptionPane.showMessageDialog(null, "Error al cargar los datos");
                 System.out.println("Error");
             }
          finally
          {
             entrada.close();//simpre cierro mi buffer para evitar problemas
-             //System.out.println(obtenerMujeres());
+            //System.out.println(productos[3]);
          }
     }
 }
