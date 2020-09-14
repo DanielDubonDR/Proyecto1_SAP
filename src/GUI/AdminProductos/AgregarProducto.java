@@ -239,12 +239,13 @@ public class AgregarProducto extends JFrame{
                 aux= true;
                 break;
             }
-            else if(nombre.trim().toLowerCase().compareTo(productos[0].getNombre().trim().toLowerCase())==0)
-            {
-                aux=true;
-                break;
-            }
+//            else if(nombre.trim().toLowerCase().compareTo(productos[0].getNombre().trim().toLowerCase())==0)
+//            {
+//                aux=true;
+//                break;
+//            }
         }
+        
         return aux;
     }
     
