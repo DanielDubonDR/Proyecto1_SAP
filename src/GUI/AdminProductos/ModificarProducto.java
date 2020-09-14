@@ -5,7 +5,10 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
+import Principal.Controlador.Producto;
 import Principal.Funciones;
+import static Principal.Proyecto1_SAP.contadorP;
+import static Principal.Proyecto1_SAP.productos;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -84,7 +87,7 @@ public class ModificarProducto extends JFrame {
     {
         setSize(388, 500);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Agregar Cliente");
+        setTitle("Modificar Producto");
         setLocationRelativeTo(null);
         setResizable(false);
         setId(id);
@@ -144,25 +147,25 @@ public class ModificarProducto extends JFrame {
                 else
                 { 
                     
-                        if(buscar(Integer.parseInt(Nit.getText())))
+                        if(buscar(Nombre.getText()))
                         {
-                            JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
+                            JOptionPane.showMessageDialog(null,"Ya existe un producto con el mismo nombre");
                         }
                         else
                         {
                             if(abierto)
                             {
-//                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
-//                                clientes[contadorCl]=aux;
+                                Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),path.toString());
+                                productos[id]=aux;
                                 //contadorCl++;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
                                 ModificarProducto.this.dispose();
                             }
                             else
                             {
-//                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
-//                                clientes[id]=aux;
-                                JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
+                                Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),imagen);
+                                productos[id]=aux;
+                                JOptionPane.showMessageDialog(null,"Producto modificado con éxito");
                                 ModificarProducto.this.dispose();
                             }
                         }
@@ -249,24 +252,24 @@ public class ModificarProducto extends JFrame {
             else return false;
         }
     
-    public boolean buscar(int nit)
+    public boolean buscar(String nombre)
     {
         boolean aux=false;
-//        if(nit==nitt)
-//        {
-//            aux=false;
-//        }
-//        else
-//        {
-//            for(int i=0; i<contadorCl;i++)
-//            {
-//                if(nit==clientes[i].getNit())
-//                {
-//                    aux= true;
-//                    break;
-//                }
-//            }
-//        }
+        if(nombre.equalsIgnoreCase(name))
+        {
+            aux=false;
+        }
+        else
+        {
+            for(int i=0; i<contadorP;i++)
+            {
+                if(nombre.equalsIgnoreCase(productos[i].getNombre()))
+                {
+                    aux= true;
+                    break;
+                }
+            }
+        }
         return aux;
     }
     

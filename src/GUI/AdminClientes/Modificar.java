@@ -93,7 +93,7 @@ public class Modificar extends JFrame {
     {
         setSize(388, 540);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Agregar Cliente");
+        setTitle("Modificar Cliente");
         setLocationRelativeTo(null);
         setResizable(false);
         setId(id);
