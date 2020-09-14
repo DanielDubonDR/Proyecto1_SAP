@@ -165,36 +165,31 @@ public class DetalleProducto extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                if(verificarNumeros())
-//                {
-//                    if(buscar(Integer.parseInt(buscar.getText())))
-//                    {
-//                        int resp=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar a: "+clientes[id].getNombre()+"?","Alerta!",JOptionPane.YES_NO_OPTION);
-//                        if(resp==0)
-//                        {
-//                            for(int i=id;i<contadorCl-1;i++)
-//                            {
-//                                clientes[i]=null;
-//                                clientes[i]=clientes[i+1];
-//                            }contadorCl--;
-//                            if(contadorCl==0)
-//                            {
-//                                //contadorCl++;
-//                                clientes[0]=null;
-//                                //System.out.println("hola");
-//                            }
-//                            JOptionPane.showMessageDialog(null,"Se ha eliminado correctamente");
-//                        }
-//                    }
-//                    else
-//                    {
-//                        JOptionPane.showMessageDialog(null,"No se encontraron coincidencias");
-//                    }
-//                }
-//                else
-//                {
-//                    JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
-//                }
+                    if(buscar(buscar.getText()))
+                    {
+                        int resp=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar a: "+productos[id].getNombre()+"?","Alerta!",JOptionPane.YES_NO_OPTION);
+                        if(resp==0)
+                        {
+                            for(int i=id;i<contadorP-1;i++)
+                            {
+                                productos[i]=null;
+                                productos[i]=productos[i+1];
+                            }contadorP--;
+                            
+                            if(contadorP==0)
+                            {
+                                //contadorCl++;
+                                productos[0]=null;
+                                //System.out.println("hola");
+                            }
+                            JOptionPane.showMessageDialog(null,"Se ha eliminado correctamente");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null,"No se encontraron coincidencias");
+                    }
+               
             }
         });
         
