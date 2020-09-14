@@ -127,6 +127,10 @@ public class InfoCliente extends JFrame {
                                     Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
                                     clientes[contadorCl]=aux;
                                     contadorCl++;
+                                    JOptionPane.showMessageDialog(null,"Cliente creado satisfactoriamente");
+                                    AdminClientes abrir=new AdminClientes();
+                                    abrir.setVisible(true);
+                                    InfoCliente.this.dispose();
                                 }
                                 else
                                 {
@@ -147,7 +151,7 @@ public class InfoCliente extends JFrame {
                     }
                     else
                     {
-                    JOptionPane.showMessageDialog(null,"Ha llegado al limite de usuarios");
+                    JOptionPane.showMessageDialog(null,"Ha llegado al limite de clientes");
                     }
                 }
             }

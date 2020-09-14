@@ -127,6 +127,10 @@ public class AgregarProducto extends JFrame{
                                     Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),path.toString());
                                     productos[contadorP]=aux;
                                     contadorP++;
+                                    JOptionPane.showMessageDialog(null,"Producto agregado satisfactoriamente");
+                                    MenuProductos abrir=new MenuProductos();
+                                    abrir.setVisible(true);
+                                    AgregarProducto.this.dispose();
                                 }
                                 else
                                 {
@@ -147,7 +151,7 @@ public class AgregarProducto extends JFrame{
                     }
                     else
                     {
-                    JOptionPane.showMessageDialog(null,"Ha llegado al limite de usuarios");
+                    JOptionPane.showMessageDialog(null,"Ha llegado al limite de productos");
                     }
                 }
             }
@@ -234,18 +238,12 @@ public class AgregarProducto extends JFrame{
         boolean aux=false;
         for(int i=0; i<contadorP;i++)
         {
-            if(nombre.trim().equalsIgnoreCase(productos[i].getNombre().trim()))
+            if(nombre.equalsIgnoreCase(productos[i].getNombre().trim()))
             {
                 aux= true;
                 break;
             }
-//            else if(nombre.trim().toLowerCase().compareTo(productos[0].getNombre().trim().toLowerCase())==0)
-//            {
-//                aux=true;
-//                break;
-//            }
         }
-        
         return aux;
     }
     

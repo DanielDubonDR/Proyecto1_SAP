@@ -161,16 +161,16 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                if(verificarVacio())
-//                {
-//                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
-//                }
-//                else
-//                {
-////                    DetalleCliente abri=new DetalleCliente();
-////                    abri.setVisible(true);
-//                    MenuProductos.this.dispose();
-//                }
+                if(verificarVacio())
+                {
+                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
+                }
+                else
+                {
+                    DetalleProducto abri=new DetalleProducto();
+                    abri.setVisible(true);
+                    MenuProductos.this.dispose();
+                }
             }
         });
     }

@@ -1,15 +1,11 @@
 
-package GUI.AdminClientes;
+package GUI.AdminProductos;
 
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
-import Principal.Controlador.Cliente;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contador;
-import static Principal.Proyecto1_SAP.contadorCl;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -31,8 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Daniel Dubón
  */
-public class Modificar extends JFrame {
-    
+public class ModificarProducto extends JFrame {
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
     
@@ -46,15 +41,15 @@ public class Modificar extends JFrame {
     
     private boolean abierto;
     
-    int y=20;
+    int y=30;
     //hacer global los campos de texto
     private Texto Nombre=new Texto(38, 150+y, 313, 31);
     private Texto Edad=new Texto(38, 214+y, 313, 31);
-    private Texto Nit=new Texto(38, 346+y, 313, 31);
+    private Texto Nit=new Texto(38, 282+y, 313, 31);
     
-    private String name, avatar;
-    private int eddad,nitt,id;
-    private char sex;
+    private String name, imagen;
+    private int cantidad,id;
+    private float precio;
     
     JComboBox combo=new JComboBox();
     private File path;
@@ -64,24 +59,20 @@ public class Modificar extends JFrame {
         this.name=nombre;
     }
     
-    private void setEdad(int edad)
+    private void setPrecio(float precio)
     {
-        this.eddad=edad;
+        this.precio=precio;
     }
     
-    private void setSexo(char sexo)
+    
+    private void setCantidad(int cantidad)
     {
-        this.sex=sexo;
+        this.cantidad=cantidad;
     }
     
-    private void setNit(int nit)
+    private void setImagen(String imagen)
     {
-        this.nitt=nit;
-    }
-    
-    private void setAvatar(String avatar)
-    {
-        this.avatar=avatar;
+        this.imagen=imagen;
     }
     
     private void setId(int id)
@@ -89,19 +80,18 @@ public class Modificar extends JFrame {
         this.id=id;
     }
     
-    public Modificar(int id, String nombre, int edad, char sexo, int nit, String avatar)
+    public ModificarProducto(int id, String nombre, float precio, int cantidad, String imagen)
     {
-        setSize(388, 540);
+        setSize(388, 500);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Agregar Cliente");
         setLocationRelativeTo(null);
         setResizable(false);
         setId(id);
         setNombre(nombre);
-        setEdad(edad);
-        setSexo(sexo);
-        setNit(nit);
-        setAvatar(avatar);
+        setPrecio(precio);
+        setCantidad(cantidad);
+        setImagen(imagen);
         agregarpaneles();
         botones();
         textos();
@@ -119,10 +109,10 @@ public class Modificar extends JFrame {
     {
         Boton cliente=new Boton(null,130,20,126,130);
         cliente.setBackground(azulp);
-        cliente.setIcon(setIcono(avatar,cliente));
+        cliente.setIcon(setIcono(imagen,cliente));
         pane.add(cliente);
          
-        Boton btnA=new Boton(fn.texto("MODIFICAR", true,4),38,416+y,313,44);
+        Boton btnA=new Boton(fn.texto("MODIFICAR", true,4),38,416-y,313,44);
         btnA.setBackground(azulp);
         btnA.setForeground(Color.WHITE);
         btnA.setBorderPainted(true);
@@ -153,8 +143,7 @@ public class Modificar extends JFrame {
                 }
                 else
                 { 
-                    if(verificarNumeros())
-                    {
+                    
                         if(buscar(Integer.parseInt(Nit.getText())))
                         {
                             JOptionPane.showMessageDialog(null,"Ya existe un cliente con el mismo NIT");
@@ -163,25 +152,21 @@ public class Modificar extends JFrame {
                         {
                             if(abierto)
                             {
-                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
-                                clientes[contadorCl]=aux;
+//                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),path.toString());
+//                                clientes[contadorCl]=aux;
                                 //contadorCl++;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
-                                Modificar.this.dispose();
+                                ModificarProducto.this.dispose();
                             }
                             else
                             {
-                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
-                                clientes[id]=aux;
+//                                Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
+//                                clientes[id]=aux;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
-                                Modificar.this.dispose();
+                                ModificarProducto.this.dispose();
                             }
                         }
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null,"Ingrese solo numeros en los campos que lo requieran");
-                    }
+                  
                 }
             }
         });
@@ -194,33 +179,22 @@ public class Modificar extends JFrame {
         pane.add(user);
         
         Label nombre=new Label(145,248+y,100,20);
-        nombre.setText(fn.texto("Edad", true,3));
+        nombre.setText(fn.texto("Precio", true,3));
         pane.add(nombre);
         
         Label pass=new Label(145,315+y,100,20);
-        pass.setText(fn.texto("Sexo", true,3));
+        pass.setText(fn.texto("Cantidad", true,3));
         pane.add(pass);
         
-        Label passC=new Label(125,379+y,150,20);
-        passC.setText(fn.texto("NIT", true,3));
-        pane.add(passC);
     }
     
     private void textos()
     {
         Nombre.setText(name);
         pane.add(Nombre);
-        Edad.setText(String.valueOf(eddad));
+        Edad.setText(String.valueOf(precio));
         pane.add(Edad);
-        combo.setBounds(38, 282+y, 313, 31);
-        combo.addItem("M");
-        combo.addItem("F");
-        combo.setOpaque(false);
-        combo.setBackground(azul);
-        combo.setSelectedIndex(NoSex());
-        combo.setForeground(Color.WHITE);
-        pane.add(combo);
-        Nit.setText(String.valueOf(nitt));
+        Nit.setText(String.valueOf(cantidad));
         pane.add(Nit);
     }
         
@@ -243,14 +217,7 @@ public class Modificar extends JFrame {
         return icono;
     }
     
-    private int NoSex()
-    {
-        if(sex=='M')
-        {
-            return 0;
-        }
-        else return 1;
-    }
+
  
     private void abrir()
     {
@@ -285,30 +252,23 @@ public class Modificar extends JFrame {
     public boolean buscar(int nit)
     {
         boolean aux=false;
-        if(nit==nitt)
-        {
-            aux=false;
-        }
-        else
-        {
-            for(int i=0; i<contadorCl;i++)
-            {
-                if(nit==clientes[i].getNit())
-                {
-                    aux= true;
-                    break;
-                }
-            }
-        }
+//        if(nit==nitt)
+//        {
+//            aux=false;
+//        }
+//        else
+//        {
+//            for(int i=0; i<contadorCl;i++)
+//            {
+//                if(nit==clientes[i].getNit())
+//                {
+//                    aux= true;
+//                    break;
+//                }
+//            }
+//        }
         return aux;
     }
     
-    public boolean verificarNumeros()
-    {
-        if(!Edad.getText().matches("[0-9]*$")||!Nit.getText().matches("[0-9]*$"))
-        {
-            return false;
-        }
-        else return true;
-    }
+   
 }
