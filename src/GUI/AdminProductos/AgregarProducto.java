@@ -182,7 +182,7 @@ public class AgregarProducto extends JFrame{
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                AdminClientes abrir=new AdminClientes();
+                MenuProductos abrir=new MenuProductos();
                 abrir.setVisible(true);
             }
         });
@@ -234,9 +234,14 @@ public class AgregarProducto extends JFrame{
         boolean aux=false;
         for(int i=0; i<contadorP;i++)
         {
-            if(nombre.toLowerCase().equals(productos[i].getNombre().toLowerCase()))
+            if(nombre.trim().equalsIgnoreCase(productos[i].getNombre().trim()))
             {
                 aux= true;
+                break;
+            }
+            else if(nombre.trim().toLowerCase().compareTo(productos[0].getNombre().trim().toLowerCase())==0)
+            {
+                aux=true;
                 break;
             }
         }

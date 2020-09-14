@@ -122,7 +122,7 @@ public class ManejadorArchivos {
             finally
             {
                entrada.close();//simpre cierro mi buffer para evitar problemas
-               //System.out.println(productos[3]);
+               System.out.println(productos[0]);
             }
     }
     

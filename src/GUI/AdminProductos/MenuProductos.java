@@ -139,7 +139,7 @@ public class MenuProductos extends JFrame {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "No se cargo ningun archivo");
+                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
                     }
             }
             
