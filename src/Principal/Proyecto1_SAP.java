@@ -7,6 +7,7 @@ import GUI.AdminClientes.DashboardClientes;
 import GUI.AdminClientes.DetalleCliente;
 import GUI.AdminClientes.InfoCliente;
 import GUI.AdminProductos.MenuProductos;
+import GUI.AdminVentas.MenuVentas;
 import GUI.Login;
 import GUI.Menu;
 import GUI.Registro;
@@ -48,7 +49,8 @@ public class Proyecto1_SAP {
 //        InfoCliente abrir=new InfoCliente();
         
 //        DetalleCliente abrir=new DetalleCliente();
-        MenuProductos abrir=new MenuProductos();
+//        MenuProductos abrir=new MenuProductos();
+        MenuVentas abrir=new MenuVentas();
         abrir.setVisible(true);
     }
 }

@@ -1,7 +1,11 @@
 
-package GUI.AdminProductos;
+package GUI.AdminVentas;
 
 import EstructuraDatos.ManejadorArchivos;
+import GUI.AdminProductos.AgregarProducto;
+import GUI.AdminProductos.DashboardProductos;
+import GUI.AdminProductos.DetalleProducto;
+import GUI.AdminProductos.MenuProductos;
 import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
@@ -28,7 +32,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Daniel Dubón
  */
-public class MenuProductos extends JFrame {
+public class MenuVentas extends JFrame{
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
     Panel pane1=new Panel();//panel principal
@@ -40,11 +44,11 @@ public class MenuProductos extends JFrame {
     Color rosa=new Color(26, 177, 136);
     Color menta=new Color(26, 177, 136);
     
-    public MenuProductos()
+    public MenuVentas()
     {
         setSize(800,430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Administración de productos");
+        setTitle("Administración de Ventas");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
@@ -66,13 +70,13 @@ public class MenuProductos extends JFrame {
     private void textos()
     {
         Label lb3=new Label(77,12,800,60);
-        lb3.setText(fn.texto("Administración de productos", true,6));
+        lb3.setText(fn.texto("Administración de ventas", true,6));
         lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         
         JLabel s0=new JLabel();
         s0.setBounds(15, 12, 60, 60);
-        ImageIcon im= new ImageIcon("Resources\\producto.png");
+        ImageIcon im= new ImageIcon("Resources\\inicio.png");
         Icon scale=new ImageIcon(im.getImage().getScaledInstance(s0.getWidth(), s0.getHeight(), Image.SCALE_DEFAULT));
         s0.setIcon(scale);
         pane1.add(s0);
@@ -83,7 +87,7 @@ public class MenuProductos extends JFrame {
         int x=0, y=-70;
         Boton clientes=new Boton(null,96+x,220+y,126,126);
         clientes.setBackground(gris);
-        clientes.setIcon(setIcono("Resources\\barras.png",clientes));
+        clientes.setIcon(setIcono("Resources\\ventas.png",clientes));
         pane.add(clientes);
         
         Boton cargar=new Boton(null,255+x,220+y,126,126);
@@ -107,15 +111,15 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(verificarVacio())
-                {
-                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
-                }
-                else
-                {
-                    DashboardProductos abri=new DashboardProductos();
-                    abri.setVisible(true);
-                }
+//                if(verificarVacio())
+//                {
+//                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
+//                }
+//                else
+//                {
+//                    DashboardProductos abri=new DashboardProductos();
+//                    abri.setVisible(true);
+//                }
             }
         });
         
@@ -124,23 +128,23 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                    ManejadorArchivos abrir=new ManejadorArchivos();
-                    abrir.abrir();
-                    if(abrir.getAbierto())
-                    {
-                        try 
-                        {
-                            abrir.cargarProductos();
-                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
-                        } catch (IOException ex) 
-                        {
-                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
-                        }
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
-                    }
+//                    ManejadorArchivos abrir=new ManejadorArchivos();
+//                    abrir.abrir();
+//                    if(abrir.getAbierto())
+//                    {
+//                        try 
+//                        {
+//                            abrir.cargarProductos();
+//                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
+//                        } catch (IOException ex) 
+//                        {
+//                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+//                        }
+//                    }
+//                    else
+//                    {
+//                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
+//                    }
             }
             
         });
@@ -150,9 +154,9 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                AgregarProducto abrir=new AgregarProducto();
-                abrir.setVisible(true);
-                MenuProductos.this.dispose();
+//                AgregarProducto abrir=new AgregarProducto();
+//                abrir.setVisible(true);
+//                MenuProductos.this.dispose();
             }
         });
         
@@ -161,16 +165,16 @@ public class MenuProductos extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(verificarVacio())
-                {
-                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
-                }
-                else
-                {
-                    DetalleProducto abri=new DetalleProducto();
-                    abri.setVisible(true);
-                    MenuProductos.this.dispose();
-                }
+//                if(verificarVacio())
+//                {
+//                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
+//                }
+//                else
+//                {
+//                    DetalleProducto abri=new DetalleProducto();
+//                    abri.setVisible(true);
+//                    MenuProductos.this.dispose();
+//                }
             }
         });
     }
@@ -179,22 +183,22 @@ public class MenuProductos extends JFrame {
     {
         int y=-60;
         Label cliente=new Label(96,336+y,126,50);
-        cliente.setText(fn.texto("Dashboard de productos", true,3));
+        cliente.setText(fn.texto("Dashboard de ventas", true,3));
         cliente.setForeground(celeste);
         pane.add(cliente);
         
         Label producto=new Label(255,334+y,126,50);
-        producto.setText(fn.texto("Carga masiva de productos", true,3));
+        producto.setText(fn.texto("Carga masiva de ventas", true,3));
         producto.setForeground(celeste);
         pane.add(producto);
         
         Label ventas=new Label(414,334+y,126,50);
-        ventas.setText(fn.texto("Información de productos", true,3));
+        ventas.setText(fn.texto("Información de ventas", true,3));
         ventas.setForeground(celeste);
         pane.add(ventas);
         
         Label reportes=new Label(568,330+y,126,50);
-        reportes.setText(fn.texto("Crear producto", true,3));
+        reportes.setText(fn.texto("Crear venta", true,3));
         reportes.setForeground(celeste);
         pane.add(reportes);
         
