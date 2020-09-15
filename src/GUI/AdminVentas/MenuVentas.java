@@ -154,9 +154,9 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                AgregarProducto abrir=new AgregarProducto();
-//                abrir.setVisible(true);
-//                MenuProductos.this.dispose();
+                AgregarVenta abrir=new AgregarVenta();
+                abrir.setVisible(true);
+                MenuVentas.this.dispose();
             }
         });
         
