@@ -37,7 +37,7 @@ public class Proyecto1_SAP {
         //users[0]=new Usuario("admin","admin","admin");
 //        Registro abrir=new Registro();
 //        Login abrir=new Login();
-//        Menu abrir=new Menu();
+        Menu abrir=new Menu();
 //        AdminClientes abrir=new AdminClientes();
 //        abrir.setVisible(true);
 //        ManejadorArchivos abrir=new ManejadorArchivos();
@@ -50,7 +50,7 @@ public class Proyecto1_SAP {
         
 //        DetalleCliente abrir=new DetalleCliente();
 //        MenuProductos abrir=new MenuProductos();
-        MenuVentas abrir=new MenuVentas();
+//        MenuVentas abrir=new MenuVentas();
         abrir.setVisible(true);
     }
 }

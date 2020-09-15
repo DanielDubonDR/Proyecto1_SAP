@@ -62,7 +62,7 @@ public class AgregarVenta extends JFrame {
     //private Texto Nit=new Texto(38, 346+y, 313, 31);
     private Panel panelTabla=new Panel();//panel principal
     private JComboBox combo=new JComboBox();
-    private int cont;
+    private int cont, idCliente, idProducto;
     
     DefaultTableModel tb=new DefaultTableModel();
     JTable mytable=new JTable();
@@ -105,18 +105,43 @@ public class AgregarVenta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                tb.addRow(new Object[]{Nombre.getText(),Edad.getText()});
-                if (cont>8)
+                if(verificarNumeros())
                 {
-                panelTabla.setPreferredSize(new Dimension(295,145+((cont-8)*16)));
+                    if(buscar(Integer.parseInt(Nombre.getText())))
+                    {
+                        buscart(combo.getSelectedItem().toString());
+                        System.out.println(productos[idProducto].getCantidad());
+                        if( (productos[idProducto].getCantidad()> 0) && (productos[idProducto].getCantidad()>=Integer.parseInt(Edad.getText())))
+                        {
+                            tb.addRow(new Object[]{Nombre.getText(),Edad.getText()});
+                            if (cont>8)
+                            {
+                            panelTabla.setPreferredSize(new Dimension(295,145+((cont-8)*16)));
+                            }
+                            else
+                            {
+                                panelTabla.setPreferredSize(new Dimension(295,145));
+                            }
+                            cont++;
+                            mytable.setModel(tb);
+                            mytable.repaint();
+                            int auxcantidad=productos[idProducto].getCantidad();
+                            productos[idProducto].setCantidad(auxcantidad-Integer.parseInt(Edad.getText()));
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Error el stock de este producto es de: "+productos[idProducto].getCantidad());
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Este NIT no esta registrado");
+                    }
                 }
                 else
                 {
-                    panelTabla.setPreferredSize(new Dimension(295,145));
+                    JOptionPane.showMessageDialog(null, "Llene los campos correctamente");
                 }
-                cont++;
-                mytable.setModel(tb);
-                mytable.repaint();
             }
         });
     }
@@ -145,10 +170,10 @@ public class AgregarVenta extends JFrame {
         pane.add(Nombre);
         pane.add(Edad);
         combo.setBounds(38, 214+y, 313, 31);
-//        for(int i=0;i<contadorP;i++)
-//        {
-//            combo.addItem(productos[i].getNombre());
-//        }
+        for(int i=0;i<contadorP;i++)
+        {
+            combo.addItem(productos[i].getNombre());
+        }
         combo.setOpaque(false);
         combo.setBackground(azul);
         combo.setForeground(Color.WHITE);
@@ -195,6 +220,7 @@ public class AgregarVenta extends JFrame {
             if(nit==clientes[i].getNit())
             {
                 aux= true;
+                idCliente=i;
                 break;
             }
         }
@@ -203,7 +229,7 @@ public class AgregarVenta extends JFrame {
     
     public boolean verificarNumeros()
     {
-        if(!Edad.getText().matches("[0-9]*$"))
+        if(!Edad.getText().matches("[0-9]*$")||!Nombre.getText().matches("[0-9]*$"))
         {
             return false;
         }
@@ -223,5 +249,20 @@ public class AgregarVenta extends JFrame {
         tb.addColumn("Cantidad");
         mytable.setModel(tb);
         panelTabla.add(mytable);
+    }
+    
+    public void buscart(String nombre)
+    {
+        boolean aux=false;
+        for(int i=0; i<contadorP;i++)
+        {
+            if(nombre.equalsIgnoreCase(productos[i].getNombre().trim()))
+            {
+                aux= true;
+                idProducto=i;
+                break;
+            }
+        }
+        //return aux;
     }
 }
