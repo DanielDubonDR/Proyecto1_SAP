@@ -60,13 +60,14 @@ public class AgregarVenta extends JFrame {
     //private Texto Nit=new Texto(38, 346+y, 313, 31);
     private Panel panelTabla=new Panel();//panel principal
     private JComboBox combo=new JComboBox();
+    private int cont;
     
     DefaultTableModel tb=new DefaultTableModel();
     JTable mytable=new JTable();
     
     public AgregarVenta()
     {
-        setSize(388, 570);
+        setSize(390, 570);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Nueva Venta");
         setLocationRelativeTo(null);
@@ -103,6 +104,15 @@ public class AgregarVenta extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 tb.addRow(new Object[]{Nombre.getText(),Edad.getText()});
+                if (cont>8)
+                {
+                panelTabla.setPreferredSize(new Dimension(295,145+((cont-8)*16)));
+                }
+                else
+                {
+                    panelTabla.setPreferredSize(new Dimension(295,145));
+                }
+                cont++;
                 mytable.setModel(tb);
                 mytable.repaint();
             }
@@ -186,15 +196,15 @@ public class AgregarVenta extends JFrame {
     
     public void tabla()
     {
+        //cont=6;
         JScrollPane scrol=new JScrollPane();
         scrol.setBounds(40, 360, 313, 150);
         panelTabla.setLayout(new BorderLayout());
         pane.add(scrol);
         scrol.setViewportView(panelTabla);
-        panelTabla.setPreferredSize(new Dimension(150,100));
+        panelTabla.setPreferredSize(new Dimension(295,145));
         tb.addColumn("Producto");
         tb.addColumn("Cantidad");
-        tb.addRow(new Object[]{"chetos","5"});
         mytable.setModel(tb);
         panelTabla.add(mytable);
     }
