@@ -2,6 +2,8 @@
 package GUI;
 
 import GUI.AdminClientes.AdminClientes;
+import GUI.AdminProductos.MenuProductos;
+import GUI.AdminVentas.MenuVentas;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
@@ -111,6 +113,28 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 AdminClientes abrir=new AdminClientes();
+                abrir.setVisible(true);
+                Menu.this.dispose();
+            }
+        });
+        
+        productos.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                MenuProductos abrir=new MenuProductos();
+                abrir.setVisible(true);
+                Menu.this.dispose();
+            }
+        });
+        
+        venta.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                MenuVentas abrir=new MenuVentas();
                 abrir.setVisible(true);
                 Menu.this.dispose();
             }

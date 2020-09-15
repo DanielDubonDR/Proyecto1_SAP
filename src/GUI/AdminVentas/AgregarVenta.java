@@ -15,6 +15,8 @@ import Principal.Controlador.Cliente;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.clientes;
 import static Principal.Proyecto1_SAP.contadorCl;
+import static Principal.Proyecto1_SAP.contadorP;
+import static Principal.Proyecto1_SAP.productos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -143,12 +145,26 @@ public class AgregarVenta extends JFrame {
         pane.add(Nombre);
         pane.add(Edad);
         combo.setBounds(38, 214+y, 313, 31);
-        combo.addItem("M");
-        combo.addItem("F");
+//        for(int i=0;i<contadorP;i++)
+//        {
+//            combo.addItem(productos[i].getNombre());
+//        }
         combo.setOpaque(false);
         combo.setBackground(azul);
         combo.setForeground(Color.WHITE);
         pane.add(combo);
+        
+        Label name=new Label(40,335,154,26);
+        name.setText(fn.texto("Producto", true,3));
+        name.setOpaque(true);
+        name.setBackground(celeste);
+        pane.add(name);
+        
+        Label ctn=new Label(195,335,157,26);
+        ctn.setText(fn.texto("Cantidad", true,3));
+        ctn.setOpaque(true);
+        ctn.setBackground(celeste);
+        pane.add(ctn);
     }
         
     public void cerrar()
