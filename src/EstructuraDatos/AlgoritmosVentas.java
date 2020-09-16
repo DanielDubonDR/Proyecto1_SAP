@@ -80,11 +80,20 @@ public class AlgoritmosVentas {
         return ventas[aux].getNit();
     }
     
+    public double error(double numero)//este metodo me quita los errores decimales que se generan
+    {
+        double resultado;
+        resultado=numero*Math.pow(100,100);
+        resultado=Math.round(resultado);
+        resultado=resultado/Math.pow(100,100);
+        return resultado;
+    }
+    
     public void controlador()
     {
         getIds();
         agrupar();
         System.out.println(ventasAgrupadas[0]);
-        System.out.println(ventasAgrupadas[1]);
+        System.out.println(ventasAgrupadas[3]);
     }
 }

@@ -1,11 +1,14 @@
 
 package GUI.AdminVentas;
 
+import EstructuraDatos.AlgoritmosVentas;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
+import static Principal.Proyecto1_SAP.contVA;
 import static Principal.Proyecto1_SAP.contadorP;
 import static Principal.Proyecto1_SAP.productos;
+import static Principal.Proyecto1_SAP.ventasAgrupadas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,6 +44,8 @@ public class DashboardVentas extends JFrame{
     
     public DashboardVentas()
     {
+        AlgoritmosVentas a=new AlgoritmosVentas();
+        a.controlador();
         setSize(820, 600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Dashboard Ventas");
@@ -80,19 +85,19 @@ public class DashboardVentas extends JFrame{
             x=61;
         }
         Label nombre=new Label(10,y,197+x,26);
-        nombre.setText(fn.texto("Nombre", true,3));
+        nombre.setText(fn.texto("Codigo Venta", true,3));
         nombre.setOpaque(true);
         nombre.setBackground(celeste);
         pane.add(nombre);
         
         Label edad=new Label(208+x,y,196+x,26);
-        edad.setText(fn.texto("Precio", true,3));
+        edad.setText(fn.texto("NIT Cliente", true,3));
         edad.setOpaque(true);
         edad.setBackground(celeste);
         pane.add(edad);
         
         Label sexo=new Label(405+(x*2),y,198+(x),26);
-        sexo.setText(fn.texto("Cantidad", true,3));
+        sexo.setText(fn.texto("Total", true,3));
         sexo.setOpaque(true);
         sexo.setBackground(celeste);
         pane.add(sexo);
@@ -115,15 +120,15 @@ public class DashboardVentas extends JFrame{
     
     private void agregarTabla()
     {
-        String[] nombreC={"Nombre","Precio","Cantidad"};
+        String[] nombreC={"Codigo Venta","NIT Cliente","Total"};
         
-        for(int i=0; i<contadorP;i++)
+        for(int i=0; i<contVA;i++)
         {
-            if(productos[i] !=null)
+            if(ventasAgrupadas[i] !=null)
             {
-                filas[i][0]=productos[i].getNombre();
-                filas[i][1]=productos[i].getPrecio();
-                filas[i][2]=productos[i].getCantidad();
+                filas[i][0]=ventasAgrupadas[i].getCodigo();
+                filas[i][1]=ventasAgrupadas[i].getNit();
+                filas[i][2]=ventasAgrupadas[i].getTotal();
             }
         }
         

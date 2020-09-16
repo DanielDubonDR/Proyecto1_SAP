@@ -12,6 +12,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
+import static Principal.Proyecto1_SAP.clientes;
 import static Principal.Proyecto1_SAP.ventas;
 import java.awt.Color;
 import java.awt.Image;
@@ -114,7 +115,7 @@ public class MenuVentas extends JFrame{
             {
                 if(verificarVacio())
                 {
-                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
+                    JOptionPane.showMessageDialog(null, "No existe ningún producto o algún cliente");
                 }
                 else
                 {
@@ -218,7 +219,7 @@ public class MenuVentas extends JFrame{
     
     public boolean verificarVacio()
     {
-        if(ventas[0]==null)
+        if(ventas[0]==null && clientes[0]==null)
         {
             return true;
         }
