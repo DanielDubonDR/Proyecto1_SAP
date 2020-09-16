@@ -15,6 +15,7 @@ import Principal.Controlador.Cliente;
 import Principal.Controlador.Producto;
 import Principal.Controlador.Usuario;
 import Principal.Controlador.Venta;
+import Principal.Controlador.VentaAgrupada;
 import java.io.IOException;
 
 /**
@@ -27,6 +28,7 @@ public class Proyecto1_SAP {
     public static Cliente [] clientes=new Cliente[100];
     public static Producto[] productos=new Producto[100];
     public static Venta[] ventas=new Venta[100];
+    public static VentaAgrupada[] ventasAgrupadas=new VentaAgrupada[100];
     public static String nameuser="Daniel Dubón";
     public static int contador=0, contadorCl=0, contadorP=0, contadorV=0; //contadorusuarios/clientes/productos
     

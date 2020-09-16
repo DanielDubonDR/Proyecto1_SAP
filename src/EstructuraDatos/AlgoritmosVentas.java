@@ -26,5 +26,10 @@ public class AlgoritmosVentas {
                 }
             }
         }
+        
+        for(int i=0; i<contids;i++)
+        {
+            System.out.print(ids[i]+" ");
+        }
     }
 }

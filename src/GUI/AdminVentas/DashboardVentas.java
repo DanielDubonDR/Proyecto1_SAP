@@ -43,7 +43,7 @@ public class DashboardVentas extends JFrame{
     {
         setSize(820, 600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Dashboard Clientes");
+        setTitle("Dashboard Ventas");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();

@@ -1,6 +1,7 @@
 
 package GUI.AdminVentas;
 
+import EstructuraDatos.AlgoritmosVentas;
 import EstructuraDatos.ManejadorArchivos;
 import GUI.AdminProductos.AgregarProducto;
 import GUI.AdminProductos.DashboardProductos;
@@ -175,6 +176,8 @@ public class MenuVentas extends JFrame{
 //                    abri.setVisible(true);
 //                    MenuProductos.this.dispose();
 //                }
+                AlgoritmosVentas a=new AlgoritmosVentas();
+                a.getIds();
             }
         });
     }
