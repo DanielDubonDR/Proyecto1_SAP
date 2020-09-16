@@ -4,6 +4,7 @@ package EstructuraDatos;
 import GUI.AdminClientes.DashboardClientes;
 import Principal.Controlador.Cliente;
 import Principal.Controlador.Producto;
+import Principal.Controlador.Venta;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -129,5 +130,39 @@ public class ManejadorArchivos {
     public boolean getAbierto()
     {
         return abierto;
+    }
+    
+    public void cargarVentas() throws IOException
+    {
+        try 
+            {
+                 entrada=new FileReader(path);
+                 String linea;
+                 BufferedReader lector =new BufferedReader(entrada);//creo un buffer que me lee por lineas
+                 while((linea=lector.readLine())!=null)
+                 {
+                     String cadena[];
+                     cadena=linea.split(",");
+                     Venta aux=new Venta(Integer.parseInt(cadena[0]),Integer.parseInt(cadena[1]),cadena[2],Integer.parseInt(cadena[3]));
+                     ventas[contadorV]=aux;
+                     contadorV++;
+                 }
+                 System.out.println(contadorV);
+            } 
+            catch (FileNotFoundException ex) 
+            {
+                 JOptionPane.showMessageDialog(null, "Error al cargar los datos");
+                 System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
+            }
+            catch (IOException e)
+            {
+                JOptionPane.showMessageDialog(null, "Error al cargar los datos");
+                System.out.println("Error");
+            }
+            finally
+            {
+               entrada.close();//simpre cierro mi buffer para evitar problemas
+               System.out.println(ventas[0]);
+            }
     }
 }

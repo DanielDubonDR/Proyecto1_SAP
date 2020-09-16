@@ -15,6 +15,7 @@ public class Venta {
         setCodigo(codigo);
         setNit(nit);
         setProducto(producto);
+        setCantidad(cantidad);
     }
     
     public void setCodigo(int codigo) 

@@ -11,7 +11,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.productos;
+import static Principal.Proyecto1_SAP.ventas;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -111,15 +111,15 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                if(verificarVacio())
-//                {
-//                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
-//                }
-//                else
-//                {
-//                    DashboardProductos abri=new DashboardProductos();
-//                    abri.setVisible(true);
-//                }
+                if(verificarVacio())
+                {
+                    JOptionPane.showMessageDialog(null, "No existe ningún producto");
+                }
+                else
+                {
+                    DashboardVentas abri=new DashboardVentas();
+                    abri.setVisible(true);
+                }
             }
         });
         
@@ -128,23 +128,23 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-//                    ManejadorArchivos abrir=new ManejadorArchivos();
-//                    abrir.abrir();
-//                    if(abrir.getAbierto())
-//                    {
-//                        try 
-//                        {
-//                            abrir.cargarProductos();
-//                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
-//                        } catch (IOException ex) 
-//                        {
-//                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
-//                        }
-//                    }
-//                    else
-//                    {
-//                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
-//                    }
+                    ManejadorArchivos abrir=new ManejadorArchivos();
+                    abrir.abrir();
+                    if(abrir.getAbierto())
+                    {
+                        try 
+                        {
+                            abrir.cargarVentas();
+                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
+                        } catch (IOException ex) 
+                        {
+                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
+                    }
             }
             
         });
@@ -215,7 +215,7 @@ public class MenuVentas extends JFrame{
     
     public boolean verificarVacio()
     {
-        if(productos[0]==null)
+        if(ventas[0]==null)
         {
             return true;
         }

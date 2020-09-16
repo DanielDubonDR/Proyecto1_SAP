@@ -21,4 +21,12 @@ public class Funciones {
         return texto.toString();
     }
     
+    public void agruparVentas()
+    {
+//        for()
+//        {
+//            
+//        }
+    }
+    
 }

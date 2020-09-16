@@ -12,11 +12,9 @@ import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
 import Principal.Controlador.Cliente;
+import Principal.Controlador.Venta;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contadorCl;
-import static Principal.Proyecto1_SAP.contadorP;
-import static Principal.Proyecto1_SAP.productos;
+import static Principal.Proyecto1_SAP.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -127,6 +125,10 @@ public class AgregarVenta extends JFrame {
                             mytable.repaint();
                             int auxcantidad=productos[idProducto].getCantidad();
                             productos[idProducto].setCantidad(auxcantidad-Integer.parseInt(Edad.getText()));
+                            Venta aux=new Venta((contadorV+1),Integer.parseInt(Nombre.getText()),combo.getSelectedItem().toString(),Integer.parseInt(Edad.getText()));
+                            ventas[contadorV]=aux;
+                            contadorV++;
+                            Nombre.setEditable(false);
                         }
                         else
                         {
