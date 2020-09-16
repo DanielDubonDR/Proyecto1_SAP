@@ -1,8 +1,9 @@
 
 package EstructuraDatos;
 
-import static Principal.Proyecto1_SAP.contadorV;
-import static Principal.Proyecto1_SAP.ventas;
+import Principal.Controlador.VentaAgrupada;
+import static Principal.Proyecto1_SAP.*;
+
 
 /**
  *
@@ -31,5 +32,59 @@ public class AlgoritmosVentas {
         {
             System.out.print(ids[i]+" ");
         }
+    }
+    
+    public void agrupar()
+    {
+        for(int i=0; i<contids;i++)
+        {
+            double total=0;
+            for(int j=0;j<contadorV;j++)
+            {
+                if(ventas[j].getCodigo()==ids[i])
+                {
+                    total+=buscarPrecio(ventas[j].getNombreproducto())*ventas[j].getCantidad();
+                }
+            }
+            VentaAgrupada a = new VentaAgrupada(ids[i],buscarCliente(ids[i]),total);
+            ventasAgrupadas[contVA]=a;
+            contVA++;
+        }
+    }
+    
+    public float buscarPrecio(String nombre)
+    {
+        int id=0;
+        for(int i=0; i<contadorP;i++)
+        {
+            if(nombre.equalsIgnoreCase(productos[i].getNombre().trim()))
+            {
+                id=i;
+                break;
+            }
+        }
+        return productos[id].getPrecio();
+    }
+    
+    public int buscarCliente(int id)
+    {
+        int aux=0;
+        for(int i=0; i<contadorV;i++)
+        {
+            if(ventas[i].getCodigo()==id)
+            {
+                aux=i;
+                break;
+            }
+        }
+        return ventas[aux].getNit();
+    }
+    
+    public void controlador()
+    {
+        getIds();
+        agrupar();
+        System.out.println(ventasAgrupadas[0]);
+        System.out.println(ventasAgrupadas[1]);
     }
 }

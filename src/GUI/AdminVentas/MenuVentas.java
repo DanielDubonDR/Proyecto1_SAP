@@ -177,7 +177,7 @@ public class MenuVentas extends JFrame{
 //                    MenuProductos.this.dispose();
 //                }
                 AlgoritmosVentas a=new AlgoritmosVentas();
-                a.getIds();
+                a.controlador();
             }
         });
     }
