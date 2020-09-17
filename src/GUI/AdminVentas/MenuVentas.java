@@ -169,16 +169,14 @@ public class MenuVentas extends JFrame{
             {
 //                if(verificarVacio())
 //                {
-//                    JOptionPane.showMessageDialog(null, "No existe ningún cliente registrado");
+//                    JOptionPane.showMessageDialog(null, "No existe ninguna venta registrada");
 //                }
 //                else
 //                {
-//                    DetalleProducto abri=new DetalleProducto();
-//                    abri.setVisible(true);
-//                    MenuProductos.this.dispose();
+                    BuscarVenta abri=new BuscarVenta();
+                    abri.setVisible(true);
+                    MenuVentas.this.dispose();
 //                }
-                AlgoritmosVentas a=new AlgoritmosVentas();
-                a.controlador();
             }
         });
     }
