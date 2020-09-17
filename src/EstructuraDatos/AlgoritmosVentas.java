@@ -30,6 +30,7 @@ public class AlgoritmosVentas {
         
         for(int i=0; i<contids;i++)
         {
+            System.out.println("ids");
             System.out.print(ids[i]+" ");
         }
     }
@@ -99,7 +100,19 @@ public class AlgoritmosVentas {
     {
         getIds();
         agrupar();
-        System.out.println(ventasAgrupadas[0]);
-        System.out.println(ventasAgrupadas[3]);
+//        System.out.println(ventasAgrupadas[0]);
+//        System.out.println(ventasAgrupadas[3]);
+    }
+    
+    public int getLastId()
+    {
+        if(contids==0)
+        {
+            return 0;
+        }
+        else
+        {
+        return ids[contids-1];
+        }
     }
 }

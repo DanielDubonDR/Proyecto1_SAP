@@ -82,7 +82,7 @@ public class DashboardVentas extends JFrame{
     private void etiquetas()
     {
         int y=100, x=65;
-        if(contadorP>10)
+        if(contVA>10)
         {
             x=61;
         }
@@ -106,7 +106,7 @@ public class DashboardVentas extends JFrame{
         
         
         Label lb3=new Label(77,12,800,60);
-        lb3.setText(fn.texto("Dashboard Productos", true,6));
+        lb3.setText(fn.texto("Dashboard Ventas", true,6));
         lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         

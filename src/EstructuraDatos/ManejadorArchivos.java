@@ -37,7 +37,7 @@ public class ManejadorArchivos {
         {
             System.out.println("se abrio archivo");
             path =choose.getSelectedFile();
-            System.out.println(path);
+//            System.out.println(path);
             abierto=true;
         }
         else
@@ -62,7 +62,7 @@ public class ManejadorArchivos {
                  clientes[contadorCl]=aux;
                  contadorCl++;
              }
-             System.out.println(contadorCl);
+//             System.out.println(contadorCl);
          } catch (FileNotFoundException ex) {
              System.out.print("Error al abrir el archivo"); //agrego excepciones por si hay algun error
          }
@@ -73,7 +73,7 @@ public class ManejadorArchivos {
          finally
          {
             entrada.close();//simpre cierro mi buffer para evitar problemas
-             System.out.println(obtenerMujeres());
+             //System.out.println(obtenerMujeres());
          }
         
     }
@@ -108,7 +108,7 @@ public class ManejadorArchivos {
                      productos[contadorP]=aux;
                      contadorP++;
                  }
-                 System.out.println(contadorP);
+                 //System.out.println(contadorP);
             } 
             catch (FileNotFoundException ex) 
             {
@@ -123,7 +123,7 @@ public class ManejadorArchivos {
             finally
             {
                entrada.close();//simpre cierro mi buffer para evitar problemas
-               System.out.println(productos[0]);
+               //System.out.println(productos[0]);
             }
     }
     
@@ -147,7 +147,7 @@ public class ManejadorArchivos {
                      ventas[contadorV]=aux;
                      contadorV++;
                  }
-                 System.out.println(contadorV);
+                 //System.out.println(contadorV);
             } 
             catch (FileNotFoundException ex) 
             {
@@ -162,7 +162,7 @@ public class ManejadorArchivos {
             finally
             {
                entrada.close();//simpre cierro mi buffer para evitar problemas
-               System.out.println(ventas[0]);
+               //System.out.println(ventas[0]);
             }
     }
 }

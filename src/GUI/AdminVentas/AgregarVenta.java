@@ -5,6 +5,7 @@
  */
 package GUI.AdminVentas;
 
+import EstructuraDatos.AlgoritmosVentas;
 import GUI.AdminClientes.AdminClientes;
 import GUI.AdminClientes.InfoCliente;
 import GUI.Utilidades.Boton;
@@ -21,6 +22,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -61,12 +64,13 @@ public class AgregarVenta extends JFrame {
     private Panel panelTabla=new Panel();//panel principal
     private JComboBox combo=new JComboBox();
     private int cont, idCliente, idProducto;
-    
+    private AlgoritmosVentas idd=new AlgoritmosVentas();
     DefaultTableModel tb=new DefaultTableModel();
     JTable mytable=new JTable();
     
     public AgregarVenta()
     {
+        idd.getIds();
         setSize(390, 570);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Nueva Venta");
@@ -108,7 +112,7 @@ public class AgregarVenta extends JFrame {
                     if(buscar(Integer.parseInt(Nombre.getText())))
                     {
                         buscart(combo.getSelectedItem().toString());
-                        System.out.println(productos[idProducto].getCantidad());
+//                        System.out.println(productos[idProducto].getCantidad());
                         if( (productos[idProducto].getCantidad()> 0) && (productos[idProducto].getCantidad()>=Integer.parseInt(Edad.getText())))
                         {
                             tb.addRow(new Object[]{combo.getSelectedItem(),Edad.getText()});
@@ -125,9 +129,8 @@ public class AgregarVenta extends JFrame {
                             mytable.repaint();
                             int auxcantidad=productos[idProducto].getCantidad();
                             productos[idProducto].setCantidad(auxcantidad-Integer.parseInt(Edad.getText()));
-                            Venta aux=new Venta((1),Integer.parseInt(Nombre.getText()),combo.getSelectedItem().toString(),Integer.parseInt(Edad.getText()));
+                            Venta aux=new Venta(idd.getLastId()+1,Integer.parseInt(Nombre.getText()),combo.getSelectedItem().toString(),Integer.parseInt(Edad.getText()));
                             ventas[contadorV]=aux;
-                            System.out.println(aux);
                             contadorV++;
                             Nombre.setEditable(false);
                         }
@@ -193,6 +196,14 @@ public class AgregarVenta extends JFrame {
         ctn.setOpaque(true);
         ctn.setBackground(celeste);
         pane.add(ctn);
+        
+        Edad.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                Edad.setText("");
+            }
+        });
     }
         
     public void cerrar()
