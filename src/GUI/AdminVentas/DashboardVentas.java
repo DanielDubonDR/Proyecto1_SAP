@@ -13,6 +13,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -54,7 +56,7 @@ public class DashboardVentas extends JFrame{
         agregarpaneles();
         etiquetas();
         agregarTabla();
-//        cerrar();
+        cerrar();
     }
     
     private void agregarpaneles()
@@ -74,7 +76,7 @@ public class DashboardVentas extends JFrame{
         panelTabla.setLayout(new BorderLayout());
         pane.add(scrol);
         scrol.setViewportView(panelTabla);
-        panelTabla.setPreferredSize(new Dimension(750,162+((contadorP-10)*16)));
+        panelTabla.setPreferredSize(new Dimension(750,162+((contVA-10)*16)));
     }
     
     private void etiquetas()
@@ -137,6 +139,14 @@ public class DashboardVentas extends JFrame{
         panelTabla.add(tabla);
     }
     
-    
+    public void cerrar()
+    {
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent a){
+                contVA=0;
+            }
+        });
+    }
     
 }

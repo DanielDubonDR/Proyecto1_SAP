@@ -111,7 +111,7 @@ public class AgregarVenta extends JFrame {
                         System.out.println(productos[idProducto].getCantidad());
                         if( (productos[idProducto].getCantidad()> 0) && (productos[idProducto].getCantidad()>=Integer.parseInt(Edad.getText())))
                         {
-                            tb.addRow(new Object[]{Nombre.getText(),Edad.getText()});
+                            tb.addRow(new Object[]{combo.getSelectedItem(),Edad.getText()});
                             if (cont>8)
                             {
                             panelTabla.setPreferredSize(new Dimension(295,145+((cont-8)*16)));
@@ -125,8 +125,9 @@ public class AgregarVenta extends JFrame {
                             mytable.repaint();
                             int auxcantidad=productos[idProducto].getCantidad();
                             productos[idProducto].setCantidad(auxcantidad-Integer.parseInt(Edad.getText()));
-                            Venta aux=new Venta((contadorV+1),Integer.parseInt(Nombre.getText()),combo.getSelectedItem().toString(),Integer.parseInt(Edad.getText()));
+                            Venta aux=new Venta((1),Integer.parseInt(Nombre.getText()),combo.getSelectedItem().toString(),Integer.parseInt(Edad.getText()));
                             ventas[contadorV]=aux;
+                            System.out.println(aux);
                             contadorV++;
                             Nombre.setEditable(false);
                         }

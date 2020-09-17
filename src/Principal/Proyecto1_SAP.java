@@ -30,7 +30,8 @@ public class Proyecto1_SAP {
     public static Venta[] ventas=new Venta[100];
     public static VentaAgrupada[] ventasAgrupadas=new VentaAgrupada[100];
     public static String nameuser="Daniel Dubón";
-    public static int contador=0, contadorCl=0, contadorP=0, contadorV=0, contVA=0; //contadorusuarios/clientes/productos
+    //contadorusuarios/clientes/productos/contadorVentas/contadorVentasAgrupadas
+    public static int contador=0, contadorCl=0, contadorP=0, contadorV=0, contVA=0; 
     
     
     public static void main(String[] args) throws IOException

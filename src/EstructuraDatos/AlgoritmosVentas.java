@@ -43,13 +43,19 @@ public class AlgoritmosVentas {
             {
                 if(ventas[j].getCodigo()==ids[i])
                 {
-                    total+=buscarPrecio(ventas[j].getNombreproducto())*ventas[j].getCantidad();
+                    total+=redondear(buscarPrecio(ventas[j].getNombreproducto())*ventas[j].getCantidad());
                 }
             }
             VentaAgrupada a = new VentaAgrupada(ids[i],buscarCliente(ids[i]),total);
             ventasAgrupadas[contVA]=a;
             contVA++;
         }
+    }
+    
+    public double redondear(double numero)
+    {
+        double aux=Math.round(numero*100)/100d;
+        return aux;
     }
     
     public float buscarPrecio(String nombre)
