@@ -28,11 +28,11 @@ public class AlgoritmosVentas {
             }
         }
         
-        for(int i=0; i<contids;i++)
-        {
-            System.out.println("ids");
-            System.out.print(ids[i]+" ");
-        }
+//        for(int i=0; i<contids;i++)
+//        {
+//            System.out.println("ids");
+//            System.out.print(ids[i]+" ");
+//        }
     }
     
     public void agrupar()

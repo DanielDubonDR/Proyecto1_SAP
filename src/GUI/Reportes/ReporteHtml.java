@@ -1,26 +1,19 @@
 
 package GUI.Reportes;
 
-import EstructuraDatos.ManejadorArchivos;
-import GUI.AdminVentas.AgregarVenta;
-import GUI.AdminVentas.BuscarVenta;
-import GUI.AdminVentas.DashboardVentas;
-import GUI.AdminVentas.MenuVentas;
-import GUI.Menu;
+
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Controlador.Reporte;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.ventas;
+import static Principal.Proyecto1_SAP.*;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -87,10 +80,10 @@ public class ReporteHtml extends JFrame{
     private void botones()
     {
         int x=0, y=-70;
-        Boton clientes=new Boton(null,96+x,220+y,126,126);
-        clientes.setBackground(gris);
-        clientes.setIcon(setIcono("Resources\\clientes.png",clientes));
-        pane.add(clientes);
+        Boton clientesa=new Boton(null,96+x,220+y,126,126);
+        clientesa.setBackground(gris);
+        clientesa.setIcon(setIcono("Resources\\clientes.png",clientesa));
+        pane.add(clientesa);
         
         Boton cargar=new Boton(null,255+x,220+y,126,126);
         cargar.setBackground(gris);
@@ -108,13 +101,20 @@ public class ReporteHtml extends JFrame{
         pane.add(agregar);
         
         
-        clientes.addActionListener(new ActionListener()
+        clientesa.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Reporte a=new Reporte();
-                a.reporteClientes();
+                if(clientes[0]==null)
+                {
+                    JOptionPane.showMessageDialog(null, "No existen clientes registrados");
+                }
+                else
+                {
+                    Reporte a=new Reporte();
+                    a.reporteClientes();
+                }
             }
         });
         
@@ -123,8 +123,15 @@ public class ReporteHtml extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Reporte a=new Reporte();
-                a.reporteProductos();
+                if(productos[0]==null)
+                {
+                    JOptionPane.showMessageDialog(null, "No existen clientes productos");
+                }
+                else
+                {
+                    Reporte a=new Reporte();
+                    a.reporteProductos();
+                }
             }
             
         });
@@ -134,7 +141,17 @@ public class ReporteHtml extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                
+                if(clientes[0]==null && productos[0]==null && ventas[0]==null)
+                {
+                    JOptionPane.showMessageDialog(null, "No existen datos a reportar");
+                }
+                else
+                {
+                    Reporte a=new Reporte();
+                    a.reporteClientes();
+                    a.reporteProductos();
+                    a.reporteVentas();
+                }
             }
         });
         
@@ -143,7 +160,15 @@ public class ReporteHtml extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                
+                if(ventas[0]==null)
+                {
+                    JOptionPane.showMessageDialog(null, "No existen ventas registradas");
+                }
+                else
+                {
+                    Reporte a=new Reporte();
+                    a.reporteVentas();
+                }
             }
         });
     }

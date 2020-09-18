@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<title>Reporte Ventas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div class="w3-container w3-teal w3-center w3-margin-bottom">
+<h1>Reporte Ventas</h1>
+<a href="Reporte Clientes.html"><span class="w3-left w3-xxlarge">«</span></a>
+<a href="Reporte Productos.html"><span class="w3-right w3-xxlarge">»</span></a>
+</div>
+<div class="w3-container">  
+<input class="w3-input w3-border w3-padding" type="text" placeholder="Buscar por Código" id="myInput" onkeyup="myFunction()">
+<table class="w3-table-all w3-margin-top" id="myTable">
+<tr>
+<th style="width:35%;" class="w3-center">Código</th>
+<th style="width:35%;" class="w3-center">NIT</th>
+<th style="width:30%;" class="w3-center">Total</th>
+</tr><tr><td>5</td><td class="w3-center">47852</td><td class="w3-center">379.25</td></tr><tr><td>1</td><td class="w3-center">78798</td><td class="w3-center">57.0</td></tr><tr><td>3</td><td class="w3-center">25879</td><td class="w3-center">22.15</td></tr><tr><td>6</td><td class="w3-center">35214</td><td class="w3-center">14.2</td></tr><tr><td>2</td><td class="w3-center">12547</td><td class="w3-center">13.0</td></tr><tr><td>4</td><td class="w3-center">52148</td><td class="w3-center">3.0</td></tr><br><br></div>
+<script>
+function myFunction() {
+var input, filter, table, tr, td, i;
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+table = document.getElementById("myTable");
+tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+td = tr[i].getElementsByTagName("td")[0];
+if (td) {
+txtValue = td.textContent || td.innerText;
+if (txtValue.toUpperCase().indexOf(filter) > -1) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}}}}
+</script></body></html>
