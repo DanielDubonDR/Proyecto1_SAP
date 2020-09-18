@@ -41,8 +41,8 @@ public class Proyecto1_SAP {
 //        contadorCl++;
         //users[0]=new Usuario("admin","admin","admin");
 //        Registro abrir=new Registro();
-//        Login abrir=new Login();
-        Menu abrir=new Menu();
+        Login abrir=new Login();
+//        Menu abrir=new Menu();
 //        AdminClientes abrir=new AdminClientes();
 //        abrir.setVisible(true);
 //        ManejadorArchivos abrir=new ManejadorArchivos();
