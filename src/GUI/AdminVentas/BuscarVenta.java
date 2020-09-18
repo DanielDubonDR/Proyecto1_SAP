@@ -8,8 +8,8 @@ import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.contadorP;
-import static Principal.Proyecto1_SAP.productos;
+import static Principal.Proyecto1_SAP.contadorV;
+import static Principal.Proyecto1_SAP.ventas;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -67,7 +67,8 @@ public class BuscarVenta extends JFrame {
     DefaultTableModel tb=new DefaultTableModel();
     JTable mytable=new JTable();
     private Panel panelTabla=new Panel();//panel principal
-    
+    private Label ctn=new Label(245,264,157,26);
+    private Label name=new Label(90,264,154,26);
     int id=0,z=105;
     
     public BuscarVenta()
@@ -81,7 +82,6 @@ public class BuscarVenta extends JFrame {
         agregarBtn();
         agregarLb();
         agregarTxt();
-        ver();
         tabla();
         cerrar();
     }
@@ -108,36 +108,31 @@ public class BuscarVenta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-              
-//                    if(buscar(buscar.getText()))
-//                    {
-//                        nombre.setText(productos[id].getNombre());
-//                        edad.setText(String.valueOf(productos[id].getPrecio()));
-//                        sexo.setText(String.valueOf(productos[id].getCantidad()));
-//                        foto.setIcon(setIcono(productos[id].getImagen(),foto));
-//                        txt.setVisible(false);
-//                        bb.setVisible(false);
-//                        n.setVisible(true);
-//                        es.setVisible(true);
-//                        s.setVisible(true);
-//                        nombre.setVisible(true);
-//                        edad.setVisible(true);
-//                        sexo.setVisible(true);
-//                        foto.setVisible(true);
-//                    }
-//                    else
-//                    {
-//                        txt.setVisible(true);
-//                        bb.setVisible(true);
-//                        txt.setText("No se encontraron coincidencias");
-//                        n.setVisible(false);
-//                        es.setVisible(false);
-//                        s.setVisible(false);
-//                        nombre.setVisible(false);
-//                        edad.setVisible(false);
-//                        sexo.setVisible(false);
-//                        foto.setVisible(false);
-//                    }
+                repaint();
+                if(vacio())
+                {
+                    if(verificarNumeros())
+                    {
+                        if(buscarID(Integer.parseInt(buscar.getText())))
+                        {
+                            llenarDatos();
+                            ver();
+                        }
+                        else
+                        {
+                            ocultar();
+                            txt.setText("Sin coincidencias");
+                        }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "El codigo es de tipo numerico");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "No se ha registrado ninguna venta aún");
+                }
                 
             }
         });
@@ -148,11 +143,11 @@ public class BuscarVenta extends JFrame {
     
     private void agregarLb()
     {  
-        bb=new Label(185,150,120,120);
+        bb=new Label(185,250,120,120);
         bb.setIcon(setIcono("Resources\\b1.png",bb));
         pane.add(bb);
         
-        txt=new Label(140,280,220,15);
+        txt=new Label(140,380,220,15);
         txt.setForeground(rosa);
         txt.setText("Nueva Busqueda");
         pane.add(txt);
@@ -162,7 +157,7 @@ public class BuscarVenta extends JFrame {
         n.setVisible(false);
         pane.add(n);
         
-        es=new Label("Productos en la venta:",340+x,280+y,180,34);
+        es=new Label("Productos en la venta:",347+x,280+y,180,34);
         es.setVisible(false);
         pane.add(es);
         
@@ -182,16 +177,18 @@ public class BuscarVenta extends JFrame {
         sexo.setVisible(false);
         pane.add(sexo);
         
-        Label name=new Label(90,264,154,26);
+        
         name.setText(fn.texto("Producto", true,3));
         name.setOpaque(true);
         name.setBackground(celeste);
+        name.setVisible(false);
         pane.add(name);
         
-        Label ctn=new Label(245,264,157,26);
+        
         ctn.setText(fn.texto("Cantidad", true,3));
         ctn.setOpaque(true);
         ctn.setBackground(celeste);
+        ctn.setVisible(false);
         pane.add(ctn);
     }
     
@@ -208,6 +205,10 @@ public class BuscarVenta extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 buscar.setText("");
+                tb.setRowCount(0);
+                txt.setText("Nueva Busqueda");
+                ocultar();
+                repaint();
             }
         });
     }
@@ -238,15 +239,15 @@ public class BuscarVenta extends JFrame {
         linea.drawRect(29+z, 95, 219, 0);
     }
     
-    public boolean buscar(String nombre)
+    public boolean buscarID(int ida)
     {
         boolean aux=false;
-        for(int i=0; i<contadorP;i++)
+        for(int i=0; i<contadorV;i++)
         {
-            if(nombre.equalsIgnoreCase(productos[i].getNombre().trim()))
+            if(ida==ventas[i].getCodigo())
             {
                 aux= true;
-                id=i;
+                id=ventas[i].getCodigo();
                 break;
             }
         }
@@ -258,7 +259,7 @@ public class BuscarVenta extends JFrame {
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                MenuProductos abrir=new MenuProductos();
+                MenuVentas abrir=new MenuVentas();
                 abrir.setVisible(true);
             }
         });
@@ -277,12 +278,31 @@ public class BuscarVenta extends JFrame {
         nombre.setVisible(true);
         edad.setVisible(true);
         sexo.setVisible(true);
+        panelTabla.setVisible(true);
+        scrol.setVisible(true);
+        name.setVisible(true);
+        ctn.setVisible(true);
     }
     
+    private void ocultar()
+    {
+        txt.setVisible(true);
+        bb.setVisible(true);
+        n.setVisible(false);
+        es.setVisible(false);
+        s.setVisible(false);
+        nombre.setVisible(false);
+        edad.setVisible(false);
+        sexo.setVisible(false);
+        scrol.setVisible(false);
+        name.setVisible(false);
+        ctn.setVisible(false);
+    }
+    JScrollPane scrol=new JScrollPane();
     public void tabla()
     {
         //cont=6;
-        JScrollPane scrol=new JScrollPane();
+        
         scrol.setBounds(90, 290, 313, 150);
         panelTabla.setLayout(new BorderLayout());
         pane.add(scrol);
@@ -290,13 +310,50 @@ public class BuscarVenta extends JFrame {
         panelTabla.setPreferredSize(new Dimension(295,145));
         tb.addColumn("Producto");
         tb.addColumn("Cantidad");
-        tb.addRow(new Object[]{"hola","adios"});
         mytable.setModel(tb);
         panelTabla.add(mytable);
         mytable.setModel(tb);
-                            mytable.repaint();
-                            
-                            
+        mytable.repaint();
+        scrol.setVisible(false);
     }
     
+    private boolean vacio()
+    {
+        boolean aux=true;
+        if(ventas[0]==null)
+        {
+            aux=false;
+        }
+        return aux;
+    }
+    public boolean verificarNumeros()
+    {
+        if(!buscar.getText().matches("[0-9]*$"))
+        {
+            return false;
+        }
+        else return true;
+    }
+    
+    public void llenarDatos()
+    {
+        int cont=0;
+        for(int i=0; i<contadorV;i++)
+        {
+            if(id==ventas[i].getCodigo())
+            {
+                tb.addRow(new Object[]{ventas[i].getNombreproducto(),ventas[i].getCantidad()});
+                if (cont > 8) 
+                {
+                    panelTabla.setPreferredSize(new Dimension(295, 145 + ((cont - 8) * 16)));
+                } else 
+                {
+                    panelTabla.setPreferredSize(new Dimension(295, 145));
+                }
+                cont++;
+                mytable.setModel(tb);
+                mytable.repaint();
+            }
+        }
+    }
 }
