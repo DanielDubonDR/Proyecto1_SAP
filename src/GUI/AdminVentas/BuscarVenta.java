@@ -62,6 +62,7 @@ public class BuscarVenta extends JFrame {
     private Label nombre;
     private Label edad;
     private Label sexo;
+    private Label iva;
     
     DefaultTableModel tb=new DefaultTableModel();
     JTable mytable=new JTable();
@@ -160,7 +161,7 @@ public class BuscarVenta extends JFrame {
         es.setVisible(false);
         pane.add(es);
         
-        s=new Label("Total de la venta",340+x,536+y,130,34);
+        s=new Label("Total de la venta:",340+x,536+y,130,34);
         s.setVisible(false);
         pane.add(s);
              
@@ -172,7 +173,11 @@ public class BuscarVenta extends JFrame {
         edad.setVisible(false);
         pane.add(edad);
         
-        sexo=new Label("xxxxxxxxxx",470+x,536+y,250,34,true);
+        iva=new Label("IVA:",472+x,570+y,250,34,true);
+        iva.setVisible(false);
+        pane.add(iva);
+        
+        sexo=new Label("xxxxxxxxxx",472+x,536+y,250,34,true);
         sexo.setVisible(false);
         pane.add(sexo);
         
@@ -267,8 +272,9 @@ public class BuscarVenta extends JFrame {
     private void ver()
     {
         nombre.setText(String.valueOf(ventas[id].getNit()));
-        sexo.setText(String.valueOf(obtenerTotal()));
-//        sexo.setText(String.valueOf(productos[id].getCantidad()));
+        sexo.setText(String.valueOf(redondear(obtenerTotal())));
+        iva.setText(String.valueOf(redondear(obtenerTotal()*0.12)));
+        iva.setVisible(true);
         txt.setVisible(false);
         bb.setVisible(false);
         n.setVisible(true);
@@ -296,6 +302,7 @@ public class BuscarVenta extends JFrame {
         scrol.setVisible(false);
         name.setVisible(false);
         ctn.setVisible(false);
+        iva.setVisible(false);
     }
     JScrollPane scrol=new JScrollPane();
     public void tabla()
@@ -381,5 +388,11 @@ public class BuscarVenta extends JFrame {
             }
         }
         return productos[id].getPrecio();
+    }
+    
+    public double redondear(double numero)
+    {
+        double aux=Math.round(numero*100)/100d;
+        return aux;
     }
 }
