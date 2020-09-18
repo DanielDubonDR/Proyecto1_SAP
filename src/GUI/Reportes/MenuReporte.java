@@ -152,7 +152,7 @@ public class MenuReporte extends JFrame{
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                MenuReporte abrir=new MenuReporte();
+                Menu abrir=new Menu();
                 abrir.setVisible(true);
             }
         });

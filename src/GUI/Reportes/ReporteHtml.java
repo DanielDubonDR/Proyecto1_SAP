@@ -123,7 +123,8 @@ public class ReporteHtml extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                    
+                Reporte a=new Reporte();
+                a.reporteProductos();
             }
             
         });
@@ -195,7 +196,7 @@ public class ReporteHtml extends JFrame{
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                Menu abrir=new Menu();
+                MenuReporte abrir=new MenuReporte();
                 abrir.setVisible(true);
             }
         });

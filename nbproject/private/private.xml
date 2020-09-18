@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/AdminVentas/MenuVentas.java</file>
+            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/Menu.java</file>
             <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/Principal/Proyecto1_SAP.java</file>
-            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/AdminVentas/AgregarVenta.java</file>
-            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/AdminVentas/BuscarVenta.java</file>
+            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/Reportes/MenuReporte.java</file>
+            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/Principal/Controlador/Reporte.java</file>
+            <file>file:/C:/Users/Daniel%20Dubón/Documents/NetBeansProjects/Proyecto1_SAP/src/GUI/Reportes/ReporteHtml.java</file>
         </group>
     </open-files>
 </project-private>

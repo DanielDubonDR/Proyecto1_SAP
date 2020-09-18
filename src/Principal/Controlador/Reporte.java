@@ -2,9 +2,11 @@
 package Principal.Controlador;
 
 import static Principal.Proyecto1_SAP.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,12 +16,13 @@ public class Reporte {
     
     StringBuilder listClientes=new StringBuilder();
     StringBuilder listProductos=new StringBuilder();
+    
     public void reporteClientes()
     {
         Cliente[] edades=ordenarEdad(clientes);
         
-        System.out.println(edades[0].getEdad());
-        System.out.println(edades[1].getEdad());
+//        System.out.println(edades[0].getEdad());
+//        System.out.println(edades[1].getEdad());
         crearHeaderClientes();
         for(int i=contadorCl-1; i>=0;i--)
         {
@@ -32,6 +35,23 @@ public class Reporte {
         }
         crearFinalClientes();
         crearArchivo(listClientes.toString(),"Reporte Clientes.html");
+    }
+    
+    public void reporteProductos()
+    {
+        Producto[] precios=ordenarProducto(productos);
+        
+        crearHeaderProductos();
+        for(int i=contadorP-1; i>=0;i--)
+        {
+            listProductos.append("<tr>");
+            listProductos.append("<td>"+precios[i].getNombre()+"</td>");
+            listProductos.append("<td class=\"w3-center\">"+precios[i].getPrecio()+"</td>");
+            listProductos.append("<td class=\"w3-center\">"+precios[i].getCantidad()+"</td>");
+            listProductos.append("</tr>");
+        }
+        crearFinalProductos();
+        crearArchivo(listProductos.toString(),"Reporte Productos.html");
     }
     
     private Cliente[] ordenarEdad(Cliente[] clientes)
@@ -78,13 +98,27 @@ public class Reporte {
             FileWriter escritor = new FileWriter(archivo);//declaro mi variable que va a leer los datos
             escritor.write(contenido);
             escritor.close();
+            JOptionPane.showMessageDialog(null, "Se generó el archivo con éxito");
+            abrirarchivo(titulo);
         } 
         catch (IOException ex) {
-            
-            ex.printStackTrace();
-            
+            ex.printStackTrace(); 
         }
         
+    }
+    
+    public void abrirarchivo(String archivo) {
+
+        try {
+
+            File objetofile = new File(archivo);
+            Desktop.getDesktop().open(objetofile);
+
+        } catch (IOException ex) {
+
+            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo");
+        }
+
     }
     
     private void crearHeaderClientes()
@@ -145,20 +179,15 @@ public class Reporte {
         "<title>Reporte Productos</title>\n" +
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
         "<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">\n" +
-        "\n" +
         "<body>\n" +
-        "\n" +
         "<div class=\"w3-container w3-green w3-margin-bottom w3-center\">\n" +
         "<h1>Reporte Productos</h1>\n" +
         "<a href=\"Reporte Ventas.html\"><span class=\"w3-left w3-xxlarge\">«</span></a>\n" +
         "<a href=\"Reporte Clientes.html\"><span class=\"w3-right w3-xxlarge\">»</span></a>\n" +
         "</div>\n" +
-        "\n" +
-        "<div class=\"w3-container\">\n" +
-        " \n" +
+        "<div class=\"w3-container\"> \n" +
         "<input class=\"w3-input w3-border w3-padding\" type=\"text\" placeholder=\"Buscar por Nombre\" id=\"myInput\" onkeyup=\"myFunction()\">\n" +
-        "\n" +
-        "<table class=\"w3-table-all w3-margin-top\" id=\"myTable\">\n" +
+        "<table class=\"w3-table w3-bordered w3-margin-top\" id=\"myTable\">\n" +
         "<tr>\n" +
         "<th style=\"width:35%;\">Nombre</th>\n" +
         "<th style=\"width:30%;\" class=\"w3-center\">Precio</th>\n" +
@@ -168,7 +197,39 @@ public class Reporte {
     
     private void crearFinalProductos()
     {
-        listProductos.append("");
+        listProductos.append("</table><br><br></div>\n" +
+        "<script>\n" +
+        "function myFunction() {\n" +
+        "var input, filter, table, tr, td, i;\n" +
+        "input = document.getElementById(\"myInput\");\n" +
+        "filter = input.value.toUpperCase();\n" +
+        "table = document.getElementById(\"myTable\");\n" +
+        "tr = table.getElementsByTagName(\"tr\");\n" +
+        "for (i = 0; i < tr.length; i++) {\n" +
+        "td = tr[i].getElementsByTagName(\"td\")[0];\n" +
+        "if (td) {\n" +
+        "txtValue = td.textContent || td.innerText;\n" +
+        "if (txtValue.toUpperCase().indexOf(filter) > -1) {\n" +
+        "tr[i].style.display = \"\";\n" +
+        "} else {\n" +
+        "tr[i].style.display = \"none\";\n" +
+        "}}}}</script>\n" +
+        "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\"></script>");
+        
+        Producto[] precios=ordenarProducto(productos);
+        for(int i=0; i<contadorP-1;i++)
+        {
+            if(precios[i].getCantidad()==0)
+            {
+                listProductos.append("<script>$(function() {$(\"table tbody tr:nth-child("+(contadorP-i+1)+")\").css(\"background-color\", \"#ff5252\");});</script>");
+            }
+            else if(precios[i].getCantidad()==1)
+            {
+                listProductos.append("<script>$(function() {$(\"table tbody tr:nth-child("+(contadorP-i+1)+")\").css(\"background-color\", \"#ff793f\");});</script>");
+            }
+        }
+        
+        listProductos.append("</div></body></html>");
     }
 }
 

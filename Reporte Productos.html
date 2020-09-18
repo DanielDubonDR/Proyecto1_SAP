@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<title>Reporte Productos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div class="w3-container w3-green w3-margin-bottom w3-center">
+<h1>Reporte Productos</h1>
+<a href="Reporte Ventas.html"><span class="w3-left w3-xxlarge">«</span></a>
+<a href="Reporte Clientes.html"><span class="w3-right w3-xxlarge">»</span></a>
+</div>
+<div class="w3-container"> 
+<input class="w3-input w3-border w3-padding" type="text" placeholder="Buscar por Nombre" id="myInput" onkeyup="myFunction()">
+<table class="w3-table w3-bordered w3-margin-top" id="myTable">
+<tr>
+<th style="width:35%;">Nombre</th>
+<th style="width:30%;" class="w3-center">Precio</th>
+<th style="width:35%;" class="w3-center">Cantidad</th>
+</tr><tr><td>Chocolate</td><td class="w3-center">15.05</td><td class="w3-center">39</td></tr><tr><td>Coca Cola</td><td class="w3-center">6.2</td><td class="w3-center">8</td></tr><tr><td>Te frio</td><td class="w3-center">4.5</td><td class="w3-center">14</td></tr><tr><td>Dorito verde</td><td class="w3-center">3.5</td><td class="w3-center">15</td></tr><tr><td>Dorito Rojo</td><td class="w3-center">3.5</td><td class="w3-center">0</td></tr><tr><td>Galleta chicky</td><td class="w3-center">2.75</td><td class="w3-center">40</td></tr><tr><td>Cheto</td><td class="w3-center">2.5</td><td class="w3-center">10</td></tr><tr><td>Galleca can can</td><td class="w3-center">1.25</td><td class="w3-center">50</td></tr><tr><td>Jalapeño</td><td class="w3-center">1.0</td><td class="w3-center">25</td></tr><tr><td>Tortilla limon</td><td class="w3-center">1.0</td><td class="w3-center">8</td></tr><tr><td>﻿zumito</td><td class="w3-center">1.0</td><td class="w3-center">0</td></tr><tr><td>Centavito</td><td class="w3-center">0.5</td><td class="w3-center">1</td></tr></table><br><br></div>
+<script>
+function myFunction() {
+var input, filter, table, tr, td, i;
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+table = document.getElementById("myTable");
+tr = table.getElementsByTagName("tr");
+for (i = 0; i < tr.length; i++) {
+td = tr[i].getElementsByTagName("td")[0];
+if (td) {
+txtValue = td.textContent || td.innerText;
+if (txtValue.toUpperCase().indexOf(filter) > -1) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}}}}</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>$(function() {$("table tbody tr:nth-child(13)").css("background-color", "#ff793f");});</script><script>$(function() {$("table tbody tr:nth-child(12)").css("background-color", "#ff5252");});</script><script>$(function() {$("table tbody tr:nth-child(6)").css("background-color", "#ff5252");});</script></div></body></html>
