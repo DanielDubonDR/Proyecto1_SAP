@@ -1,8 +1,7 @@
 
 package Principal.Controlador;
 
-import static Principal.Proyecto1_SAP.clientes;
-import static Principal.Proyecto1_SAP.contadorCl;
+import static Principal.Proyecto1_SAP.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class Reporte {
     
     StringBuilder listClientes=new StringBuilder();
-    
+    StringBuilder listProductos=new StringBuilder();
     public void reporteClientes()
     {
         Cliente[] edades=ordenarEdad(clientes);
@@ -51,6 +50,24 @@ public class Reporte {
             }
         }
         return clientes;
+    }
+    
+    private Producto[] ordenarProducto(Producto[] productos)
+    {
+        Producto intercambio;
+        for(int i=0; i<(contadorP-1);i++)
+        {
+            for(int j=0; j<(contadorP-1); j++)
+            {
+               if(productos[j].getPrecio()>productos[j+1].getPrecio())
+               {
+                   intercambio=productos[j];
+                   productos[j]=productos[j+1];
+                   productos[j+1]=intercambio;
+               }
+            }
+        }
+        return productos;
     }
     
     public void crearArchivo(String contenido,String titulo){//este metodo me crea archivos planos
@@ -121,5 +138,37 @@ public class Reporte {
         "</html>");
     }
     
+    private void crearHeaderProductos()
+    {
+        listProductos.append("<!DOCTYPE html>\n" +
+        "<html>\n" +
+        "<title>Reporte Productos</title>\n" +
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+        "<link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">\n" +
+        "\n" +
+        "<body>\n" +
+        "\n" +
+        "<div class=\"w3-container w3-green w3-margin-bottom w3-center\">\n" +
+        "<h1>Reporte Productos</h1>\n" +
+        "<a href=\"Reporte Ventas.html\"><span class=\"w3-left w3-xxlarge\">«</span></a>\n" +
+        "<a href=\"Reporte Clientes.html\"><span class=\"w3-right w3-xxlarge\">»</span></a>\n" +
+        "</div>\n" +
+        "\n" +
+        "<div class=\"w3-container\">\n" +
+        " \n" +
+        "<input class=\"w3-input w3-border w3-padding\" type=\"text\" placeholder=\"Buscar por Nombre\" id=\"myInput\" onkeyup=\"myFunction()\">\n" +
+        "\n" +
+        "<table class=\"w3-table-all w3-margin-top\" id=\"myTable\">\n" +
+        "<tr>\n" +
+        "<th style=\"width:35%;\">Nombre</th>\n" +
+        "<th style=\"width:30%;\" class=\"w3-center\">Precio</th>\n" +
+        "<th style=\"width:35%;\" class=\"w3-center\">Cantidad</th>\n" +
+        "</tr>");
+    }
+    
+    private void crearFinalProductos()
+    {
+        listProductos.append("");
+    }
 }
 
