@@ -1,12 +1,11 @@
 
-package GUI.AdminVentas;
+package GUI.Reportes;
 
-import EstructuraDatos.AlgoritmosVentas;
 import EstructuraDatos.ManejadorArchivos;
-import GUI.AdminProductos.AgregarProducto;
-import GUI.AdminProductos.DashboardProductos;
-import GUI.AdminProductos.DetalleProducto;
-import GUI.AdminProductos.MenuProductos;
+import GUI.AdminVentas.AgregarVenta;
+import GUI.AdminVentas.BuscarVenta;
+import GUI.AdminVentas.DashboardVentas;
+import GUI.AdminVentas.MenuVentas;
 import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
@@ -34,7 +33,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Daniel Dubón
  */
-public class MenuVentas extends JFrame{
+public class ReporteHtml extends JFrame{
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
     Panel pane1=new Panel();//panel principal
@@ -46,11 +45,11 @@ public class MenuVentas extends JFrame{
     Color rosa=new Color(26, 177, 136);
     Color menta=new Color(26, 177, 136);
     
-    public MenuVentas()
+    public ReporteHtml()
     {
         setSize(800,430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Administración de Ventas");
+        setTitle("Reportes HTML");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
@@ -72,13 +71,13 @@ public class MenuVentas extends JFrame{
     private void textos()
     {
         Label lb3=new Label(77,12,800,60);
-        lb3.setText(fn.texto("Administración de ventas", true,6));
+        lb3.setText(fn.texto("Reportes HTML", true,6));
         lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         
         JLabel s0=new JLabel();
         s0.setBounds(15, 12, 60, 60);
-        ImageIcon im= new ImageIcon("Resources\\inicio.png");
+        ImageIcon im= new ImageIcon("Resources\\reporte.png");
         Icon scale=new ImageIcon(im.getImage().getScaledInstance(s0.getWidth(), s0.getHeight(), Image.SCALE_DEFAULT));
         s0.setIcon(scale);
         pane1.add(s0);
@@ -89,22 +88,22 @@ public class MenuVentas extends JFrame{
         int x=0, y=-70;
         Boton clientes=new Boton(null,96+x,220+y,126,126);
         clientes.setBackground(gris);
-        clientes.setIcon(setIcono("Resources\\ventas.png",clientes));
+        clientes.setIcon(setIcono("Resources\\clientes.png",clientes));
         pane.add(clientes);
         
         Boton cargar=new Boton(null,255+x,220+y,126,126);
         cargar.setBackground(gris);
-        cargar.setIcon(setIcono("Resources\\cg.png",cargar));
+        cargar.setIcon(setIcono("Resources\\producto.png",cargar));
         pane.add(cargar);
         
         Boton lista=new Boton(null,414+x,220+y,126,126);
         lista.setBackground(gris);
-        lista.setIcon(setIcono("Resources\\i.png",lista));
+        lista.setIcon(setIcono("Resources\\ventas.png",lista));
         pane.add(lista);
         
         Boton agregar=new Boton(null,568+x,220+y,126,126);
         agregar.setBackground(gris);
-        agregar.setIcon(setIcono("Resources\\mas.png",agregar));
+        agregar.setIcon(setIcono("Resources\\reportes.png",agregar));
         pane.add(agregar);
         
         
@@ -113,15 +112,7 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(verificarVacio())
-                {
-                    JOptionPane.showMessageDialog(null, "No existe ningún producto o algún cliente");
-                }
-                else
-                {
-                    DashboardVentas abri=new DashboardVentas();
-                    abri.setVisible(true);
-                }
+                
             }
         });
         
@@ -130,23 +121,7 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                    ManejadorArchivos abrir=new ManejadorArchivos();
-                    abrir.abrir();
-                    if(abrir.getAbierto())
-                    {
-                        try 
-                        {
-                            abrir.cargarVentas();
-                            JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
-                        } catch (IOException ex) 
-                        {
-                            JOptionPane.showMessageDialog(null, "Error al cargar datos");
-                        }
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "No se cargó ningún archivo");
-                    }
+                    
             }
             
         });
@@ -156,9 +131,7 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                AgregarVenta abrir=new AgregarVenta();
-                abrir.setVisible(true);
-                MenuVentas.this.dispose();
+                
             }
         });
         
@@ -167,16 +140,7 @@ public class MenuVentas extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if(verificarVacio())
-                {
-                    JOptionPane.showMessageDialog(null, "No existe ninguna venta registrada");
-                }
-                else
-                {
-                    BuscarVenta abri=new BuscarVenta();
-                    abri.setVisible(true);
-                    MenuVentas.this.dispose();
-                }
+                
             }
         });
     }
@@ -185,22 +149,22 @@ public class MenuVentas extends JFrame{
     {
         int y=-60;
         Label cliente=new Label(96,336+y,126,50);
-        cliente.setText(fn.texto("Dashboard de ventas", true,3));
+        cliente.setText(fn.texto("Listado de clientes", true,3));
         cliente.setForeground(celeste);
         pane.add(cliente);
         
         Label producto=new Label(255,334+y,126,50);
-        producto.setText(fn.texto("Carga masiva de ventas", true,3));
+        producto.setText(fn.texto("Listado de productos", true,3));
         producto.setForeground(celeste);
         pane.add(producto);
         
         Label ventas=new Label(414,334+y,126,50);
-        ventas.setText(fn.texto("Información de ventas", true,3));
+        ventas.setText(fn.texto("Listado de ventas", true,3));
         ventas.setForeground(celeste);
         pane.add(ventas);
         
         Label reportes=new Label(568,330+y,126,50);
-        reportes.setText(fn.texto("Crear venta", true,3));
+        reportes.setText(fn.texto("Generar todos los reportes", true,3));
         reportes.setForeground(celeste);
         pane.add(reportes);
         
