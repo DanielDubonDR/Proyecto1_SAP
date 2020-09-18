@@ -27,7 +27,7 @@ public class Proyecto1_SAP {
     public static Usuario [] users=new Usuario[10];
     public static Cliente [] clientes=new Cliente[100];
     public static Producto[] productos=new Producto[100];
-    public static Venta[] ventas=new Venta[100];
+    public static Venta[] ventas=new Venta[500];
     public static VentaAgrupada[] ventasAgrupadas=new VentaAgrupada[100];
     public static String nameuser="Daniel Dubón";
     //contadorusuarios/clientes/productos/contadorVentas/contadorVentasAgrupadas

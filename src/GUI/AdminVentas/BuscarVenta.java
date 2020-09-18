@@ -8,8 +8,7 @@ import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import GUI.Utilidades.Texto;
 import Principal.Funciones;
-import static Principal.Proyecto1_SAP.contadorV;
-import static Principal.Proyecto1_SAP.ventas;
+import static Principal.Proyecto1_SAP.*;
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -267,8 +266,8 @@ public class BuscarVenta extends JFrame {
     
     private void ver()
     {
-//        nombre.setText(productos[id].getNombre());
-//        edad.setText(String.valueOf(productos[id].getPrecio()));
+        nombre.setText(String.valueOf(ventas[id].getNit()));
+        sexo.setText(String.valueOf(obtenerTotal()));
 //        sexo.setText(String.valueOf(productos[id].getCantidad()));
         txt.setVisible(false);
         bb.setVisible(false);
@@ -355,5 +354,32 @@ public class BuscarVenta extends JFrame {
                 mytable.repaint();
             }
         }
+    }
+    
+    private double obtenerTotal()
+    {
+        double total=0;
+        for(int i=0; i<contadorP;i++)
+        {
+            if(id==ventas[i].getCodigo())
+            {
+                total+=buscarPrecio(ventas[i].getNombreproducto())*ventas[i].getCantidad();
+            }
+        }
+        return total;
+    }
+    
+    public double buscarPrecio(String nombre)
+    {
+        int id=0;
+        for(int i=0; i<contadorP;i++)
+        {
+            if(nombre.equalsIgnoreCase(productos[i].getNombre().trim()))
+            {
+                id=i;
+                break;
+            }
+        }
+        return productos[id].getPrecio();
     }
 }
