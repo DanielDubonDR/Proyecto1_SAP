@@ -10,6 +10,7 @@ import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
+import Principal.Controlador.Reporte;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.clientes;
 import static Principal.Proyecto1_SAP.ventas;
@@ -112,7 +113,8 @@ public class ReporteHtml extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                
+                Reporte a=new Reporte();
+                a.reporteClientes();
             }
         });
         
