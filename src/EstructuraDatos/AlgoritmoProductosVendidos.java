@@ -30,10 +30,10 @@ public class AlgoritmoProductosVendidos {
                 }
             }
         }
-        for(int j=0;j<cont;j++)
-            {
-                System.out.println(pd[j]);
-            }
+//        for(int j=0;j<cont;j++)
+//            {
+//                System.out.println(pd[j]);
+//            }
     }
     
     public void llenar()
@@ -53,10 +53,38 @@ public class AlgoritmoProductosVendidos {
             usado[i]=axx;
         }
         
+        
+    }
+    
+    private void ordenarUsado()
+    {
+        ProductosUsados intercambio;
+        for(int i=0; i<(cont-1);i++)
+        {
+            for(int j=0; j<(cont-1); j++)
+            {
+               if(usado[j].getUsado()<usado[j+1].getUsado())
+               {
+                   intercambio=usado[j];
+                   usado[j]=usado[j+1];
+                   usado[j+1]=intercambio;
+               }
+            }
+        }
         for(int j=0;j<cont;j++)
             {
                 System.out.println(usado[j]);
             }
     }
     
+    public ProductosUsados[] getP()
+    {
+        ordenarUsado();
+        return usado;
+    }
+    
+    public int getCont()
+    {
+        return cont;
+    }
 }

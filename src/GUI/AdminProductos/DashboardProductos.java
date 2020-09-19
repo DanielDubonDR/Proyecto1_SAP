@@ -1,12 +1,15 @@
 
 package GUI.AdminProductos;
 
+import EstructuraDatos.AlgoritmoProductosVendidos;
 import EstructuraDatos.ManejadorArchivos;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
+import Principal.Controlador.ProductosUsados;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.contadorP;
 import static Principal.Proyecto1_SAP.productos;
+import static Principal.Proyecto1_SAP.ventas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +18,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static javax.swing.SwingConstants.LEFT;
@@ -50,7 +54,7 @@ public class DashboardProductos extends JFrame{
     
     public DashboardProductos()
     {
-        setSize(820, 600);
+        setSize(820, 630);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Dashboard Clientes");
         setLocationRelativeTo(null);
@@ -58,7 +62,7 @@ public class DashboardProductos extends JFrame{
         agregarpaneles();
         etiquetas();
         agregarTabla();
-        //graficarPie();
+        graficarPie();
         graficarBarras();
 //        cerrar();
     }
@@ -143,22 +147,54 @@ public class DashboardProductos extends JFrame{
         panelTabla.add(tabla);
     }
     
-//    public void graficarPie()
-//    {
-//        ManejadorArchivos a=new ManejadorArchivos();
-//        DefaultPieDataset dataset=new DefaultPieDataset();
-//        dataset.setValue("Hombres", (contadorCl-a.obtenerMujeres()));
-//        dataset.setValue("Mujeres", a.obtenerMujeres());
-//        JFreeChart chart = ChartFactory.createPieChart3D("Gráfica de clientes por sexo",dataset);
-//        PiePlot3D plot=(PiePlot3D)chart.getPlot();
-//        //plot.setStartAngle(180);
-//        plot.setForegroundAlpha(0.60f);
-//        plot.setInteriorGap(0.02);
-//        plot.setBackgroundPaint(gris);
-//        ChartPanel panel= new ChartPanel(chart);
-//        panel.setBounds(30, 320, 320, 225);370, 310
-//        pane.add(panel);
-//    }
+    public void graficarPie()
+    {
+        Label a =new Label("No se ha registrado ninguna venta",470,410,250,30);
+        pane.add(a);
+        if(ventas[0]==null)
+        {
+            
+            a.setVisible(true);
+            
+        }
+        else
+        {
+            mostrar();
+            a.setVisible(false);
+        }
+    }
+    
+    public void mostrar()
+    {
+        DefaultPieDataset dataset=new DefaultPieDataset();
+        AlgoritmoProductosVendidos z=new AlgoritmoProductosVendidos();
+        z.llenar();
+        ProductosUsados[] prod=z.getP();
+        if(z.getCont()<10)
+        {
+            for(int i=0; i<z.getCont();i++)
+            {
+                dataset.setValue(prod[i].getNombre(), prod[i].getUsado());
+            }
+        }
+        else
+        {
+            for(int i=0; i<10;i++)
+            {
+                dataset.setValue(prod[i].getNombre(), prod[i].getUsado());
+            }
+        }
+        //dataset.setValue("Hombres", (contadorCl-a.obtenerMujeres()));
+        JFreeChart chart = ChartFactory.createPieChart3D("Gráfica de las top 10 ventas",dataset);
+        PiePlot3D plot=(PiePlot3D)chart.getPlot();
+//        plot.setStartAngle(180);
+        plot.setForegroundAlpha(0.60f);
+        plot.setInteriorGap(0.02);
+        plot.setBackgroundPaint(gris);
+        ChartPanel panel= new ChartPanel(chart);
+        panel.setBounds(440, 326, 333, 255); //30, 320
+        pane.add(panel);
+    }
     
     public void graficarBarras()
     {
@@ -174,7 +210,7 @@ public class DashboardProductos extends JFrame{
        
         xyplot.setRenderer(item);
         ChartPanel panel = new ChartPanel(barChart);
-        panel.setBounds(30, 320, 410, 250);
+        panel.setBounds(20, 320, 410, 250);
         pane.add(panel);
     }
     
