@@ -4,6 +4,8 @@ package GUI.AdminVentas;
 import EstructuraDatos.AlgoritmosVentas;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
+import Principal.Controlador.CantidadProductos;
+import Principal.Controlador.VentaAgrupada;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.contVA;
 import static Principal.Proyecto1_SAP.contadorP;
@@ -43,12 +45,13 @@ public class DashboardVentas extends JFrame{
     Color rosa=new Color(202, 41, 91);
     
     private JTable tabla;
-    
+    private CantidadProductos[] s;
     
     public DashboardVentas()
     {
         AlgoritmosVentas a=new AlgoritmosVentas();
         a.controlador();
+        s=a.ordenaProductos();
         setSize(820, 600);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Dashboard Ventas");
@@ -168,6 +171,31 @@ public class DashboardVentas extends JFrame{
         Label totalI=new Label("Q "+redondear(totat()*0.12),555,320,150,30);
         pane.add(totalI);
         
+        Label detalleV=new Label("VENTA MAS GRANDE POR CANT. DE PRODUCTOS:",20,370,350,30);
+        detalleV.setForeground(rosa);
+        pane.add(detalleV);
+        
+        Label codigo=new Label("Código: "+s[0].getCodigo(),20,400,250,30);
+        pane.add(codigo);
+        Label n=new Label("NIT: "+s[0].getNit(),20,430,250,30);
+        pane.add(n);
+        Label cant=new Label("Cantidad de productos: "+s[0].getCantidad(),20,460,250,30);
+        pane.add(cant);
+        Label t=new Label("Total: Q "+s[0].getTotal(),20,490,250,30);
+        pane.add(t);
+        
+        Label totalT=new Label("VENTA MAS GRANDE POR TOTAL OBTENIDO:",460,370,350,30);
+        totalT.setForeground(rosa);
+        pane.add(totalT);
+        
+        VentaAgrupada[] a=ordenaVenta(ventasAgrupadas);
+        
+        Label ID=new Label("Código:  "+a[0].getCodigo(),460,400,300,30);
+        pane.add(ID);
+        Label NIT=new Label("NIT:   "+a[0].getNit(),460,430,300,30);
+        pane.add(NIT);
+        Label TOT=new Label("Total: Q "+redondear(a[0].getTotal()),460,460,300,30);
+        pane.add(TOT);
         
     }
     
@@ -185,5 +213,23 @@ public class DashboardVentas extends JFrame{
             aux+=ventasAgrupadas[i].getTotal();
         }
         return aux;
+    }
+    
+    private VentaAgrupada[] ordenaVenta(VentaAgrupada[] venta)
+    {
+        VentaAgrupada intercambio;
+        for(int i=0; i<(contVA-1);i++)
+        {
+            for(int j=0; j<(contVA-1); j++)
+            {
+               if(venta[j].getTotal()<venta[j+1].getTotal())
+               {
+                   intercambio=venta[j];
+                   venta[j]=venta[j+1];
+                   venta[j+1]=intercambio;
+               }
+            }
+        }
+        return venta;
     }
 }

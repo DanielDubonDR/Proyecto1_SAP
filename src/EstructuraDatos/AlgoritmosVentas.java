@@ -1,6 +1,7 @@
 
 package EstructuraDatos;
 
+import Principal.Controlador.CantidadProductos;
 import Principal.Controlador.VentaAgrupada;
 import static Principal.Proyecto1_SAP.*;
 
@@ -11,7 +12,8 @@ import static Principal.Proyecto1_SAP.*;
  */
 public class AlgoritmosVentas {
     int []ids=new int[100];
-    int contids=0;
+    int contids=0, auxConts=0;
+    CantidadProductos[] m=new CantidadProductos[100];
     
     public void getIds()
     {
@@ -114,5 +116,44 @@ public class AlgoritmosVentas {
         {
         return ids[contids-1];
         }
+    }
+    
+    public void obtenerCantidad()
+    {
+        for(int i=0; i<contids;i++)
+        {
+            double total=0;
+            int aux=0;
+            for(int j=0;j<contadorV;j++)
+            {
+                if(ventas[j].getCodigo()==ids[i])
+                {
+                    total+=redondear(buscarPrecio(ventas[j].getNombreproducto())*ventas[j].getCantidad());
+                    aux+=ventas[j].getCantidad();
+                }
+            }
+            CantidadProductos a = new CantidadProductos(ids[i],buscarCliente(ids[i]),total,aux);
+            m[auxConts]=a;
+            auxConts++;
+        }
+    }
+    
+    public CantidadProductos[] ordenaProductos()
+    {
+        obtenerCantidad();
+        CantidadProductos intercambio;
+        for(int i=0; i<(auxConts-1);i++)
+        {
+            for(int j=0; j<(auxConts-1); j++)
+            {
+               if(m[j].getCantidad()<m[j+1].getCantidad())
+               {
+                   intercambio=m[j];
+                   m[j]=m[j+1];
+                   m[j+1]=intercambio;
+               }
+            }
+        }
+        return m;
     }
 }

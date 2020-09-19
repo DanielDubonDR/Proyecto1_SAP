@@ -201,7 +201,7 @@ public class DashboardProductos extends JFrame{
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Edades de los clientes", vectoredad(), 10);
         
-        JFreeChart barChart = ChartFactory.createHistogram("Productos", "Precios", "Cantidad de productos", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart barChart = ChartFactory.createHistogram("Productos", "Precios Q", "Cantidad de productos", dataset, PlotOrientation.VERTICAL, false, true, false);
         XYPlot xyplot = (XYPlot)barChart.getPlot();
         xyplot.setBackgroundPaint(gris);
         XYItemRenderer item = xyplot.getRenderer();
