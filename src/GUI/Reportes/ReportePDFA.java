@@ -1,12 +1,14 @@
 
 package GUI.Reportes;
 
-import GUI.Menu;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
+import Principal.Controlador.PDF.Factura;
+import Principal.Controlador.Reporte;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.productos;
 import static Principal.Proyecto1_SAP.ventas;
 import java.awt.Color;
 import java.awt.Image;
@@ -14,11 +16,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.LEFT;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -26,7 +32,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author Daniel Dubón
  */
-public class MenuReporte extends JFrame{
+public class ReportePDFA extends JFrame{
     
     Funciones fn=new Funciones();//en esta funcion se encuentra mi modificador de texto
     Panel pane=new Panel();//panel principal
@@ -39,11 +45,11 @@ public class MenuReporte extends JFrame{
     Color rosa=new Color(26, 177, 136);
     Color menta=new Color(26, 177, 136);
     
-    public MenuReporte()
+    public ReportePDFA()
     {
-        setSize(500,400);
+        setSize(800,430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setTitle("Administración de Reportes");
+        setTitle("Reportes PDF");
         setLocationRelativeTo(null);
         setResizable(false);
         agregarpaneles();
@@ -65,7 +71,7 @@ public class MenuReporte extends JFrame{
     private void textos()
     {
         Label lb3=new Label(77,12,800,60);
-        lb3.setText(fn.texto("Administración de reportes", true,6));
+        lb3.setText(fn.texto("Reportes PDF", true,6));
         lb3.setHorizontalAlignment(LEFT);
         pane1.add(lb3);
         
@@ -80,25 +86,39 @@ public class MenuReporte extends JFrame{
     private void botones()
     {
         int x=0, y=-70;
-        Boton clientes=new Boton(null,106+x,220+y,126,126);
-        clientes.setBackground(gris);
-        clientes.setIcon(setIcono("Resources\\html.png",clientes));
-        pane.add(clientes);
+        Boton clientesa=new Boton(null,96+x,220+y,126,126);
+        clientesa.setBackground(gris);
+        clientesa.setIcon(setIcono("Resources\\reporte.png",clientesa));
+        pane.add(clientesa);
         
-        Boton cargar=new Boton(null,265+x,220+y,126,126);
+        Boton cargar=new Boton(null,255+x,220+y,126,126);
         cargar.setBackground(gris);
-        cargar.setIcon(setIcono("Resources\\reporte.png",cargar));
+        cargar.setIcon(setIcono("Resources\\producto.png",cargar));
         pane.add(cargar);
         
+        Boton lista=new Boton(null,414+x,220+y,126,126);
+        lista.setBackground(gris);
+        lista.setIcon(setIcono("Resources\\ventas.png",lista));
+        pane.add(lista);
         
-        clientes.addActionListener(new ActionListener()
+        Boton agregar=new Boton(null,568+x,220+y,126,126);
+        agregar.setBackground(gris);
+        agregar.setIcon(setIcono("Resources\\reportes.png",agregar));
+        pane.add(agregar);
+        
+        
+        clientesa.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                ReporteHtml abrir=new ReporteHtml();
-                abrir.setVisible(true);
-                MenuReporte.this.dispose();
+                int j=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo de venta"));
+                Factura a=new Factura(j);
+                try {
+                    a.pdf();
+                } catch (IOException ex) {
+                    Logger.getLogger(ReportePDFA.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -107,27 +127,52 @@ public class MenuReporte extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                 ReportePDFA a=new ReportePDFA();
-                 a.setVisible(true);
-                 MenuReporte.this.dispose();
+                
             }
             
         });
         
+        agregar.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                
+            }
+        });
+        
+        lista.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                
+            }
+        });
     }
     
     private void etiquetas()
     {
         int y=-60;
-        Label cliente=new Label(106,336+y,126,50);
-        cliente.setText(fn.texto("Reportes en HTML", true,3));
+        Label cliente=new Label(96,336+y,126,50);
+        cliente.setText(fn.texto("Generar Factura", true,3));
         cliente.setForeground(celeste);
         pane.add(cliente);
         
-        Label producto=new Label(265,334+y,126,50);
-        producto.setText(fn.texto("Reportes en PDF", true,3));
+        Label producto=new Label(255,334+y,126,50);
+        producto.setText(fn.texto("Listado de productos mas vendidos", true,3));
         producto.setForeground(celeste);
         pane.add(producto);
+        
+        Label ventas=new Label(414,334+y,126,50);
+        ventas.setText(fn.texto("Listado de ventas mas altas", true,3));
+        ventas.setForeground(celeste);
+        pane.add(ventas);
+        
+        Label reportes=new Label(568,330+y,126,50);
+        reportes.setText(fn.texto("Generar todos los reportes", true,3));
+        reportes.setForeground(celeste);
+        pane.add(reportes);
         
     }
     
@@ -154,7 +199,7 @@ public class MenuReporte extends JFrame{
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                Menu abrir=new Menu();
+                MenuReporte abrir=new MenuReporte();
                 abrir.setVisible(true);
             }
         });

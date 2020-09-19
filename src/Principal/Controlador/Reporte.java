@@ -298,7 +298,7 @@ public class Reporte {
     
     private void crearFinalVentas()
     {
-        listVentas.append("<br><p>Reporte generado por: "+nameuser+"</p><br></div>\n" +
+        listVentas.append("</table><br><p>Reporte generado por: "+nameuser+"</p><br></div>\n" +
         "<script>\n" +
         "function myFunction() {\n" +
         "var input, filter, table, tr, td, i;\n" +

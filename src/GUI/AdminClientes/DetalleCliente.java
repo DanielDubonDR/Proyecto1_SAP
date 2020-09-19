@@ -117,6 +117,7 @@ public class DetalleCliente extends JFrame {
                         sexo.setText(String.valueOf(clientes[id].getSexo()));
                         nit.setText(String.valueOf(clientes[id].getNit()));
                         foto.setIcon(setIcono(clientes[id].getAvatar(),foto));
+//                        System.out.println(clientes[id].getAvatar());
                         txt.setVisible(false);
                         bb.setVisible(false);
                         n.setVisible(true);
