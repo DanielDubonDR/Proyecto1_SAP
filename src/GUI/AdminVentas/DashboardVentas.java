@@ -40,6 +40,7 @@ public class DashboardVentas extends JFrame{
     Color gris=new Color(236, 240, 241);
     Color celeste=new Color(0, 102, 204);
     Color menta=new Color(26, 177, 136);
+    Color rosa=new Color(202, 41, 91);
     
     private JTable tabla;
     
@@ -56,6 +57,7 @@ public class DashboardVentas extends JFrame{
         agregarpaneles();
         etiquetas();
         agregarTabla();
+        etiquetasVentas();
         cerrar();
     }
     
@@ -149,4 +151,39 @@ public class DashboardVentas extends JFrame{
         });
     }
     
+    public void etiquetasVentas()
+    {
+        Label totalRegistrado=new Label("TOTAL DE VENTAS REGISTRADAS:",20,320,250,30);
+        totalRegistrado.setForeground(rosa);
+        pane.add(totalRegistrado);
+        
+        Label totalR=new Label("Q "+redondear(totat()),270,320,250,30);
+        pane.add(totalR);
+        
+        
+        Label totalIVA=new Label("TOTAL IVA:",460,320,150,30);
+        totalIVA.setForeground(rosa);
+        pane.add(totalIVA);
+        
+        Label totalI=new Label("Q "+redondear(totat()*0.12),555,320,150,30);
+        pane.add(totalI);
+        
+        
+    }
+    
+    public double redondear(double numero)
+    {
+        double aux=Math.round(numero*100)/100d;
+        return aux;
+    }
+    
+    private double totat()
+    {
+        double aux=0;
+        for(int i=0; i<contVA;i++)
+        {
+            aux+=ventasAgrupadas[i].getTotal();
+        }
+        return aux;
+    }
 }
