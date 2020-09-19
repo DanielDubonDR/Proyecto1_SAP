@@ -1,6 +1,7 @@
 
 package GUI.Reportes;
 
+import EstructuraDatos.AlgoritmoProductosVendidos;
 import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
@@ -127,7 +128,8 @@ public class ReportePDFA extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                
+                AlgoritmoProductosVendidos a=new AlgoritmoProductosVendidos();
+                a.llenar();
             }
             
         });
