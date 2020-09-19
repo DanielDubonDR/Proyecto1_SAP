@@ -1,11 +1,9 @@
 
 package Principal.Controlador.PDF;
 
-import static Principal.Proyecto1_SAP.contadorP;
-import static Principal.Proyecto1_SAP.contadorV;
-import static Principal.Proyecto1_SAP.productos;
-import static Principal.Proyecto1_SAP.ventas;
+import static Principal.Proyecto1_SAP.*;
 import java.io.IOException;
+import java.util.Date;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -38,14 +36,14 @@ public class Factura {
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 12);
       contents.newLineAtOffset(105, 615);
-      String text = "HOLA DANIEL";
+      String text = buscar(ventas[id].getNit());
       contents.showText(text); 
       contents.endText();
       
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 12);
       contents.newLineAtOffset(105, 580);
-      String text2 = "4856645";
+      String text2 = String.valueOf(ventas[id].getNit());
       contents.showText(text2);
       contents.endText();
       
@@ -93,28 +91,29 @@ public class Factura {
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 13);
       contents.newLineAtOffset(480, 58);
-      String text7 = "Q. "+String.valueOf(obtenerTotal());
+      String text7 = "Q. "+String.valueOf(redondear(obtenerTotal()));
       contents.showText(text7);
       contents.endText();
       
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 13);
       contents.newLineAtOffset(270, 58);
-      String text8 = "Q. "+String.valueOf(obtenerTotal()*0.12);
+      String text8 = "Q. "+String.valueOf(redondear(obtenerTotal()*0.12));
       contents.showText(text8);
       contents.endText();
       
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 10);
       contents.newLineAtOffset(415, 689);
-      String text9 = "A quien le interesa";
+      String text9 = nameuser;
       contents.showText(text9);
       contents.endText();
       
       contents.beginText(); 
       contents.setFont(PDType1Font.HELVETICA, 10);
-      contents.newLineAtOffset(485, 713);
-      String text11 = "A quien le interesa";
+      contents.newLineAtOffset(430, 700);
+      java.util.Date fecha = new Date();
+      String text11 = String.valueOf(fecha);
       contents.showText(text11);
       contents.endText();
       
@@ -163,6 +162,26 @@ public class Factura {
                 break;
             }
         }
-        return productos[id].getPrecio();
+        return redondear(productos[id].getPrecio());
+    }
+    
+    public String buscar(int nit)
+    {
+        int aux=0;
+        for(int i=0; i<contadorCl;i++)
+        {
+            if(nit==clientes[i].getNit())
+            {
+                aux=i;
+                break;
+            }
+        }
+        return clientes[aux].getNombre();
+    }
+    
+    public double redondear(double numero)
+    {
+        double aux=Math.round(numero*100)/100d;
+        return aux;
     }
 }
