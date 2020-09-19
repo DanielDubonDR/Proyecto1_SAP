@@ -58,7 +58,7 @@ public class ManejadorArchivos {
              {
                  String cadena[];
                  cadena=linea.split(",");
-                 Cliente aux=new Cliente(cadena[0],Integer.parseInt(cadena[1]),cadena[2].charAt(0),Integer.parseInt(cadena[3]),cadena[4]);
+                 Cliente aux=new Cliente(cadena[0],Integer.parseInt(cadena[1]),cadena[2].charAt(0),Integer.parseInt(cadena[3]),cadena[4].replaceFirst("/", ""));
                  clientes[contadorCl]=aux;
                  contadorCl++;
              }
@@ -104,7 +104,7 @@ public class ManejadorArchivos {
                  {
                      String cadena[];
                      cadena=linea.split(",");
-                     Producto aux=new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2]),cadena[3]);
+                     Producto aux=new Producto(cadena[0],Float.parseFloat(cadena[1]),Integer.parseInt(cadena[2]),cadena[3].replaceFirst("/", ""));
                      productos[contadorP]=aux;
                      contadorP++;
                  }

@@ -135,7 +135,7 @@ public class DashboardVentas extends JFrame{
             {
                 filas[i][0]=ventasAgrupadas[i].getCodigo();
                 filas[i][1]=ventasAgrupadas[i].getNit();
-                filas[i][2]=ventasAgrupadas[i].getTotal();
+                filas[i][2]=redondear(ventasAgrupadas[i].getTotal());
             }
         }
         
