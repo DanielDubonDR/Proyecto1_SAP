@@ -123,6 +123,9 @@ public class Registro extends JFrame{
                                     users[contador]=useraux;
                                     JOptionPane.showMessageDialog(null,"Se ha registrado correctamente");
                                     contador++;
+                                    Login s=new Login();
+                                    s.setVisible(true);
+                                    Registro.this.dispose();
                                 }
                         }
                         else
