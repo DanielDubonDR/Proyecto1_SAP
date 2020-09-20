@@ -6,6 +6,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Controlador.PDF.Factura;
+import Principal.Controlador.PDF.ListadoVenta;
 import Principal.Controlador.Reporte;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.clientes;
@@ -118,7 +119,7 @@ public class ReportePDFA extends JFrame{
                 try {
                     a.pdf();
                 } catch (IOException ex) {
-                    Logger.getLogger(ReportePDFA.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
                 }
             }
         });
@@ -148,7 +149,12 @@ public class ReportePDFA extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                
+                ListadoVenta a=new ListadoVenta();
+                try {
+                    a.pdf();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                }
             }
         });
     }

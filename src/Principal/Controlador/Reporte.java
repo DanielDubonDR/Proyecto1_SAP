@@ -69,7 +69,7 @@ public class Reporte {
             listVentas.append("<tr>");
             listVentas.append("<td>"+totales[i].getCodigo()+"</td>");
             listVentas.append("<td class=\"w3-center\">"+totales[i].getNit()+"</td>");
-            listVentas.append("<td class=\"w3-center\">"+totales[i].getTotal()+"</td>");
+            listVentas.append("<td class=\"w3-center\">"+redondear(totales[i].getTotal())+"</td>");
             listVentas.append("</tr>");
         }
         crearFinalVentas();
@@ -318,6 +318,10 @@ public class Reporte {
         "</script></body></html>");
     }
     
-    
+    public double redondear(double numero)
+    {
+        double aux=Math.round(numero*100)/100d;
+        return aux;
+    }
 }
 

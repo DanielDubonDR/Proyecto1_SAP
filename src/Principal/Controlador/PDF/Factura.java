@@ -2,8 +2,11 @@
 package Principal.Controlador.PDF;
 
 import static Principal.Proyecto1_SAP.*;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -119,8 +122,10 @@ public class Factura {
       
       contents.close();
       
-      document.save("Rrte.pdf");
+      document.save("Factura.pdf");
       document.close();
+      JOptionPane.showMessageDialog(null, "Factura generado con éxito");
+      abrirarchivo("Factura.pdf");
     }
     
     public boolean buscarID(int ida)
@@ -183,5 +188,18 @@ public class Factura {
     {
         double aux=Math.round(numero*100)/100d;
         return aux;
+    }
+    public void abrirarchivo(String archivo) {
+
+        try {
+
+            File objetofile = new File(archivo);
+            Desktop.getDesktop().open(objetofile);
+
+        } catch (IOException ex) {
+
+            JOptionPane.showMessageDialog(null, "No se pudo abrir el archivo");
+        }
+
     }
 }
