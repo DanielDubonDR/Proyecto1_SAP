@@ -167,6 +167,8 @@ public class Modificar extends JFrame {
                                 clientes[contadorCl]=aux;
                                 //contadorCl++;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
+                                DetalleCliente z=new DetalleCliente();
+                                z.setVisible(true);
                                 Modificar.this.dispose();
                             }
                             else
@@ -174,6 +176,8 @@ public class Modificar extends JFrame {
                                 Cliente aux=new Cliente(Nombre.getText(),Integer.parseInt(Edad.getText()),combo.getSelectedItem().toString().charAt(0),Integer.parseInt(Nit.getText()),avatar);
                                 clientes[id]=aux;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
+                                DetalleCliente z=new DetalleCliente();
+                                z.setVisible(true);
                                 Modificar.this.dispose();
                             }
                         }
@@ -229,7 +233,8 @@ public class Modificar extends JFrame {
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                
+                DetalleCliente z=new DetalleCliente();
+                z.setVisible(true);
             }
         });
     }

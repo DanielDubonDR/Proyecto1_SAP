@@ -165,6 +165,7 @@ public class DetalleCliente extends JFrame {
                     {
                         Modificar abrir=new Modificar(id,clientes[id].getNombre(),clientes[id].getEdad(),clientes[id].getSexo(),clientes[id].getNit(),clientes[id].getAvatar());
                         abrir.setVisible(true);
+                        DetalleCliente.this.dispose();
                     }
                     else
                     {
@@ -202,6 +203,8 @@ public class DetalleCliente extends JFrame {
                                 //System.out.println("hola");
                             }
                             JOptionPane.showMessageDialog(null,"Se ha eliminado correctamente");
+                            ocultar();
+                            repaint();
                         }
                     }
                     else
@@ -294,6 +297,7 @@ public class DetalleCliente extends JFrame {
             public void mouseClicked(MouseEvent e)
             {
                 buscar.setText("");
+                txt.setText("Nueva Busqueda");
             }
         });
     }
@@ -357,5 +361,22 @@ public class DetalleCliente extends JFrame {
                 abrir.setVisible(true);
             }
         });
+    }
+    
+    public void ocultar()
+    {
+        txt.setVisible(true);
+        buscar.setText("Buscar");
+        bb.setVisible(true);
+        txt.setText("Nueva Busqueda");
+        n.setVisible(false);
+        es.setVisible(false);
+        s.setVisible(false);
+        nt.setVisible(false);
+        nombre.setVisible(false);
+        edad.setVisible(false);
+        sexo.setVisible(false);
+        nit.setVisible(false);
+        foto.setVisible(false);
     }
 }
