@@ -79,7 +79,7 @@ public class Factura {
                 contents.beginText(); 
                 contents.setFont(PDType1Font.HELVETICA, 13);
                 contents.newLineAtOffset(490, 465+cont);
-                String text6 = "Q. "+String.valueOf(buscarPrecio(ventas[i].getNombreproducto())*ventas[i].getCantidad());
+                String text6 = "Q. "+String.valueOf(redondear(buscarPrecio(ventas[i].getNombreproducto())*ventas[i].getCantidad()));
                 contents.showText(text6);
                 contents.endText();
                 
