@@ -6,6 +6,7 @@ import GUI.Utilidades.Boton;
 import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Controlador.PDF.Factura;
+import Principal.Controlador.PDF.ListadoPVendidos;
 import Principal.Controlador.PDF.ListadoVenta;
 import Principal.Controlador.Reporte;
 import Principal.Funciones;
@@ -129,8 +130,14 @@ public class ReportePDFA extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                AlgoritmoProductosVendidos a=new AlgoritmoProductosVendidos();
-                a.llenar();
+//                AlgoritmoProductosVendidos a=new AlgoritmoProductosVendidos();
+//                a.llenar();
+                ListadoPVendidos a=new ListadoPVendidos();
+                try {
+                    a.pdf();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                }
             }
             
         });
