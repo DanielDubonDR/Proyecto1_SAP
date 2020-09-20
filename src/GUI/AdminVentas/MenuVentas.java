@@ -13,6 +13,9 @@ import GUI.Utilidades.Label;
 import GUI.Utilidades.Panel;
 import Principal.Funciones;
 import static Principal.Proyecto1_SAP.clientes;
+import static Principal.Proyecto1_SAP.contadorP;
+import static Principal.Proyecto1_SAP.contadorV;
+import static Principal.Proyecto1_SAP.productos;
 import static Principal.Proyecto1_SAP.ventas;
 import java.awt.Color;
 import java.awt.Image;
@@ -138,6 +141,10 @@ public class MenuVentas extends JFrame{
                         {
                             abrir.cargarVentas();
                             JOptionPane.showMessageDialog(null, "Datos cargados correctamente");
+                            if(productos[0]!=null)
+                            {
+                                RestarProductos();
+                            }
                         } catch (IOException ex) 
                         {
                             JOptionPane.showMessageDialog(null, "Error al cargar datos");
@@ -233,5 +240,19 @@ public class MenuVentas extends JFrame{
                 abrir.setVisible(true);
             }
         });
+    }
+    
+    public void RestarProductos()
+    {
+        for(int j=0; j<contadorP;j++)
+        {
+            for(int i=0; i<contadorV;i++)
+            {
+                if(productos[j].getNombre().equalsIgnoreCase(ventas[i].getNombreproducto()))
+                {
+                    productos[j].setCantidad(productos[j].getCantidad()-ventas[i].getCantidad());
+                }
+            }
+        }
     }
 }
