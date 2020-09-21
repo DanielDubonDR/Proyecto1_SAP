@@ -298,6 +298,8 @@ public class DetalleCliente extends JFrame {
             {
                 buscar.setText("");
                 txt.setText("Nueva Busqueda");
+                ocultar();
+                repaint();
             }
         });
     }
@@ -366,7 +368,6 @@ public class DetalleCliente extends JFrame {
     public void ocultar()
     {
         txt.setVisible(true);
-        buscar.setText("Buscar");
         bb.setVisible(true);
         txt.setText("Nueva Busqueda");
         n.setVisible(false);

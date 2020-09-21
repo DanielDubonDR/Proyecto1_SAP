@@ -159,6 +159,8 @@ public class ModificarProducto extends JFrame {
                                 productos[id]=aux;
                                 //contadorCl++;
                                 JOptionPane.showMessageDialog(null,"Cliente modificado con éxito");
+                                DetalleProducto z=new DetalleProducto();
+                                z.setVisible(true);
                                 ModificarProducto.this.dispose();
                             }
                             else
@@ -166,6 +168,8 @@ public class ModificarProducto extends JFrame {
                                 Producto aux=new Producto(Nombre.getText(),Float.parseFloat(Edad.getText()),Integer.parseInt(Nit.getText()),imagen);
                                 productos[id]=aux;
                                 JOptionPane.showMessageDialog(null,"Producto modificado con éxito");
+                                DetalleProducto z=new DetalleProducto();
+                                z.setVisible(true);
                                 ModificarProducto.this.dispose();
                             }
                         }
@@ -206,7 +210,8 @@ public class ModificarProducto extends JFrame {
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent a){
-                
+                DetalleProducto z=new DetalleProducto();
+                z.setVisible(true);
             }
         });
     }

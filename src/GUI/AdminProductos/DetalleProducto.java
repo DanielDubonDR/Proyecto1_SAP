@@ -151,6 +151,7 @@ public class DetalleProducto extends JFrame{
                     {
                         ModificarProducto abrir=new ModificarProducto(id,productos[id].getNombre(),productos[id].getPrecio(),productos[id].getCantidad(),productos[id].getImagen());
                         abrir.setVisible(true);
+                        DetalleProducto.this.dispose();
                     }
                     else
                     {
@@ -183,6 +184,8 @@ public class DetalleProducto extends JFrame{
                                 //System.out.println("hola");
                             }
                             JOptionPane.showMessageDialog(null,"Se ha eliminado correctamente");
+                            ocultar();
+                            repaint();
                         }
                     }
                     else
@@ -263,6 +266,9 @@ public class DetalleProducto extends JFrame{
             public void mouseClicked(MouseEvent e)
             {
                 buscar.setText("");
+                txt.setText("Nueva busqueda");
+                ocultar();
+                repaint();
             }
         });
     }
@@ -317,5 +323,19 @@ public class DetalleProducto extends JFrame{
                 abrir.setVisible(true);
             }
         });
+    }
+    
+    public void ocultar()
+    {
+        txt.setVisible(true);
+        bb.setVisible(true);
+        txt.setText("Nueva Busqueda");
+        n.setVisible(false);
+        es.setVisible(false);
+        s.setVisible(false);
+        nombre.setVisible(false);
+        edad.setVisible(false);
+        sexo.setVisible(false);
+        foto.setVisible(false);
     }
 }
