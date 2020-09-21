@@ -113,8 +113,8 @@ public class Factura {
       contents.endText();
       
       contents.beginText(); 
-      contents.setFont(PDType1Font.HELVETICA, 10);
-      contents.newLineAtOffset(430, 700);
+      contents.setFont(PDType1Font.HELVETICA, 7);
+      contents.newLineAtOffset(480, 715);
       java.util.Date fecha = new Date();
       String text11 = String.valueOf(fecha);
       contents.showText(text11);
